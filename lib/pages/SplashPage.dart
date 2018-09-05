@@ -37,15 +37,15 @@ Widget ChildWidget()
           Expanded(
             flex: 2,
             child: Column(mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              CircleAvatar(
-                backgroundColor: Colors.white,
-                radius: 100.0,
-                child: Image.asset('assets/images/spero.png')
-              ),
-              Padding(padding: EdgeInsets.only(top: 10.0),),
-              Text("MyOP",style: TextStyle(fontSize: 24.0),)
-            ],),
+              children: <Widget>[
+                CircleAvatar(
+                    backgroundColor: Colors.white,
+                    radius: 100.0,
+                    child: Image.asset('assets/images/spero.png')
+                ),
+                Padding(padding: EdgeInsets.only(top: 10.0),),
+                Text("MyOP",style: TextStyle(fontSize: 24.0),)
+              ],),
           ),
           Expanded(
             flex:  1,

@@ -121,9 +121,7 @@ class _LoginState extends State<Login> {
       }
 
 
-      void saveSharedPref(){
 
-      }
 
       Future getFCMtoken ()async
       {
@@ -162,12 +160,12 @@ class _LoginState extends State<Login> {
 
       void gotonext()
       {
-        Navigator.of(context).pushNamed('/tiledash');
+        Navigator.of(context).pushNamed('/splash2');
       }
 
       void loginPush(){
 //        getLoginToken().whenComplete(getFCMtoken).whenComplete(saveSharedPref).whenComplete(gotonext);
-      getLoginToken().whenComplete(getFCMtoken);
+      getLoginToken().whenComplete(getFCMtoken).whenComplete(gotonext);
       }
 
       final loginButton = Padding(
