@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "945013859332",
+    "firebase_url": "https://myop-c60b5.firebaseio.com",
+    "project_id": "myop-c60b5",
+    "storage_bucket": "myop-c60b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:945013859332:android:36728c8d06644b47",
+        "android_client_info": {
+          "package_name": "com.speromedtech.fluttermyopv10"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "945013859332-te0m2niah00umuq08qgtpo6q34mefh4r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.speromedtech.fluttermyopv10",
+            "certificate_hash": "4d0086d20635d4652ab653a60f898fd21569ba2d"
+          }
+        },
+        {
+          "client_id": "945013859332-k3hi2ahchf496b7b3fvtjkq1njlcooq3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkeGTl0BHdzWuzVhuhc4SeHTBWxncLhoA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "945013859332-k3hi2ahchf496b7b3fvtjkq1njlcooq3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
