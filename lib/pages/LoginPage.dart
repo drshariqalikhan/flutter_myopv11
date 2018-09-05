@@ -85,13 +85,13 @@ class _LoginState extends State<Login> {
         try {
           var response = await http.post(Uri.encodeFull(url), body: body,);
           if(response.statusCode != 200){
-            AlertDialog(
-              title: Text("Error in Login : ${response.statusCode}"),
-              content: Text("Please check username and password"),
-            );
-            setState(() {
 
-            });
+//            setState(() {
+//              AlertDialog(
+//                title: Text("Error in Login : ${response.statusCode}"),
+//                content: Text("Please check username and password"),
+//              );
+//            });
 
           }else{
 
@@ -186,7 +186,7 @@ class _LoginState extends State<Login> {
 
 
       return Scaffold(
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Colors.tealAccent,
         body: Center(
           child: ListView(
             shrinkWrap: true,
