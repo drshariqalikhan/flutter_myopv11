@@ -20,7 +20,7 @@ class _TileDashState extends State<TileDash> {
  @override
   void initState() {
     // TODO: implement initState
-//   _ShowDialog = true;
+   _ShowDialog = true;
    dialog(context,_ShowDialog);
    //show alert dialog if bool is true
     super.initState();
@@ -134,7 +134,7 @@ void dialog(BuildContext context, bool IsAlert)
             Navigator.pop(context);
           }, child: new Text('Later')),
           new FlatButton(onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushNamed(context, '/taskSelect');
           }, child: new Text('Complete Task')),
         ],
       ));

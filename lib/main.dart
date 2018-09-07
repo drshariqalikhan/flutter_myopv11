@@ -6,6 +6,8 @@ import 'package:flutter_myopv10/pages/InstructionPage.dart';
 import 'package:flutter_myopv10/pages/LoginPage.dart';
 import 'package:flutter_myopv10/pages/MessagePage.dart';
 import 'package:flutter_myopv10/pages/NewSplashPage.dart';
+import 'package:flutter_myopv10/pages/PreopPage.dart';
+import 'package:flutter_myopv10/pages/TaskSelectPage.dart';
 import 'package:flutter_myopv10/pages/TilesDashPage.dart';
 
 void main() => runApp(new MyApp());
@@ -33,6 +35,8 @@ class MyApp extends StatelessWidget {
           '/info':(context)=>info(),
           '/instructions':(context)=>instructions(),
           '/aboutsurg':(context)=>AboutSurgery(),
+          '/taskSelect':(context)=>TaskSelect(),
+          '/preop': (context)=>preop(),
 
 
         },
