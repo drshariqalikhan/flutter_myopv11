@@ -160,7 +160,7 @@ class _LoginState extends State<Login> {
 
       void gotonext()
       {
-        Navigator.of(context).pushNamed('/splash2');
+        Navigator.of(context).pushNamed('/splash');
       }
 
       void loginPush(){

@@ -4,6 +4,20 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+/*
+*
+days to op
+jouurney point
+messagefromserveralert
+completetaskalert
+about surg, anes, physio, wound link
+op_name
+op_date
+messagefromserver
+instrctuionsto pt
+
+* */
+
 final String url = "http://myop.pythonanywhere.com/api/connect/";
 
 class NewSplash extends StatefulWidget {
@@ -52,7 +66,7 @@ Widget ChildWidget()
     fit: StackFit.expand,
     children: <Widget>[
       Container(
-        decoration: BoxDecoration(color: Colors.redAccent),
+        decoration: BoxDecoration(color: Colors.white24),
       ),
       Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -62,10 +76,9 @@ Widget ChildWidget()
             flex: 2,
             child: Column(mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                CircleAvatar(
-                    backgroundColor: Colors.white,
-                    radius: 100.0,
-                    child: Image.asset('assets/images/spero.png')
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.asset('assets/images/spero.png'),
                 ),
                 Padding(padding: EdgeInsets.only(top: 10.0),),
                 Text("MyOP",style: TextStyle(fontSize: 24.0),),

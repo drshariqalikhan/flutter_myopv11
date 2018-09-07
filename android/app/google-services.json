@@ -8,20 +8,12 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:945013859332:android:36728c8d06644b47",
+        "mobilesdk_app_id": "1:945013859332:android:8e62cbc6b967ede0",
         "android_client_info": {
           "package_name": "com.speromedtech.fluttermyopv10"
         }
       },
       "oauth_client": [
-        {
-          "client_id": "945013859332-te0m2niah00umuq08qgtpo6q34mefh4r.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.speromedtech.fluttermyopv10",
-            "certificate_hash": "4d0086d20635d4652ab653a60f898fd21569ba2d"
-          }
-        },
         {
           "client_id": "945013859332-k3hi2ahchf496b7b3fvtjkq1njlcooq3.apps.googleusercontent.com",
           "client_type": 3
@@ -37,13 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "945013859332-k3hi2ahchf496b7b3fvtjkq1njlcooq3.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

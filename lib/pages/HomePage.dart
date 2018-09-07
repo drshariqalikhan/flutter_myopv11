@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_myopv10/Components/fancy_fab.dart';
 
 
 
@@ -31,28 +32,32 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return  new WillPopScope(
       onWillPop: () async => false,
-      child: Scaffold(
-        appBar: AppBar(title: Text(widget.title),automaticallyImplyLeading: false,),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              //widgets here
-              Text(
-                'You have pushed the button this many times:',
-              ),
-              Text(
-                '$_counter',
-                style: Theme.of(context).textTheme.display1,
-              ),
-            ],
-          ),
+      child: buildScaffold(context)
+    );
+  }
+
+  Scaffold buildScaffold(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(widget.title),automaticallyImplyLeading: false,),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            //widgets here
+            Text(
+              'You have pushed the button this many times:',
+            ),
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.display1,
+            ),
+          ],
         ),
-        floatingActionButton: new FloatingActionButton(
-            onPressed: gotoNext
-        ),
-      )
+      ),
+      floatingActionButton: new FloatingActionButton(
+
+          onPressed: _incrementCounter
+      ),
     );
   }
 }
-
