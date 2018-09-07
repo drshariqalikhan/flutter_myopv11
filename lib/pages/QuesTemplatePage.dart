@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_myopv10/Components/RadioItem.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
 
 double qsize = 20.0;
-double DIM_BUTTON = 0.5;
-double SHOW_BUTTON = 1.0;
 double PR0GRESS = 0.1;
-bool _q1Value,_q2Value,_q3Value,_q4Value,_q5Value,_q6Value;
-
+bool _q1Value,_q2Value,_q3Value,_q4Value,_q5Value;
+bool _onpress = false;
+String Q1,Q2,Q3,Q4,Q5;
 
 class preop extends StatefulWidget {
 
@@ -58,31 +56,12 @@ class _preopState extends State<preop> {
 
    });
  }
- void _handleQ6(bool value) {
-   setState(() {
-     _q6Value = value;
-     print("q6: $_q6Value");
 
 
-   });
- }
 
+  Widget ChildWidget(BuildContext context, bool _press,String q1,String q2, String q3, String q4, String q5){
 
-double ShowButton(bool _q1Value, bool _q2Value, bool _q3Value,bool _q4Value,bool _q5Value,bool _q6Value)
-{
-  if(_q1Value == null||_q2Value== null ||_q3Value== null ||_q4Value== null ||_q5Value== null ||_q6Value== null )
-    {
-      return 0.5;
-    }
-  else
-    {
-      return 0.1;
-    }
-}
-
-  Widget ChildWidget(BuildContext context){
-
-    return new Scaffold(body: Center(
+    return Scaffold(body: Center(
       child: Padding(
         padding: const EdgeInsets.only(top: 30.0,bottom: 10.0,left: 8.0,right: 8.0),
         child: Column(
@@ -91,12 +70,14 @@ double ShowButton(bool _q1Value, bool _q2Value, bool _q3Value,bool _q4Value,bool
           [
 
             LinearProgressIndicator(backgroundColor: Colors.blueAccent,value: PR0GRESS,),
+
+            //q1
             Padding(
               padding: EdgeInsets.all(0.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Text("Can you easily climb 2 flights of stairs?",textAlign: TextAlign.justify,style: TextStyle(fontSize: qsize,fontWeight: FontWeight.bold),),
+                  Text(q1,textAlign: TextAlign.justify,style: TextStyle(fontSize: qsize,fontWeight: FontWeight.bold),),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
@@ -122,12 +103,14 @@ double ShowButton(bool _q1Value, bool _q2Value, bool _q3Value,bool _q4Value,bool
                 ],
               ),
             ),
+
+            //q2
             Padding(
               padding: EdgeInsets.all(0.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Text("Can you easily climb 2 flights of stairs?",textAlign: TextAlign.justify,style: TextStyle(fontSize: qsize,fontWeight: FontWeight.bold),),
+                  Text(q2,textAlign: TextAlign.justify,style: TextStyle(fontSize: qsize,fontWeight: FontWeight.bold),),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
@@ -153,12 +136,13 @@ double ShowButton(bool _q1Value, bool _q2Value, bool _q3Value,bool _q4Value,bool
               ),
 
             ),
+            //q3
             Padding(
               padding: EdgeInsets.all(0.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Text("Can you easily climb 2 flights of stairs?",textAlign: TextAlign.justify,style: TextStyle(fontSize: qsize,fontWeight: FontWeight.bold),),
+                  Text(q3,textAlign: TextAlign.justify,style: TextStyle(fontSize: qsize,fontWeight: FontWeight.bold),),
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -186,12 +170,14 @@ double ShowButton(bool _q1Value, bool _q2Value, bool _q3Value,bool _q4Value,bool
               ),
 
             ),
+
+            //q4
             Padding(
               padding: EdgeInsets.all(0.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Text("Can you easily climb 2 flights of stairs?",textAlign: TextAlign.justify,style: TextStyle(fontSize: qsize,fontWeight: FontWeight.bold),),
+                  Text(q4,textAlign: TextAlign.justify,style: TextStyle(fontSize: qsize,fontWeight: FontWeight.bold),),
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -219,12 +205,14 @@ double ShowButton(bool _q1Value, bool _q2Value, bool _q3Value,bool _q4Value,bool
               ),
 
             ),
+
+            //q5
             Padding(
               padding: EdgeInsets.all(0.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Text("Can you easily climb 2 flights of stairs?",textAlign: TextAlign.justify,style: TextStyle(fontSize: qsize,fontWeight: FontWeight.bold),),
+                  Text(q5,textAlign: TextAlign.justify,style: TextStyle(fontSize: qsize,fontWeight: FontWeight.bold),),
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -252,65 +240,50 @@ double ShowButton(bool _q1Value, bool _q2Value, bool _q3Value,bool _q4Value,bool
               ),
 
             ),
-//            Padding(
-//              padding: EdgeInsets.all(0.0),
-//              child: Column(
-//                mainAxisAlignment: MainAxisAlignment.start,
-//                children: <Widget>[
-//                  Text("Can you easily climb 2 flights of stairs?",textAlign: TextAlign.justify,style: TextStyle(fontSize: qsize,fontWeight: FontWeight.bold),),
-//
-//                  Row(
-//                    mainAxisAlignment: MainAxisAlignment.start,
-//                    children: <Widget>[
-//                      Text("YES"),
-//                      Radio(
-//                          materialTapTargetSize: MaterialTapTargetSize.padded,
-//                          value: true,
-//                          groupValue: _q6Value,
-//                          onChanged: _handleQ6),
-//                      Text("NO"),
-//                      Radio(
-//                          materialTapTargetSize: MaterialTapTargetSize.padded,
-//                          value: false,
-//                          groupValue: _q6Value,
-//                          onChanged: _handleQ6)
-//                    ],
-//                  ),
-//                  Divider(
-//                    color: Colors.blue,
-//                  )
-//                ],
-//              ),
-//
-//            ),
+
           ],
         ),
       ),
     ),
-        floatingActionButton: Opacity(
-          opacity: ShowButton(_q1Value,_q2Value,_q3Value,_q4Value,_q5Value,_q6Value),
-          child: FloatingActionButton(
-              child: Icon(Icons.navigate_next),
-              onPressed: () {
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.navigate_next),
+        onPressed: (){
+          if(_press)
+          {
+            print("success");
+            //TODO:  save bools in SP
+            print(_q5Value);
+          }
+          else
+          {
+            print("unsuccess");
+            Fluttertoast.showToast(
+                msg: "Please answer all questions before next page",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIos: 5,
+                bgcolor: "#e74c3c",
+                textcolor: '#ffffff'
+            );
+          }
+        },
 
-                if (ShowButton(_q1Value, _q2Value, _q3Value, _q4Value, _q5Value,
-                    _q6Value) == 1.0) {
-                  print("pressed");
-                }
-                else
-                  {
-                    print("");
-                  }
-              }
-          ),
-        )
+      ),
     );
   }
 
 
   @override
   Widget build(BuildContext context) {
-    return new WillPopScope(child: ChildWidget(context), onWillPop: () async => false);
+    if(_q1Value != null && _q2Value != null && _q3Value != null && _q4Value != null && _q5Value != null) {_onpress = true;}
+    //TODO:get data from SP
+    Q1="Can you easily climb 2 flights of stairs?";
+    Q2="Can you easily climb 2 flights of stairs?";
+    Q3="Can you easily climb 2 flights of stairs?";
+    Q4="Can you easily climb 2 flights of stairs?";
+    Q5="Can you easily climb 2 flights of stairs?";
+
+    return new WillPopScope(child: ChildWidget(context,_onpress,Q1,Q2,Q3,Q4,Q5), onWillPop: () async => false);
   }
 }
 

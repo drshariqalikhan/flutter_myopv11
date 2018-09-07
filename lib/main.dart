@@ -6,7 +6,7 @@ import 'package:flutter_myopv10/pages/InstructionPage.dart';
 import 'package:flutter_myopv10/pages/LoginPage.dart';
 import 'package:flutter_myopv10/pages/MessagePage.dart';
 import 'package:flutter_myopv10/pages/NewSplashPage.dart';
-import 'package:flutter_myopv10/pages/PreopPage.dart';
+import 'package:flutter_myopv10/pages/QuesTemplatePage.dart';
 import 'package:flutter_myopv10/pages/TaskSelectPage.dart';
 import 'package:flutter_myopv10/pages/TilesDashPage.dart';
 

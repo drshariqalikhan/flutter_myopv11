@@ -30,12 +30,8 @@ class _TaskSelectState extends State<TaskSelect> {
 
   @override
   Widget build(BuildContext context) {
-//    Navigator.pushNamed(context, PageToGoTo);
-    return new Scaffold(
-      body: Text("redirect"),
 
-
-    );
+    return Container();
   }
 }
 

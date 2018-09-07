@@ -25,6 +25,7 @@ dependencies:
   video_player:
   chewie:
   flutter_html:
+  fluttertoast:
 
 
 dev_dependencies:
