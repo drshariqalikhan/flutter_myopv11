@@ -12,6 +12,7 @@ preop----------<                      /---------------------------------->Remind
                                                                                                                                                      DEAD
 
 JOURNEY POINTS: preop-(preopMedPhoto)-->Reminder1--->Reminder2--->UnkwnOpStatus--->POD1--->POD3---->POD5--->POD10--->POD15-->JourneyComplete
+                                                                                                                             (SuperSync)
 
 preop<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 preop_GotoClinic

@@ -27,19 +27,24 @@ String : FCM
 
 
 
+
 //PUT Request Preop Questions = 33//
+//1
 Bool   : HasAdeqMouthOpening //TODO
 Bool   : HasAdeqNeckMov //TODO
+//2
 Bool   : CanClimbStairs //TODO
 Bool   : HasFeverInfec //TODO
 Bool   : HasLooseTeeth //TODO
 Bool   : HasDentalImplant //TODO
 Bool   : IsPregnant //TODO
+//3
 Bool   : HasSobAtRest //TODO
 Bool   : HasHeartAttacks //TODO
 Bool   : HasChestPain //TODO
 Bool   : HasIrregHR //TODO
 Bool   : HasBloodDs //TODO
+//4
 Bool   : HasDiabetes //TODO
 Bool   : HasThyroidDs //TODO
 Bool   : HasKidneyDs //TODO
