@@ -6,9 +6,20 @@ import 'package:flutter_myopv10/pages/InstructionPage.dart';
 import 'package:flutter_myopv10/pages/LoginPage.dart';
 import 'package:flutter_myopv10/pages/MessagePage.dart';
 import 'package:flutter_myopv10/pages/NewSplashPage.dart';
+import 'package:flutter_myopv10/pages/POD10Page.dart';
+import 'package:flutter_myopv10/pages/POD15Page.dart';
+import 'package:flutter_myopv10/pages/POD1Page.dart';
+import 'package:flutter_myopv10/pages/POD3Page.dart';
+import 'package:flutter_myopv10/pages/POD5Page.dart';
+import 'package:flutter_myopv10/pages/PreopGotoClinicPage.dart';
+import 'package:flutter_myopv10/pages/PreopMedPhotoPage.dart';
 import 'package:flutter_myopv10/pages/QuesTemplatePage.dart';
+import 'package:flutter_myopv10/pages/Reminder1Page.dart';
+import 'package:flutter_myopv10/pages/Reminder2Page.dart';
+import 'package:flutter_myopv10/pages/SuperSyncPage.dart';
 import 'package:flutter_myopv10/pages/TaskSelectPage.dart';
 import 'package:flutter_myopv10/pages/TilesDashPage.dart';
+import 'package:flutter_myopv10/pages/UnkwnOpStatusPage.dart';
 
 void main() => runApp(new MyApp());
 
@@ -36,7 +47,18 @@ class MyApp extends StatelessWidget {
           '/instructions':(context)=>instructions(),
           '/aboutsurg':(context)=>AboutSurgery(),
           '/taskSelect':(context)=>TaskSelect(),
-          '/preop': (context)=>preop(),
+          '/preop': (context)=>preop(),//journey_point = preop
+          '/preop_GotoClinic': (context)=>preop_GotoClinic(),//journey_point
+          '/preopMedPhoto': (context)=>preopMedPhoto(),//journey_point
+          '/Reminder1': (context)=>Reminder1(),//journey_point
+          '/Reminder2': (context)=>Reminder2(),//journey_point
+          '/UnkwnOpStatus': (context)=>UnkwnOpStatus(),//journey_point
+          '/POD1': (context)=>POD1(),//journey_point
+          '/POD3': (context)=>POD3(),//journey_point
+          '/POD5': (context)=>POD5(),//journey_point
+          '/POD10': (context)=>POD10(),//journey_point
+          '/POD15': (context)=>POD15(),//journey_point
+          '/SuperSync': (context)=>SuperSync(),//journey_point
 
 
         },

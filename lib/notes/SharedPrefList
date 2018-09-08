@@ -3,7 +3,7 @@ String : TOKEN
 
 
 //Sync Response From Server//
-String : journey_point
+String : journey_point//TODO this will determine the Alert dialog task route
 String : jpIcon //TODO
 String : op_date
 Int    : Days_to_Op (-X to +15)// TODO

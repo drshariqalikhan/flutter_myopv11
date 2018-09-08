@@ -17,6 +17,7 @@ class _TaskSelectState extends State<TaskSelect> {
   void initState() {
     // TODO: implement initState
     //TODO: set pagetogoto based on sever Json 'journey_point' response
+    //getSP('journey_point').then(redirect);
     getSP('preop').then(redirect);
     super.initState();
 

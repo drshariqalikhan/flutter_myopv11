@@ -4,19 +4,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-/*
-*
-days to op
-jouurney point
-messagefromserveralert
-completetaskalert
-about surg, anes, physio, wound link
-op_name
-op_date
-messagefromserver
-instrctuionsto pt
 
-* */
 
 final String url = "http://myop.pythonanywhere.com/api/connect/";
 
@@ -141,7 +129,6 @@ Future<http.Response> getJsonData(String token) async {
 
 }
 
-
 Future<bool> saveDataFromServer(http.Response response)async
 {
   if(response.statusCode == 200)
@@ -149,13 +136,11 @@ Future<bool> saveDataFromServer(http.Response response)async
     ServerDataList slist = ServerDataList.fromJson(json.decode(response.body));
     for(ServerData s in slist.serverdata)
     {
-      print(s.op_name);
+      print(s.journey_point);
 
       //TODO: save json data into SP
-//      if(int.tryParse(s.UnixTimeOfLastSync) > (getIntSP("UnixTimeOfLastSync") as int))
-//      {
+
       saveSP("journey_point", s.journey_point);//journey_point
-//      }
       saveSP("op_date", s.op_date);//op_date
       saveSP("op_name", s.op_name);//op_name
       saveSP("AboutOpSurgeryLinks", s.AboutOpSurgeryLinks);//AboutOpSurgeryLinks
@@ -177,46 +162,6 @@ Future<bool> saveDataFromServer(http.Response response)async
 
   }
 }
-
-//bool saveDataFromDataObject(ServerData serverdata)
-//{
-//  print("getting response with Data Object");
-//  if(serverdata !=null)
-//    {
-//      print (serverdata.journey_point);
-//      return true;
-//
-//    }
-//    else
-//      {
-//        return false;
-//      }
-//}
-//Future<ServerDataList> getDataObjectFromServer(String token)async{
-//  print("getting response with $token");
-//
-//  final response = await http.post(
-//    Uri.encodeFull(url),
-//    headers: {"AUTHORIZATION": "Token $token"},
-//  );
-//
-//  if(response.statusCode == 200)
-//  {
-////    print(response.body);
-//    return ServerDataList.fromJson(json.decode(response.body));
-////    var res = response.body;
-////    return ServerData.fromJson(json.decode(res));
-//
-//  }
-//  else
-//  {
-//    //print in console
-//    print("cannot get data from server : ${response.statusCode}");
-//    //goto login page
-//    throw Exception('Failed to load post');
-//
-//  }
-//}
 
 
 class ServerData{

@@ -6,12 +6,12 @@ DAYS_to_OP:
                 preop GotoClinic---------------------------------------<               PT_OPCancel/UNFIT_OPCancel
 preop----------<                      /---------------------------------->Reminder1----<                 |
                 preop ok-<-----------<                                  /               \-----Reminder2--<                     PT_OPCancel/UNFIT_OPCancel
-                          preopMedPhoto -------------------------------/                                  \---UnkwnOpStatus--<                               PostOpHome------->  POD1------->POD3------->POD5------->POD10------->POD15--->X
+                          preopMedPhoto -------------------------------/                                  \---UnkwnOpStatus--<                               PostOpHome------->  POD1------->POD3------->POD5------->POD10------->POD15--->JourneyComplete
                                                                                                                               \-----------------------------<              |             |           |            |           |
                                                                                                                                                       |      PosyOpHosp------------------------------------------------------------------->X
                                                                                                                                                      DEAD
 
-JOURNEY POINTS: preop-(preopMedPhoto)-->Reminder1--->Reminder2--->UnkwnOpStatus--->POD1--->POD3---->POD5--->POD10--->POD15-->X
+JOURNEY POINTS: preop-(preopMedPhoto)-->Reminder1--->Reminder2--->UnkwnOpStatus--->POD1--->POD3---->POD5--->POD10--->POD15-->JourneyComplete
 
 preop<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 preop_GotoClinic
@@ -28,4 +28,6 @@ POD3<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 POD5<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 POD10<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 POD15<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+JourneyComplete
 
+//in order to make client dump all SP data to server use 'SuperSync' as journey point
