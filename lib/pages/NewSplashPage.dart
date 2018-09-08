@@ -66,7 +66,7 @@ Widget ChildWidget()
     fit: StackFit.expand,
     children: <Widget>[
       Container(
-        decoration: BoxDecoration(color: Colors.white24),
+        decoration: BoxDecoration(color: Colors.white),
       ),
       Column(
         mainAxisAlignment: MainAxisAlignment.start,

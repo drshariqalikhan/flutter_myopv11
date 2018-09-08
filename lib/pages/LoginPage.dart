@@ -42,7 +42,7 @@ class _LoginState extends State<Login> {
       final logo = Hero(
         tag: 'hero',
         child: CircleAvatar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.white,
           radius: 48.0,
           child: Image.asset('assets/images/spero.png'),
         ),
@@ -86,12 +86,7 @@ class _LoginState extends State<Login> {
           var response = await http.post(Uri.encodeFull(url), body: body,);
           if(response.statusCode != 200){
 
-//            setState(() {
-//              AlertDialog(
-//                title: Text("Error in Login : ${response.statusCode}"),
-//                content: Text("Please check username and password"),
-//              );
-//            });
+
 
           }else{
 

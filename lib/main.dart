@@ -19,10 +19,10 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
       title: 'Flutter Demo',
       theme: new ThemeData(
+
         brightness: Brightness.light,
         accentColor: Colors.deepOrangeAccent
-//        primarySwatch: Colors.blue,
-//        fontFamily: 'Nunito',
+
 
       ),
         initialRoute: '/splash',

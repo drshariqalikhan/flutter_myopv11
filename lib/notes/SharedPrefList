@@ -1,0 +1,182 @@
+String : TOKEN
+
+
+
+//Sync Response From Server//
+String : journey_point
+String : jpIcon //TODO
+String : op_date
+Int    : Days_to_Op (-X to +15)// TODO
+String : op_name
+String : AboutOpSurgeryLinks //HTML
+String : AboutAnesLinks //HTML
+String : AboutPhysioLinks //HTML
+String : AboutWoundCareLinks //HTML
+String : SurgeryVideoLink // TODO:
+String : AnesthVideoLink // TODO:
+String : PhysioVideoLink // TODO
+String : WoundCareVideoLink // TODO
+Bool   : IsAlertFromServToPt //TODO : rename-> HasJourneyTask
+Bool   : HasMessageFromServer//TODO
+String : PreopInstructions//HTML TODO
+
+//Sync PUT Request To Server//
+Int    : UnixTimeOfLastSync
+String : FCM
+
+
+
+
+//PUT Request Preop Questions = 33//
+Bool   : HasAdeqMouthOpening //TODO
+Bool   : HasAdeqNeckMov //TODO
+Bool   : CanClimbStairs //TODO
+Bool   : HasFeverInfec //TODO
+Bool   : HasLooseTeeth //TODO
+Bool   : HasDentalImplant //TODO
+Bool   : IsPregnant //TODO
+Bool   : HasSobAtRest //TODO
+Bool   : HasHeartAttacks //TODO
+Bool   : HasChestPain //TODO
+Bool   : HasIrregHR //TODO
+Bool   : HasBloodDs //TODO
+Bool   : HasDiabetes //TODO
+Bool   : HasThyroidDs //TODO
+Bool   : HasKidneyDs //TODO
+Bool   : HasLiverDs //TODO
+Bool   : HasGastricReflux //TODO
+Bool   : HasStroke //TODO
+Bool   : HasEpilepsy //TODO
+Bool   : HasFHOAnesRxn //TODO
+Bool   : HasPsychDs //TODO
+Bool   : HasCtOrMsDs //TODO
+Bool   : IsSmoker //TODO
+Bool   : HasOsaOrRespDs //TODO
+Bool   : HasLoudSnore //TODO
+Bool   : HasDaySomno //TODO
+Bool   : HasSleepApneaEpisodes //TODO
+Bool   : IsAlcoholic //TODO
+Bool   : HasHtn //TODO
+Bool   : HasAllergies //TODO
+Bool   : HasPrevOps //TODO
+Bool   : HasPONV //TODO
+Bool   : IsOnTcm //TODO
+Bool   : IsOnMeds //TODO
+
+
+//PUT Request Remider 1 Questions = 8//
+
+Bool   : HasFeverInfecRem1 //TODO
+Bool   : HasLooseTeethRem1 //TODO
+Bool   : IsPregnantRem1 //TODO
+Bool   : IsHavingOpRem1 //TODO
+int    : PainScoreRem1// TODO 0-5 from Slider
+int    : MobilityScoreRem1//TODO 0-5 from Slider
+int    : ADL_ScoreRem1//TODO 0-5 from Slider
+int    : MoodScoreRem1////TODO 0-5 from Slider
+
+
+MOBILITY
+I have no problems in walking about 
+I have slight problems in walking about 
+I have moderate problems in walking about 
+I have severe problems in walking about 
+I am unable to walk about 
+SELF-CARE
+I have no problems washing or dressing myself 
+I have slight problems washing or dressing myself 
+I have moderate problems washing or dressing myself 
+I have severe problems washing or dressing myself 
+I am unable to wash or dress myself 
+USUAL ACTIVITIES (e.g. work, study, housework, family or
+leisure activities)
+I have no problems doing my usual activities 
+I have slight problems doing my usual activities 
+I have moderate problems doing my usual activities 
+I have severe problems doing my usual activities 
+I am unable to do my usual activities 
+PAIN / DISCOMFORT
+I have no pain or discomfort 
+I have slight pain or discomfort 
+I have moderate pain or discomfort 
+I have severe pain or discomfort 
+I have extreme pain or discomfort 
+ANXIETY / DEPRESSION
+I am not anxious or depressed 
+I am slightly anxious or depressed 
+I am moderately anxious or depressed 
+I am severely anxious or depressed 
+I am extremely anxious or depressed 
+
+
+
+//PUT Request Remider 2 Questions = 4//
+
+Bool   : HasFeverInfecRem2 //TODO
+Bool   : HasLooseTeethRem2 //TODO
+Bool   : IsPregnantRem2 //TODO
+Bool   : IsHavingOpRem2 //TODO
+
+
+//PUT Request POD1 Questions =8 //
+
+int   : SatisfactionScorePOD1 //TODO 0-5 from Slider
+int   : PainScorePOD1//TODO 0-5 from Slider
+int   : PONVScorePOD1//TODO 0-5 from Slider
+int   : SoreThroatScorePOD1//TODO 0-5 from Slider
+Bool  : HasCalfTenderPOD1//TODO
+Bool  : HasSOBPOD1//TODO
+Bool  : HasFeverPOD1//TODO
+Bool  : HasDysuriaPOD1//TODO
+
+
+//PUT Request POD3 Questions =8 //
+
+int   : PainScorePOD3//TODO 0-5 from Slider
+Bool  : HasCalfTenderPOD3//TODO
+Bool  : HasSOBPOD3//TODO
+Bool  : HasFeverPOD3//TODO
+Bool  : HasDysuriaPOD3//TODO
+Bool  : HasWoundRedOrDischargePOD3//TODO
+Bool  : HasNeededToVisitAePOD3//TODO
+Bool  : HasNeededToReadmitPOD3//TODO
+
+//PUT Request POD5 Questions = 8//
+
+int   : PainScorePOD5//TODO 0-5 from Slider
+Bool  : HasCalfTenderPOD5//TODO
+Bool  : HasSOBPOD5//TODO
+Bool  : HasFeverPOD5//TODO
+Bool  : HasDysuriaPOD5//TODO
+Bool  : HasWoundRedOrDischargePOD5//TODO
+Bool  : HasNeededToVisitAePOD5//TODO
+Bool  : HasNeededToReadmitPOD5//TODO
+
+//PUT Request POD10 Questions = 9//
+
+int   : PainScorePOD10//TODO 0-5 from Slider
+Bool  : HasCalfTenderPOD10//TODO
+Bool  : HasSOBPOD10//TODO
+Bool  : HasFeverPOD10//TODO
+Bool  : HasDysuriaPOD10//TODO
+Bool  : HasWoundRedOrDischargePOD10//TODO
+Bool  : HasNeededToVisitAePOD10//TODO
+Bool  : HasNeededToReadmitPOD10//TODO
+Bool  : HasReturnedToDailyWorkPOD10//TODO
+
+//PUT Request POD15 Questions = 9//
+
+int    : PainScorePOD15// TODO 0-5 from Slider
+int    : MobilityScorePOD15//TODO 0-5 from Slider
+int    : ADL_ScorePOD15//TODO 0-5 from Slider
+int    : MoodScorePOD15////TODO 0-5 from Slider
+int   : SatisfactionScorePOD15 //TODO 0-5 from Slider
+Bool  : HasNeededToVisitAePOD10//TODO
+Bool  : HasNeededToReadmitPOD10//TODO
+Bool  : HasReturnedToDailyWorkPOD10//TODO
+
+
+
+Also Add to model:
+Medication PhotoList
+WoundPhoto at POD3,5,10
