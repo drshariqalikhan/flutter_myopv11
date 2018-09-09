@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 
 class FancyFab extends StatefulWidget {
   final Function() onPressed;
+
+
   final String tooltip;
-  final IconData icon;
+  final Icon icon;
 
 
-  FancyFab({this.onPressed, this.tooltip, this.icon,});
+  FancyFab({this.onPressed, this.tooltip, this.icon});
 
   @override
   _FancyFabState createState() => new _FancyFabState();
@@ -94,26 +96,6 @@ class _FancyFabState extends State<FancyFab>
     );
   }
 
-  Widget button3() {
-    return Container(
-      child: FloatingActionButton(
-        onPressed: null,
-        tooltip: 'info',
-        child: Icon(Icons.info),
-      ),
-    );
-  }
-
-  Widget button4() {
-
-    return Container(
-      child: FloatingActionButton(
-        onPressed: null,
-        tooltip: 'directions',
-        child: Icon(Icons.directions),
-      ),
-    );
-  }
 
   Widget toggle() {
     return Container(
@@ -173,7 +155,6 @@ class _FancyFabState extends State<FancyFab>
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Text("Info"),
-              button3(),
             ],
           ),
         ),
@@ -187,7 +168,7 @@ class _FancyFabState extends State<FancyFab>
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Text("Instruction"),
-              button4(),
+//              button4(),
             ],
           ),
         ),

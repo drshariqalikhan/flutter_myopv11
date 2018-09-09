@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_myopv10/Components/MyAppbar.dart';
 import 'package:flutter_myopv10/QuestionStrings/PreopQuestions.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -41,24 +42,27 @@ class _preopState extends State<preop> {
 
   Widget ChildWidget(BuildContext context, bool _press,String q1,String q2){
 
-    return Scaffold(body: Center(
-      child: Padding(
-        padding: const EdgeInsets.only(top: 30.0,bottom: 10.0,left: 8.0,right: 8.0),
-        child: Column(
-          mainAxisAlignment:MainAxisAlignment.start,
-          children: <Widget>
-          [
-
-            LinearProgressIndicator(backgroundColor: Colors.blueAccent,value: PR0GRESS,),
-           Padding(
-              padding: EdgeInsets.all(0.0),
-              child: Column(
+    return Scaffold(
+      appBar: MyAppbar(myWidget: LinearProgressIndicator(value: PR0GRESS,),),
+      body: new CustomScrollView(
+        primary: true,
+        slivers: <Widget>[
+          new SliverToBoxAdapter(child: Padding(
+      padding: const EdgeInsets.only(top: 30.0,bottom: 8.0,left: 8.0,right: 8.0),
+      child: Column(
+        mainAxisAlignment:MainAxisAlignment.start,
+        children: <Widget>
+        [
+          Column(
+            mainAxisAlignment:MainAxisAlignment.start,
+            children: <Widget>
+            [
+              /////////////////////////////////////////////////////////////
+              //q1
+              Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset('assets/images/fb.png'),
-                  ),
+                  Image.asset('assets/images/fb.png'),
                   Text(q1,textAlign: TextAlign.justify,style: TextStyle(fontSize: qsize,fontWeight: FontWeight.bold),),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -84,12 +88,9 @@ class _preopState extends State<preop> {
                   )
                 ],
               ),
-            ),
 
-            //q2
-            Padding(
-              padding: EdgeInsets.all(0.0),
-              child: Column(
+              //q2
+              Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Image.asset('assets/images/headupdown.jpg'),
@@ -117,15 +118,21 @@ class _preopState extends State<preop> {
                   )
                 ],
               ),
+              SizedBox(height: 50.0,),
 
-              ),
-          ],
-        ),
+              //////////////////////////////////////////////////////
+            ],
+          ),
+
+        ],
       ),
-    ),
-      floatingActionButton: FloatingActionButton(
+      ),
+      ),
+      ],
+      ),
 
-        child: Icon(Icons.navigate_next,),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.navigate_next),
         onPressed: (){
           if(_press)
           {
@@ -133,8 +140,6 @@ class _preopState extends State<preop> {
             //TODO:  save bools in SP
             print(_q1Value);
             btnAxn();
-
-
           }
           else
           {
