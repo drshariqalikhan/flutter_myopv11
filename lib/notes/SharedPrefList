@@ -20,9 +20,20 @@ Bool   : IsAlertFromServToPt //TODO : rename-> HasJourneyTask
 Bool   : HasMessageFromServer//TODO
 String : PreopInstructions//HTML TODO
 
+
+
 //Sync PUT Request To Server//
 Int    : UnixTimeOfLastSync
 String : FCM
+Bool  : HasCompletedPreopTask//TODO journey point = preop
+Bool  : HasCompletedPreopMedPhotoTask//TODO journey point = preopMedPhoto
+Bool  : HasCompletedReminder1Task//TODO journey point = Reminder1
+Bool  : HasCompletedReminder2Task//TODO journey point = Reminder2
+Bool  : HasCompletedPOD1Task//TODO journey point = POD1
+Bool  : HasCompletedPOD3Task//TODO journey point = POD3
+Bool  : HasCompletedPOD5Task//TODO journey point = POD5
+Bool  : HasCompletedPOD10Task//TODO journey point = POD10
+Bool  : HasCompletedPOD15Task//TODO journey point = POD15
 
 
 
@@ -67,6 +78,7 @@ Bool   : HasPrevOps //TODO
 Bool   : HasPONV //TODO
 Bool   : IsOnTcm //TODO
 Bool   : IsOnMeds //TODO
+Bool   : HasUploadedMedPhoto //TODO
 
 
 //PUT Request Remider 1 Questions = 8//
@@ -129,10 +141,13 @@ int   : SatisfactionScorePOD1 //TODO 0-5 from Slider
 int   : PainScorePOD1//TODO 0-5 from Slider
 int   : PONVScorePOD1//TODO 0-5 from Slider
 int   : SoreThroatScorePOD1//TODO 0-5 from Slider
+Bool  : HasUploadedWoundPhotoPOD1//TODO
 Bool  : HasCalfTenderPOD1//TODO
 Bool  : HasSOBPOD1//TODO
 Bool  : HasFeverPOD1//TODO
 Bool  : HasDysuriaPOD1//TODO
+Bool  : IsDischargedHomePOD1//TODO
+
 
 
 //PUT Request POD3 Questions =8 //
@@ -145,6 +160,9 @@ Bool  : HasDysuriaPOD3//TODO
 Bool  : HasWoundRedOrDischargePOD3//TODO
 Bool  : HasNeededToVisitAePOD3//TODO
 Bool  : HasNeededToReadmitPOD3//TODO
+Bool   : HasUploadedWoundPhotoPOD3 //TODO
+Bool  : IsDischargedHomePOD3//TODO
+
 
 //PUT Request POD5 Questions = 8//
 
@@ -156,6 +174,10 @@ Bool  : HasDysuriaPOD5//TODO
 Bool  : HasWoundRedOrDischargePOD5//TODO
 Bool  : HasNeededToVisitAePOD5//TODO
 Bool  : HasNeededToReadmitPOD5//TODO
+Bool   : HasUploadedWoundPhotoPOD5//TODO
+Bool  : IsDischargedHomePOD5//TODO
+
+
 
 //PUT Request POD10 Questions = 9//
 
@@ -168,6 +190,10 @@ Bool  : HasWoundRedOrDischargePOD10//TODO
 Bool  : HasNeededToVisitAePOD10//TODO
 Bool  : HasNeededToReadmitPOD10//TODO
 Bool  : HasReturnedToDailyWorkPOD10//TODO
+Bool   : HasUploadedWoundPhotoPOD10//TODO
+Bool  : IsDischargedHomePOD10//TODO
+
+
 
 //PUT Request POD15 Questions = 9//
 
@@ -179,9 +205,13 @@ int   : SatisfactionScorePOD15 //TODO 0-5 from Slider
 Bool  : HasNeededToVisitAePOD10//TODO
 Bool  : HasNeededToReadmitPOD10//TODO
 Bool  : HasReturnedToDailyWorkPOD10//TODO
+Bool   : HasUploadedWoundPhotoPOD15//TODO
+Bool  : IsDischargedHomePOD15//TODO
+
+
 
 
 
 Also Add to model:
 Medication PhotoList
-WoundPhoto at POD3,5,10
+WoundPhoto at POD3,5,10,15

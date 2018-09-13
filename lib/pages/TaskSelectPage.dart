@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
 
@@ -17,8 +17,7 @@ class _TaskSelectState extends State<TaskSelect> {
   void initState() {
     // TODO: implement initState
     //TODO: set pagetogoto based on sever Json 'journey_point' response
-    //getSP('journey_point').then(redirect);
-    getSP('preop').then(redirect);
+    getSP('journey_point').then(redirect);
     super.initState();
 
   }
@@ -26,7 +25,7 @@ class _TaskSelectState extends State<TaskSelect> {
   void redirect (String page)
   {
     print(page);
-    Navigator.pushNamed(context, page);
+    Navigator.pushNamed(context, '/$page');
   }
 
   @override
@@ -38,8 +37,8 @@ class _TaskSelectState extends State<TaskSelect> {
 
 Future <String> getSP(String key)async{
   print("getting $key");
-//  SharedPreferences pref = await SharedPreferences.getInstance();
-//  return pref.getString(key)?? "100";
-    return '/$key';
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  return pref.getString(key)?? "100";
+//    return '/$key';
 }
 
