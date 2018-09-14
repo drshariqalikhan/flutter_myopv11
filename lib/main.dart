@@ -13,8 +13,12 @@ import 'package:flutter_myopv10/pages/POD3Page.dart';
 import 'package:flutter_myopv10/pages/POD5Page.dart';
 import 'package:flutter_myopv10/pages/PreopGotoClinicPage.dart';
 import 'package:flutter_myopv10/pages/PreopMedPhotoPage.dart';
+import 'package:flutter_myopv10/pages/PreopPageEight.dart';
+import 'package:flutter_myopv10/pages/PreopPageFive.dart';
 import 'package:flutter_myopv10/pages/PreopPageFour.dart';
 import 'package:flutter_myopv10/pages/PreopPageOne.dart';
+import 'package:flutter_myopv10/pages/PreopPageSeven.dart';
+import 'package:flutter_myopv10/pages/PreopPageSix.dart';
 import 'package:flutter_myopv10/pages/PreopPageThree.dart';
 import 'package:flutter_myopv10/pages/PreopPageTwo.dart';
 import 'package:flutter_myopv10/pages/Reminder1Page.dart';
@@ -41,7 +45,7 @@ class MyApp extends StatelessWidget {
 
 
       ),
-        initialRoute: '/splash',
+        initialRoute: '/preop2',
         routes: {
           '/':(context)=> MyHomePage(title: "Home screen",),
           '/splash':(context)=> NewSplash(),
@@ -56,6 +60,10 @@ class MyApp extends StatelessWidget {
           '/preop2': (context)=>preopTwo(),
           '/preop3': (context)=>preopThree(),
           '/preop4': (context)=>preopFour(),
+          '/preop5': (context)=>preopFive(),
+          '/preop6': (context)=>preopSix(),
+          '/preop7': (context)=>preopSeven(),
+          '/preop8': (context)=>preopEight(),
           '/preop_GotoClinic': (context)=>preop_GotoClinic(),//journey_point
           '/preopMedPhoto': (context)=>preopMedPhoto(),//journey_point
           '/takePhoto': (context)=>takePhoto(),

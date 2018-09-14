@@ -6,18 +6,18 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 double qsize = 20.0;
-double PR0GRESS = 3/8;
+double PR0GRESS = 8/8;
 bool _q1Value,_q2Value,_q3Value,_q4Value,_q5Value;
 bool _onpress = false;
 String Q1,Q2,Q3,Q4,Q5;
 
-class preopThree extends StatefulWidget {
+class preopEight extends StatefulWidget {
 
   @override
-  _preopThreeState createState() => new _preopThreeState();
+  _preopEightState createState() => new _preopEightState();
 }
 
-class _preopThreeState extends State<preopThree> {
+class _preopEightState extends State<preopEight> {
 
   void _handleQ1(bool value) {
 
@@ -507,11 +507,11 @@ class _preopThreeState extends State<preopThree> {
   Widget build(BuildContext context) {
     if(_q1Value != null && _q2Value != null && _q3Value != null && _q4Value != null && _q5Value != null) {_onpress = true;}
     //TODO:get data from SP
-    Q1="Do you get breathless on lying flat or at rest?";
-    Q2="Do you have any heart disease or heart attacks?";
-    Q3="Do you get chest pains?";
-    Q4="Do you get irregular heart beats?";
-    Q5="Do you have High Blood pressure?";
+    Q1="Do you have relatives who had reaction to Anaesthesia?";
+    Q2="Did you have operations or surgeries in the past?";
+    Q3="Did you get Nausea or Vomiting after surgery?";
+    Q4="";
+    Q5="";
 
     return new WillPopScope(child: ChildWidget(context,_onpress,Q1,Q2,Q3,Q4,Q5), onWillPop: () async => false);
   }

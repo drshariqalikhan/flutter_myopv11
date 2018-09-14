@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_myopv10/Components/MyAppbar.dart';
-import 'package:flutter_myopv10/QuestionStrings/PreopQuestions.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -174,7 +173,6 @@ class _preopState extends State<preop> {
 
   @override
   Widget build(BuildContext context) {
-    PreopQuestions preopQuestions = new PreopQuestions();
     if(_q1Value != null && _q2Value != null) {_onpress = true;}
     //TODO:get data from SP
     Q1="Can you open your MOUTH 2 fingers wide?";
