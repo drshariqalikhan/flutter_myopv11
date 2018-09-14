@@ -6,10 +6,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 double qsize = 20.0;
-double PR0GRESS = 7/8;
-bool _q1Value,_q2Value,_q3Value,_q4Value,_q5Value;
+double PR0GRESS = 7/7;
+bool _q1Value,_q2Value,_q3Value,_q4Value,_q5Value,_q6Value,_q7Value;
 bool _onpress = false;
-String Q1,Q2,Q3,Q4,Q5;
+String Q1,Q2,Q3,Q4,Q5,Q6,Q7;
 
 class preopSeven extends StatefulWidget {
 
@@ -60,9 +60,25 @@ class _preopSevenState extends State<preopSeven> {
 
     });
   }
+  void _handleQ6(bool value) {
+    setState(() {
+      _q6Value = value;
+      print("q6: $_q6Value");
 
 
-  Widget ChildWidget(BuildContext context, bool _press,String q1,String q2,String q3, String q4, String q5){
+    });
+  }
+  void _handleQ7(bool value) {
+    setState(() {
+      _q7Value = value;
+      print("q7: $_q7Value");
+
+
+    });
+  }
+
+
+  Widget ChildWidget(BuildContext context, bool _press,String q1,String q2,String q3, String q4, String q5,String q6,String q7){
 
     return Scaffold(
       appBar: MyAppbar(myWidget: LinearProgressIndicator(value: PR0GRESS,),),
@@ -223,6 +239,66 @@ class _preopSevenState extends State<preopSeven> {
                                 value: false,
                                 groupValue: _q5Value,
                                 onChanged: _handleQ5)
+                          ],
+                        ),
+                        Divider(
+                          color: Colors.blue,
+                        )
+                      ],
+                    ),
+                    //q6
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Text(q6,textAlign: TextAlign.justify,style: TextStyle(fontSize: qsize,fontWeight: FontWeight.bold),),
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text("YES"),
+                            Radio(
+                                materialTapTargetSize: MaterialTapTargetSize.padded,
+                                value: true,
+                                groupValue: _q6Value,
+                                onChanged: _handleQ6),
+                            SizedBox(width: 200.0,),
+
+                            Text("NO"),
+                            Radio(
+                                materialTapTargetSize: MaterialTapTargetSize.padded,
+                                value: false,
+                                groupValue: _q6Value,
+                                onChanged: _handleQ6)
+                          ],
+                        ),
+                        Divider(
+                          color: Colors.blue,
+                        )
+                      ],
+                    ),
+                    //q7
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Text(q7,textAlign: TextAlign.justify,style: TextStyle(fontSize: qsize,fontWeight: FontWeight.bold),),
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text("YES"),
+                            Radio(
+                                materialTapTargetSize: MaterialTapTargetSize.padded,
+                                value: true,
+                                groupValue: _q7Value,
+                                onChanged: _handleQ7),
+                            SizedBox(width: 200.0,),
+
+                            Text("NO"),
+                            Radio(
+                                materialTapTargetSize: MaterialTapTargetSize.padded,
+                                value: false,
+                                groupValue: _q7Value,
+                                onChanged: _handleQ7)
                           ],
                         ),
                         Divider(
@@ -499,7 +575,7 @@ class _preopSevenState extends State<preopSeven> {
 
   }
   void gotonext() {
-    Navigator.of(context).pushNamed('/preop3');
+    Navigator.of(context).pushNamed('/splash');
   }
 
 
@@ -511,9 +587,12 @@ class _preopSevenState extends State<preopSeven> {
     Q2="Do you regularly consume alcohol?";
     Q3="Are you taking traditional Chinese herbal medication?";
     Q4="Do you taking any medications?";
-    Q5="";
+    Q5="Do you have relatives who had reaction to Anaesthesia?";
+    Q6="Did you have operations or surgeries in the past?";
+    Q7="Did you get Nausea or Vomiting after surgery?";
 
-    return new WillPopScope(child: ChildWidget(context,_onpress,Q1,Q2,Q3,Q4,Q5), onWillPop: () async => false);
+
+    return new WillPopScope(child: ChildWidget(context,_onpress,Q1,Q2,Q3,Q4,Q5,Q6,Q7), onWillPop: () async => false);
   }
 }
 

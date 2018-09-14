@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 double qsize = 20.0;
-double PR0GRESS = 2/8;
+double PR0GRESS = 2/7;
 bool _q1Value,_q2Value,_q3Value,_q4Value,_q5Value;
 bool _onpress = false;
 String Q1,Q2,Q3,Q4,Q5;

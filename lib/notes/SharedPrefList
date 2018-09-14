@@ -54,30 +54,34 @@ Bool   : HasSobAtRest //TODO
 Bool   : HasHeartAttacks //TODO
 Bool   : HasChestPain //TODO
 Bool   : HasIrregHR //TODO
-Bool   : HasBloodDs //TODO
+Bool   : HasHtn //TODO
 //4
 Bool   : HasDiabetes //TODO
 Bool   : HasThyroidDs //TODO
 Bool   : HasKidneyDs //TODO
 Bool   : HasLiverDs //TODO
 Bool   : HasGastricReflux //TODO
+//5
 Bool   : HasStroke //TODO
 Bool   : HasEpilepsy //TODO
-Bool   : HasFHOAnesRxn //TODO
 Bool   : HasPsychDs //TODO
+Bool   : HasBloodDs //TODO
 Bool   : HasCtOrMsDs //TODO
-Bool   : IsSmoker //TODO
+//6
+Bool   : HasAllergies //TODO
 Bool   : HasOsaOrRespDs //TODO
 Bool   : HasLoudSnore //TODO
 Bool   : HasDaySomno //TODO
 Bool   : HasSleepApneaEpisodes //TODO
+//7
+Bool   : IsSmoker //TODO
 Bool   : IsAlcoholic //TODO
-Bool   : HasHtn //TODO
-Bool   : HasAllergies //TODO
-Bool   : HasPrevOps //TODO
-Bool   : HasPONV //TODO
 Bool   : IsOnTcm //TODO
 Bool   : IsOnMeds //TODO
+Bool   : HasFHOAnesRxn //TODO
+Bool   : HasPrevOps //TODO
+Bool   : HasPONV //TODO
+
 Bool   : HasUploadedMedPhoto //TODO
 
 

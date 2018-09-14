@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 double qsize = 20.0;
-double PR0GRESS = 5/8;
+double PR0GRESS = 5/7;
 bool _q1Value,_q2Value,_q3Value,_q4Value,_q5Value;
 bool _onpress = false;
 String Q1,Q2,Q3,Q4,Q5;
@@ -499,7 +499,7 @@ class _preopFiveState extends State<preopFive> {
 
   }
   void gotonext() {
-    Navigator.of(context).pushNamed('/preop3');
+    Navigator.of(context).pushNamed('/preop6');
   }
 
 

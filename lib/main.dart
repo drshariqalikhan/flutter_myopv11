@@ -13,7 +13,6 @@ import 'package:flutter_myopv10/pages/POD3Page.dart';
 import 'package:flutter_myopv10/pages/POD5Page.dart';
 import 'package:flutter_myopv10/pages/PreopGotoClinicPage.dart';
 import 'package:flutter_myopv10/pages/PreopMedPhotoPage.dart';
-import 'package:flutter_myopv10/pages/PreopPageEight.dart';
 import 'package:flutter_myopv10/pages/PreopPageFive.dart';
 import 'package:flutter_myopv10/pages/PreopPageFour.dart';
 import 'package:flutter_myopv10/pages/PreopPageOne.dart';
@@ -45,7 +44,7 @@ class MyApp extends StatelessWidget {
 
 
       ),
-        initialRoute: '/preop2',
+        initialRoute: '/splash',
         routes: {
           '/':(context)=> MyHomePage(title: "Home screen",),
           '/splash':(context)=> NewSplash(),
@@ -63,7 +62,6 @@ class MyApp extends StatelessWidget {
           '/preop5': (context)=>preopFive(),
           '/preop6': (context)=>preopSix(),
           '/preop7': (context)=>preopSeven(),
-          '/preop8': (context)=>preopEight(),
           '/preop_GotoClinic': (context)=>preop_GotoClinic(),//journey_point
           '/preopMedPhoto': (context)=>preopMedPhoto(),//journey_point
           '/takePhoto': (context)=>takePhoto(),
