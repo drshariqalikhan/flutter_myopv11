@@ -83,8 +83,6 @@ class _TileDashState extends State<TileDash> {
 
    return Scaffold(
        floatingActionButton: UnicornDialer(
-           backgroundColor: Color.fromRGBO(255, 255, 255, 0.6),
-           parentButtonBackground: Colors.blueAccent,
            orientation: UnicornOrientation.VERTICAL,
            parentButton: Icon(Icons.menu),
            childButtons: childButtons),
