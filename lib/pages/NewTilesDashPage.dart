@@ -82,7 +82,8 @@ class _TileDashState extends State<TileDash> {
 
 
    return Scaffold(
-       floatingActionButton: UnicornDialer(
+     backgroundColor: Colors.tealAccent,
+     floatingActionButton: UnicornDialer(
            orientation: UnicornOrientation.VERTICAL,
            parentButton: Icon(Icons.menu),
            childButtons: childButtons),
@@ -99,9 +100,15 @@ class _TileDashState extends State<TileDash> {
        ),
 
 
-   body: ListView(
-     children: JourneyTimeline("Second Reminder"),
-   ),
+   body: Card(
+     shape:RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0)),side: BorderSide(width: 1.0)),
+     margin: EdgeInsets.all(40.0),
+     elevation: 10.0,
+     child:ListView(
+       children: JourneyTimeline("Second Reminder"),
+
+     ),
+   )
    );
  }
 
