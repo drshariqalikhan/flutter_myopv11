@@ -30,6 +30,7 @@ dependencies:
   image: ^2.0.4
   modal_progress_hud: ^0.1.0
   fluttertoast: ^2.0.7
+  unicorndial:
 
 dev_dependencies:
   flutter_test:

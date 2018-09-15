@@ -18,13 +18,13 @@ class TileDash extends StatefulWidget {
 }
 
 class _TileDashState extends State<TileDash> {
- @override
+  @override
   void initState() {
     // TODO: implement initState
-   JpIcon = "1";
-   _ShowDialog = true;
-   dialog(context,_ShowDialog);
-   //show alert dialog if bool is true
+    JpIcon = "1";
+    _ShowDialog = true;
+    dialog(context,_ShowDialog);
+    //show alert dialog if bool is true
     super.initState();
   }
 
@@ -50,7 +50,7 @@ Widget ChildWidget(BuildContext context){
           padding: const EdgeInsets.only(right: 50.0,left: 0.0,bottom: 8.0,top: 8.0),
           child: RotatedBox(
             child: Image.asset('assets/images/$JpIcon.png'),
-              quarterTurns: 3,
+            quarterTurns: 3,
           ),
 
         ),
@@ -69,9 +69,9 @@ Widget ChildWidget(BuildContext context){
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: FloatingActionButton(
-              child: Icon(Icons.message),
-              onPressed: ()=>Navigator.pushNamed(context, '/messages'),
-              heroTag: "message",
+            child: Icon(Icons.message),
+            onPressed: ()=>Navigator.pushNamed(context, '/messages'),
+            heroTag: "message",
             foregroundColor: message_AlertColor,
 
           ),
@@ -79,9 +79,9 @@ Widget ChildWidget(BuildContext context){
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: FloatingActionButton(
-              child: Icon(Icons.gavel ),
-              onPressed:()=> dialog(context,_ShowDialog),
-              heroTag: "Complete task",
+            child: Icon(Icons.gavel ),
+            onPressed:()=> dialog(context,_ShowDialog),
+            heroTag: "Complete task",
 
             foregroundColor: task_AlertColor,
           ),
@@ -89,10 +89,10 @@ Widget ChildWidget(BuildContext context){
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: FloatingActionButton(
-              child: Icon(Icons.info,size: 40.0,),
-              onPressed: ()=>Navigator.pushNamed(context, '/info'),
-              heroTag: "About my Op",
-             foregroundColor: About_AlertColor,
+            child: Icon(Icons.info,size: 40.0,),
+            onPressed: ()=>Navigator.pushNamed(context, '/info'),
+            heroTag: "About my Op",
+            foregroundColor: About_AlertColor,
           ),
         ),
 
@@ -100,9 +100,9 @@ Widget ChildWidget(BuildContext context){
           padding: const EdgeInsets.all(8.0),
 
           child: FloatingActionButton(
-              child: Icon(Icons.directions,size: 40.0,),
-              onPressed: ()=>Navigator.pushNamed(context, '/instructions'),
-              heroTag: "Instructions to follow",
+            child: Icon(Icons.directions,size: 40.0,),
+            onPressed: ()=>Navigator.pushNamed(context, '/instructions'),
+            heroTag: "Instructions to follow",
             foregroundColor: Instructions_AlertColor,
           ),
         ),

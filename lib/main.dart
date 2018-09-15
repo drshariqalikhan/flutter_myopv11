@@ -24,7 +24,7 @@ import 'package:flutter_myopv10/pages/Reminder1Page.dart';
 import 'package:flutter_myopv10/pages/Reminder2Page.dart';
 import 'package:flutter_myopv10/pages/SuperSyncPage.dart';
 import 'package:flutter_myopv10/pages/TaskSelectPage.dart';
-import 'package:flutter_myopv10/pages/TilesDashPage.dart';
+import 'package:flutter_myopv10/pages/NewTilesDashPage.dart';
 import 'package:flutter_myopv10/pages/UnkwnOpStatusPage.dart';
 import 'package:flutter_myopv10/pages/picPhotoPage.dart';
 import 'package:flutter_myopv10/pages/takePhotoPage.dart';
