@@ -1,10 +1,8 @@
 String : TOKEN
 
 
-
 //Sync Response From Server//
 String : journey_point//TODO this will determine the Alert dialog task route
-String : jpIcon //TODO
 String : op_date
 Int    : Days_to_Op (-X to +15)// TODO
 String : op_name
@@ -19,22 +17,23 @@ String : WoundCareVideoLink // TODO
 Bool   : IsAlertFromServToPt //TODO : rename-> HasJourneyTask
 Bool   : HasMessageFromServer//TODO
 String : PreopInstructions//HTML TODO
+Status code 200 //TODO will set App internal bool(CanUpdate to FALSE)
 
 
 
 //Sync PUT Request To Server//
-Int    : UnixTimeOfLastSync
+String  : journey_point //TODO Can send to server only if App internal bool(Canupdate is TRUE)
 String : FCM
-Bool  : HasCompletedPreopTask//TODO journey point = preop
-Bool  : HasCompletedPreopMedPhotoTask//TODO journey point = preopMedPhoto
-Bool  : HasCompletedReminder1Task//TODO journey point = Reminder1
-Bool  : HasCompletedReminder2Task//TODO journey point = Reminder2
-Bool  : HasCompletedPOD1Task//TODO journey point = POD1
-Bool  : HasCompletedPOD3Task//TODO journey point = POD3
-Bool  : HasCompletedPOD5Task//TODO journey point = POD5
-Bool  : HasCompletedPOD10Task//TODO journey point = POD10
-Bool  : HasCompletedPOD15Task//TODO journey point = POD15
-
+??? Maybe not needed ???
+      Bool  : HasCompletedPreopTask//TODO journey point = preop
+      Bool  : HasCompletedReminder1Task//TODO journey point = Reminder1
+      Bool  : HasCompletedReminder2Task//TODO journey point = Reminder2
+      Bool  : HasCompletedPOD1Task//TODO journey point = POD1
+      Bool  : HasCompletedPOD3Task//TODO journey point = POD3
+      Bool  : HasCompletedPOD5Task//TODO journey point = POD5
+      Bool  : HasCompletedPOD10Task//TODO journey point = POD10
+      Bool  : HasCompletedPOD15Task//TODO journey point = POD15
+??? Maybe not needed ???
 
 
 
@@ -84,6 +83,12 @@ Bool   : HasPONV //TODO
 
 Bool   : HasUploadedMedPhoto //TODO
 
+//Response from Server
+Status code 200 //will set App internal bool(CanUpdate to TRUE)
+String : journey_point //TODO journey_point will be computed by server and wil be either : preop_GotoClinic or preopMedPhoto or Reminder1
+//Response from Server
+<then goto splash page to sync with server again>
+
 
 //PUT Request Remider 1 Questions = 8//
 
@@ -95,6 +100,12 @@ int    : PainScoreRem1// TODO 0-5 from Slider
 int    : MobilityScoreRem1//TODO 0-5 from Slider
 int    : ADL_ScoreRem1//TODO 0-5 from Slider
 int    : MoodScoreRem1////TODO 0-5 from Slider
+
+//Response from Server
+Status code 200 //will set App internal bool(CanUpdate to TRUE)
+String : journey_point //TODO journey_point will be computed by server and wil be either: Reminder2 or PT_OPCancel
+//Response from Server
+<then goto splash page to sync with server again>
 
 
 MOBILITY
@@ -138,34 +149,84 @@ Bool   : HasLooseTeethRem2 //TODO
 Bool   : IsPregnantRem2 //TODO
 Bool   : IsHavingOpRem2 //TODO
 
+//Response from Server
+Status code 200 //will set App internal bool(CanUpdate to TRUE)
+String : journey_point //TODO journey_point will be computed by server and wil be either: UnkwnOpStatus or PT_OPCancel
+//Response from Server
 
-//PUT Request POD1 Questions =8 //
+
+//PUT Request POD1 Questions =16 //
+1/ Pain at rest (0-10)
+2/ Site of pain at rest*
+3/ Pain at movement (0-10)
+4/ Site of pain at movement*
+5/ Did you sleep well? (yes/no)
+6/ Do you have PONV? (Nil/mild/mod/sev)
+7/ Do you have Sorethroat? (Nil/mild/mod/sev)
+8/ Do you have any itchness? (Nil/mild/mod/sev)
+9/ How Sleepy are you? (Alert/Mild Drowsy/Mod Drowsy/Severly Drowsy)*
+10/Do you have any new urinary retention {irritation or increased urinnary urgency}? (yes/no)
+11/How satisfied are you? (1-5) 5 very satisfied
+12/ Any dental injury? (yes/no) [my add]
+13/ Any new numbness or weakness? (yes/no) [my add]
+14/ Any Calf Redness or tenderness? (yes/no) [my add]
+15/ Any SOB? (yes/no) [my add]
+16/ Any fever ? {yes/no) [my add]
 
 int   : SatisfactionScorePOD1 //TODO 0-5 from Slider
-int   : PainScorePOD1//TODO 0-5 from Slider
+int   : PainScoreRestPOD1//TODO 0-5 from Slider
+int   : PainScoreMovPOD1//TODO 0-5 from Slider
 int   : PONVScorePOD1//TODO 0-5 from Slider
 int   : SoreThroatScorePOD1//TODO 0-5 from Slider
-Bool  : HasUploadedWoundPhotoPOD1//TODO
+int   : ItchyScorePOD1//TODO 0-5 from Slider
+
+Bool  : HasDentalDamagePOD1//TODO
+Bool  : HasUploadedWoundPhotoPOD1//TODO new page for wound upload
 Bool  : HasCalfTenderPOD1//TODO
 Bool  : HasSOBPOD1//TODO
 Bool  : HasFeverPOD1//TODO
-Bool  : HasDysuriaPOD1//TODO
-Bool  : IsDischargedHomePOD1//TODO
+Bool  : HasDysuriaRetenPOD1//TODO
+Bool  : HasNumbnessPOD1;///TODO
+Bool  : IsDischargedHomePOD1//TODO this will be from staff
+
+//Response from Server
+Status code 200 //will set App internal bool(CanUpdate to TRUE)
+String : journey_point //TODO journey_point will be computed by server and wil be either: POD3
+//Response from Server
+<then goto splash page to sync with server again>
 
 
 
-//PUT Request POD3 Questions =8 //
+//PUT Request POD3 Questions = 10 //
+1/ Pain at rest (0-10)
+2/ Pain at movement (0-10)
+3/Do you have any new urinary retention {irritation or increased urinary urgency}? (yes/no)
+4/ Any new numbness or weakness? (yes/no) [my add]
+5/ Any Calf Redness or tenderness? (yes/no) [my add]
+6/ Any SOB? (yes/no) [my add]
+7/ Any fever ? {yes/no) [my add]
+8/ Any wound Reddness or discharge?
+9/ Any unplanned visit to hospital?
+10/ Any unplanned readmission to hospital?
 
-int   : PainScorePOD3//TODO 0-5 from Slider
+int   : PainScoreRestPOD3//TODO 0-5 from Slider
+int   : PainScoreMovPOD3//TODO 0-5 from Slider
+Bool  : HasDysuriaRetenPOD3//TODO
+Bool  : HasNumbnessPOD3;///TODO
 Bool  : HasCalfTenderPOD3//TODO
 Bool  : HasSOBPOD3//TODO
 Bool  : HasFeverPOD3//TODO
-Bool  : HasDysuriaPOD3//TODO
 Bool  : HasWoundRedOrDischargePOD3//TODO
 Bool  : HasNeededToVisitAePOD3//TODO
 Bool  : HasNeededToReadmitPOD3//TODO
 Bool   : HasUploadedWoundPhotoPOD3 //TODO
 Bool  : IsDischargedHomePOD3//TODO
+
+//Response from Server
+Status code 200 //will set App internal bool(CanUpdate to TRUE)
+String : journey_point //TODO journey_point will be computed by server and wil be either: POD5
+//Response from Server
+<then goto splash page to sync with server again>
 
 
 //PUT Request POD5 Questions = 8//
@@ -180,6 +241,13 @@ Bool  : HasNeededToVisitAePOD5//TODO
 Bool  : HasNeededToReadmitPOD5//TODO
 Bool   : HasUploadedWoundPhotoPOD5//TODO
 Bool  : IsDischargedHomePOD5//TODO
+
+//Response from Server
+Status code 200 //will set App internal bool(CanUpdate to TRUE)
+String : journey_point //TODO journey_point will be computed by server and wil be either: POD10
+//Response from Server
+<then goto splash page to sync with server again>
+
 
 
 
@@ -197,6 +265,13 @@ Bool  : HasReturnedToDailyWorkPOD10//TODO
 Bool   : HasUploadedWoundPhotoPOD10//TODO
 Bool  : IsDischargedHomePOD10//TODO
 
+//Response from Server
+Status code 200 //will set App internal bool(CanUpdate to TRUE)
+String : journey_point //TODO journey_point will be computed by server and wil be either: POD15
+//Response from Server
+<then goto splash page to sync with server again>
+
+
 
 
 //PUT Request POD15 Questions = 9//
@@ -211,6 +286,12 @@ Bool  : HasNeededToReadmitPOD10//TODO
 Bool  : HasReturnedToDailyWorkPOD10//TODO
 Bool   : HasUploadedWoundPhotoPOD15//TODO
 Bool  : IsDischargedHomePOD15//TODO
+
+//Response from Server
+Status code 200 //will set App internal bool(CanUpdate to TRUE)
+String : journey_point //TODO journey_point will be computed by server and wil be either: JourneyComplete
+//Response from Server
+<then goto splash page to sync with server again>
 
 
 

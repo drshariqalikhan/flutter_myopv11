@@ -37,14 +37,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'Flutter Demo',
-      theme: new ThemeData(
-
-        brightness: Brightness.light,
-        accentColor: Colors.deepOrangeAccent
-
-
-      ),
-        initialRoute: '/splash',
+      theme: new ThemeData.dark(),
+        initialRoute: '/POD3',
         routes: {
           '/':(context)=> MyHomePage(title: "Home screen",),
           '/splash':(context)=> NewSplash(),
