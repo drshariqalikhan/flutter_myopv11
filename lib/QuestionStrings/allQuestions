@@ -1,4 +1,6 @@
 //preop
+A/Can you open your mouth 2finger breath?
+B/Can you move you neck all the way up and down?
 1/ Can you easily climb 2 flights of stairs?
 2/ Do you have a fever, cold or infection?
 3/ Do you have any loose teeth?
@@ -39,6 +41,25 @@
 32/ Did you get Nausea or Vomiting after surgery?
 
 
+//Reminder1
+1/Do you have any fever , cold or ongoing infection?
+2/Do you have any loose teeth?
+3/Are you pregnant?
+4/Do you want to cancel or postpone the surgery?
+
+5/How well can you take care of your self?
+6/How well can you move about?
+7/How well can you perform usual activities like housework?
+8/Do you have pain?
+9/Are you Anxious or depressed?
+
+//Reminder2
+1/Do you have any fever , cold or ongoing infection?
+2/Do you have any loose teeth?
+3/Are you pregnant?
+4/Do you want to cancel or postpone the surgery?
+
+
 //POD1
 1/Do you have any fever , cold or ongoing infection?
 2/Do you have any damaged or chipped teeth after surgery?
@@ -53,5 +74,59 @@
 10/Do you have any Sorethroat?
 11/Are you happy with your care experiance with our hospital so far?
 
+//POD3
+
+1/Do you have any fever , cold or ongoing infection?
+2/Do you have any wound Reddness or discharge?
+3/Does your calf look unusually red or feel tender and firm?
+4/Do you have any shortness of breath?
+5/Do you have any new urinary retention, burning or increased urge to pass urine?
+6/Do you have any new numbness or weakness?
+7/Have you had any unplanned VISIT to hospital?
+8/Have you had any unplanned READMISSION to hospital?
+
+9/Do you have pain at REST?
+10/Do you have pain at MOVEMENT?
+
+//POD5
+
+1/Do you have any fever , cold or ongoing infection?
+2/Do you have any wound Reddness or discharge?
+3/Does your calf look unusually red or feel tender and firm?
+4/Do you have any shortness of breath?
+5/Do you have any new urinary retention, burning or increased urge to pass urine?
+6/Do you have any new numbness or weakness?
+7/Have you had any unplanned VISIT to hospital?
+8/Have you had any unplanned READMISSION to hospital?
 
 
+9/Do you have pain at REST?
+10/Do you have pain at MOVEMENT?
+
+//POD10
+
+1/Do you have any fever , cold or ongoing infection?
+2/Do you have any wound Reddness or discharge?
+3/Does your calf look unusually red or feel tender and firm?
+4/Do you have any shortness of breath?
+5/Do you have any new urinary retention, burning or increased urge to pass urine?
+6/Do you have any new numbness or weakness?
+7/Have you had any unplanned VISIT to hospital?
+8/Have you had any unplanned READMISSION to hospital?
+
+
+9/Do you have pain at REST?
+10/Do you have pain at MOVEMENT?
+
+//POD 15
+
+1/Are you happy with your care experiance with our hospital so far?
+2/How well can you take care of your self?
+3/How well can you move about?
+4/How well can you perform usual activities like housework?
+5/Do you have pain?
+6/Are you Anxious or depressed?
+
+7/Have you had any unplanned VISIT to hospital?
+8/Have you had any unplanned READMISSION to hospital?
+9/Are back to your Office Work or daily activity?

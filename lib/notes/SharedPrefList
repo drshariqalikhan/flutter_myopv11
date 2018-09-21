@@ -281,9 +281,9 @@ int    : MobilityScorePOD15//TODO 0-5 from Slider
 int    : ADL_ScorePOD15//TODO 0-5 from Slider
 int    : MoodScorePOD15////TODO 0-5 from Slider
 int   : SatisfactionScorePOD15 //TODO 0-5 from Slider
-Bool  : HasNeededToVisitAePOD10//TODO
-Bool  : HasNeededToReadmitPOD10//TODO
-Bool  : HasReturnedToDailyWorkPOD10//TODO
+Bool  : HasNeededToVisitAePOD15//TODO
+Bool  : HasNeededToReadmitPOD15//TODO
+Bool  : HasReturnedToDailyWorkPOD15//TODO
 Bool   : HasUploadedWoundPhotoPOD15//TODO
 Bool  : IsDischargedHomePOD15//TODO
 
