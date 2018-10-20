@@ -44,6 +44,7 @@ class MyApp extends StatelessWidget {
 
       ),
         home: NewSplash(),
+//      home: preop_GotoClinic(),
         routes: {
           '/splash':(context)=> NewSplash(),
           '/login':(context)=> Login(),

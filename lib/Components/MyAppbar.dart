@@ -10,12 +10,14 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return new Container(
       color: Colors.black,
-      height: BarHieght,
-//      height: preferredSize.height,
+      height: BarHieght ?? MediaQuery.of(context).size.height *0.10,
       child: Padding(
         padding: const EdgeInsets.only(right: 50.0,left: 50.0,bottom: 4.0,top: 10.0),
-        child: Column(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[myWidget]),
-      ),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              myWidget ?? Row(mainAxisAlignment: MainAxisAlignment.start,children: <Widget>[Text('MyOp - Your surgical journey companion',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),)],),])//
+      )
     );
   }
 
