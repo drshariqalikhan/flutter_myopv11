@@ -31,6 +31,9 @@ dependencies:
   modal_progress_hud: ^0.1.0
   fluttertoast: ^2.0.7
   unicorndial:
+  auto_size_text: ^0.2.0
+  flutter_webview_plugin: ^0.2.1+2
+
 
 dev_dependencies:
   flutter_test:

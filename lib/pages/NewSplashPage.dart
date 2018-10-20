@@ -72,31 +72,6 @@ Widget ChildWidget()
                 Text("MyOP",style: TextStyle(fontSize: 24.0),),
               ],),
           ),
-//          FutureBuilder<ServerDataList>(
-//              future: getDataObjectFromServer(token),
-//              builder: (context,snapshot)
-//          {
-//            if(snapshot.hasData)
-//              {
-//
-//               ServerDataList slist = snapshot.data;
-//
-//               for(ServerData s in slist.serverdata)
-//                 {
-//                   print(s.journey_point);
-//
-//                 }
-//
-//
-//              }
-//              else if (snapshot.hasError){
-//              return Text("${snapshot.error}");
-//
-////              Navigator.of(context).pushNamed('/login');
-//            }
-//            return CircularProgressIndicator();
-//          }
-//          ),
           Expanded(
             flex:  1,
             child: Column(

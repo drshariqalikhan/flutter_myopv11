@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_myopv10/pages/AboutSurgeryPage.dart';
-import 'package:flutter_myopv10/pages/HomePage.dart';
 import 'package:flutter_myopv10/pages/InfoPage.dart';
 import 'package:flutter_myopv10/pages/InstructionPage.dart';
 import 'package:flutter_myopv10/pages/LoginPage.dart';
 import 'package:flutter_myopv10/pages/MessagePage.dart';
+import 'package:flutter_myopv10/pages/Myhub.dart';
 import 'package:flutter_myopv10/pages/NewSplashPage.dart';
 import 'package:flutter_myopv10/pages/POD10Page.dart';
 import 'package:flutter_myopv10/pages/POD15Page.dart';
@@ -24,7 +24,7 @@ import 'package:flutter_myopv10/pages/Reminder1Page.dart';
 import 'package:flutter_myopv10/pages/Reminder2Page.dart';
 import 'package:flutter_myopv10/pages/SuperSyncPage.dart';
 import 'package:flutter_myopv10/pages/TaskSelectPage.dart';
-import 'package:flutter_myopv10/pages/NewTilesDashPage.dart';
+import 'package:flutter_myopv10/pages/TileDash.dart';
 import 'package:flutter_myopv10/pages/UnkwnOpStatusPage.dart';
 import 'package:flutter_myopv10/pages/picPhotoPage.dart';
 import 'package:flutter_myopv10/pages/takePhotoPage.dart';
@@ -37,10 +37,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'Flutter Demo',
-      theme: new ThemeData.dark(),
-        initialRoute: '/POD3',
+      debugShowCheckedModeBanner: false,
+      theme: new ThemeData(
+        primarySwatch: Colors.indigo,
+        cardColor: Colors.white,
+
+      ),
+        home: NewSplash(),
         routes: {
-          '/':(context)=> MyHomePage(title: "Home screen",),
           '/splash':(context)=> NewSplash(),
           '/login':(context)=> Login(),
           '/tiledash':(context)=>TileDash(),
@@ -49,6 +53,7 @@ class MyApp extends StatelessWidget {
           '/instructions':(context)=>instructions(),
           '/aboutsurg':(context)=>AboutSurgery(),
           '/taskSelect':(context)=>TaskSelect(),
+          '/myhealth': (context)=>myhub(),
           '/preop': (context)=>preop(),//journey_point
           '/preop2': (context)=>preopTwo(),
           '/preop3': (context)=>preopThree(),

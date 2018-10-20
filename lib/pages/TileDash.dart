@@ -24,7 +24,6 @@ class TileDash extends StatefulWidget {
 class _TileDashState extends State<TileDash> {
   @override
   void initState() {
-    // TODO: implement initState
     JpIcon = "1";
     _ShowDialog = true;
     dialog(context,_ShowDialog);
@@ -80,9 +79,20 @@ class _TileDashState extends State<TileDash> {
            mini: true,
            child: Icon(Icons.message))));
 
+   childButtons.add(UnicornButton(
+       hasLabel: true,
+       labelText: "My Appointments",
+       currentButton: FloatingActionButton(
+           onPressed: ()=>Navigator.pushNamed(context, '/myhealth'),
+           heroTag: "myhealth",
+           backgroundColor: Colors.indigoAccent,
+           mini: true,
+           child: Icon(Icons.stars))));
+
+
 
    return Scaffold(
-     backgroundColor: Colors.tealAccent,
+     backgroundColor: Colors.transparent,
      floatingActionButton: UnicornDialer(
            orientation: UnicornOrientation.VERTICAL,
            parentButton: Icon(Icons.menu),
@@ -102,7 +112,7 @@ class _TileDashState extends State<TileDash> {
 
    body: Card(
      shape:RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0)),side: BorderSide(width: 1.0)),
-     margin: EdgeInsets.all(40.0),
+     margin: EdgeInsets.all(8.0),
      elevation: 10.0,
      child:ListView(
        children: JourneyTimeline("Second Reminder"),

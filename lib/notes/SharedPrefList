@@ -4,7 +4,7 @@ String : TOKEN
 //Sync Response From Server//
 String : journey_point//TODO this will determine the Alert dialog task route
 String : op_date
-Int    : Days_to_Op (-X to +15)// TODO
+Int    : Days_to_Op (-X to +15)// TODO serialized method
 String : op_name
 String : AboutOpSurgeryLinks //HTML
 String : AboutAnesLinks //HTML

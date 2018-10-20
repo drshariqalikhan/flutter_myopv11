@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 
 class QuestionCard extends StatelessWidget{
@@ -22,23 +23,25 @@ class QuestionCard extends StatelessWidget{
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Text("$Question",textAlign: TextAlign.justify,style: TextStyle(fontSize: QuestionFontsize,fontWeight: FontWeight.bold),),
+              AutoSizeText("$Question",style: TextStyle(fontSize: QuestionFontsize,fontWeight: FontWeight.bold,),maxLines: 2,),
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text("YES"),
+                  Row(mainAxisAlignment: MainAxisAlignment.start,children: <Widget>[
+                    Text("YES"),
                   Radio(
                       materialTapTargetSize: MaterialTapTargetSize.padded,
                       value: true,
                       groupValue: qValue,
-                      onChanged: handleQ),
-                  SizedBox(width: 160.0,),
-                  Text("NO"),
+                      onChanged: handleQ),],),
+                  Row(mainAxisAlignment: MainAxisAlignment.end,children: <Widget>[
+                    Text("NO"),
                   Radio(
                       materialTapTargetSize: MaterialTapTargetSize.padded,
                       value: false,
                       groupValue: qValue,
-                      onChanged: handleQ)
+                      onChanged: handleQ)],),
+
                 ],
               ),
 
