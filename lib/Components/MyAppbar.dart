@@ -16,7 +16,7 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
         child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              myWidget ?? Row(mainAxisAlignment: MainAxisAlignment.start,children: <Widget>[Text('MyOp - Your surgical journey companion',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),)],),])//
+              myWidget ?? Row(mainAxisAlignment: MainAxisAlignment.center,children: <Widget>[Image.asset('assets/images/speroicon.png',scale: BarHieght ?? MediaQuery.of(context).size.height * 0.02,),Text('MyOp',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),)],),])//
       )
     );
   }

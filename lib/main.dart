@@ -20,6 +20,7 @@ import 'package:flutter_myopv10/pages/PreopPageSeven.dart';
 import 'package:flutter_myopv10/pages/PreopPageSix.dart';
 import 'package:flutter_myopv10/pages/PreopPageThree.dart';
 import 'package:flutter_myopv10/pages/PreopPageTwo.dart';
+import 'package:flutter_myopv10/pages/PreopSummaryPage.dart';
 import 'package:flutter_myopv10/pages/Reminder1Page.dart';
 import 'package:flutter_myopv10/pages/Reminder2Page.dart';
 import 'package:flutter_myopv10/pages/SuperSyncPage.dart';
@@ -43,8 +44,8 @@ class MyApp extends StatelessWidget {
         cardColor: Colors.white,
 
       ),
-        home: NewSplash(),
-//      home: preop_GotoClinic(),
+//        home: NewSplash(),
+      home: Summary(),
         routes: {
           '/splash':(context)=> NewSplash(),
           '/login':(context)=> Login(),
@@ -62,6 +63,7 @@ class MyApp extends StatelessWidget {
           '/preop5': (context)=>preopFive(),
           '/preop6': (context)=>preopSix(),
           '/preop7': (context)=>preopSeven(),
+          '/summary': (context)=>Summary(),
           '/preop_GotoClinic': (context)=>preop_GotoClinic(),//journey_point
           '/preopMedPhoto': (context)=>preopMedPhoto(),//journey_point
           '/takePhoto': (context)=>takePhoto(),

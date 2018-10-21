@@ -33,7 +33,16 @@ dependencies:
   unicorndial:
   auto_size_text: ^0.2.0
   flutter_webview_plugin: ^0.2.1+2
+  flutter_launcher_icons:
 
+flutter_icons:
+  android: true
+  ios: "Example-Icon"
+  image_path: "assets/images/speroicon.jpg"
+  image_path_android: "assets/images/speroicon.jpg"
+  image_path_ios: "assets/images/speroicon.jpg"
+  adaptive_icon_background: "#FFFAFAFA"
+  adaptive_icon_foreground: "assets/images/speroicon.jpg"
 
 dev_dependencies:
   flutter_test:
@@ -63,6 +72,7 @@ flutter:
     - assets/images/headupdown.jpg
     - assets/images/fb.png
     - assets/images/medicine.png
+    - assets/images/speroicon.png
 
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg

@@ -44,7 +44,7 @@ class _LoginState extends State<Login> {
         child: CircleAvatar(
           backgroundColor: Colors.white,
           radius: 48.0,
-          child: Image.asset('assets/images/spero.png'),
+          child: Image.asset('assets/images/speroicon.png'),
         ),
       );
 
@@ -181,7 +181,7 @@ class _LoginState extends State<Login> {
 
 
       return Scaffold(
-        backgroundColor: Colors.tealAccent,
+//        backgroundColor: Colors.tealAccent,
         body: Center(
           child: ListView(
             shrinkWrap: true,
