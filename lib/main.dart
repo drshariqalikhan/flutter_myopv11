@@ -44,8 +44,8 @@ class MyApp extends StatelessWidget {
         cardColor: Colors.white,
 
       ),
-//        home: NewSplash(),
-      home: Summary(),
+        home: NewSplash(),
+//      home: Summary(),
         routes: {
           '/splash':(context)=> NewSplash(),
           '/login':(context)=> Login(),
