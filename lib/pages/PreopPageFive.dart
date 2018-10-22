@@ -326,7 +326,7 @@ class _preopFiveState extends State<preopFive> {
     Q2="Do you have epilepsy or fits?";
     Q3="Do you have a psychiatric illness?";
     Q4="Do you have any blood disease or Anaemia?";
-    Q5="Do you have joint disease/Arthritis/Muscular disease?";
+    Q5="Do you have bone disease/Muscular disease?";
 
     return new WillPopScope(child: ChildWidget(context,_onpress,Q1,Q2,Q3,Q4,Q5), onWillPop: () async => false);
   }

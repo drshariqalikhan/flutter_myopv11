@@ -1,16 +1,11 @@
 import 'dart:async';
 
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_myopv10/Components/AcceptTermsCard.dart';
 import 'package:flutter_myopv10/Components/MyAppbar.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_myopv10/Components/QuestionCard.dart';
 
-double qsize = 20.0;
-bool _q1Value;
-bool _onpress = false;
-String Q1;
+
 bool HasAdeqMouthOpening,
     HasAdeqNeckMov,
     CanClimbStairs,
@@ -46,7 +41,6 @@ bool HasAdeqMouthOpening,
     HasPrevOps,
     HasPONV;
 
-List<Widget> ChosenItems=[];
 
 bool Isloading = true;
 
@@ -57,141 +51,52 @@ class Summary extends StatefulWidget {
 
 class _SummaryState extends State<Summary> {
 
-  void _handleQ1(bool value) {
-
-    setState(() {
-      _q1Value = value;
-      print("q1: $_q1Value");
-
-
-    });
-  }
 
   @override
   void initState() {
-    //assign values to local bools TODO: may need to do this is a page before coming to this page
    getAndSave().whenComplete((){setState(() {Isloading = false;});});
     super.initState();
   }
 
-/*
-//1
-Bool   : HasAdeqMouthOpening //TODO
-Bool   : HasAdeqNeckMov //TODO
-//2
-Bool   : CanClimbStairs //TODO
-Bool   : HasFeverInfec //TODO
-Bool   : HasLooseTeeth //TODO
-Bool   : HasDentalImplant //TODO
-Bool   : IsPregnant //TODO
-//3
-Bool   : HasSobAtRest //TODO
-Bool   : HasHeartAttacks //TODO
-Bool   : HasChestPain //TODO
-Bool   : HasIrregHR //TODO
-Bool   : HasHtn //TODO
-//4
-Bool   : HasDiabetes //TODO
-Bool   : HasThyroidDs //TODO
-Bool   : HasKidneyDs //TODO
-Bool   : HasLiverDs //TODO
-Bool   : HasGastricReflux //TODO
-//5
-Bool   : HasStroke //TODO
-Bool   : HasEpilepsy //TODO
-Bool   : HasPsychDs //TODO
-Bool   : HasBloodDs //TODO
-Bool   : HasCtOrMsDs //TODO
-//6
-Bool   : HasAllergies //TODO
-Bool   : HasOsaOrRespDs //TODO
-Bool   : HasLoudSnore //TODO
-Bool   : HasDaySomno //TODO
-Bool   : HasSleepApneaEpisodes //TODO
-//7
-Bool   : IsSmoker //TODO
-Bool   : IsAlcoholic //TODO
-Bool   : IsOnTcm //TODO
-Bool   : IsOnMeds //TODO
-Bool   : HasFHOAnesRxn //TODO
-Bool   : HasPrevOps //TODO
-Bool   : HasPONV //TODO
 
- */
+  Widget ChildWidget(BuildContext context){
 
-  Widget ChildWidget(BuildContext context, bool _press,String q1){
-
-   // List<Widget> ChosenItems = [ AutoSizeText("HasIrregHR:${HasIrregHR},HasAdeqNeckMov:${HasAdeqNeckMov}",minFontSize: 20.0,),QuestionCard(Question: q1, QuestionFontsize: qsize, handleQ: _handleQ1, qValue: _q1Value),SizedBox(height: 50.0,),
-  //  ];
 
     if(!Isloading) {
-      ChosenItems.add(MakeSummary());
-      ChosenItems.add(QuestionCard(Question: q1, QuestionFontsize: qsize, handleQ: _handleQ1, qValue: _q1Value));
-      ChosenItems.add(SizedBox(height: 50.0,));
+
       return Scaffold(
         appBar: MyAppbar(myWidget: Text(
-          "click AGREE if the following is correct",
+          "Please check your response summary",
           style: TextStyle(color: Colors.white),),),
-        body: ListView.builder(
-          itemCount: ChosenItems.length,
-          itemBuilder: (context, index) {
-            return ChosenItems[index];
-          },
-        ),
+          body: ListView(
+            children: <Widget>[
+              MakeSummary(),
+              AcceptTermsCard(
+                Question: "I agree with the summary of my responses above",
+                Decline_text: "Make Changes",
+                Decline_func: (){ Navigator.of(context).pushNamed('/splash');},
+                Accept_func: (){sendData();},
+              )
+            ],
+          ),
 
 
 
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.navigate_next),
-          onPressed: () {
-            if (_press) {
-              //TODO:  save bools in SP
-              print(_q1Value);
-              if (_q1Value) {
-                btnAxn();
-              } else {
-                Navigator.of(context).pushNamed('/splash');
-              }
-            }
-            else {
-              print("unsuccess");
-              Fluttertoast.showToast(
-                  msg: "Please answer the question before next page",
-                  toastLength: Toast.LENGTH_SHORT,
-                  gravity: ToastGravity.CENTER,
-                  timeInSecForIos: 5,
-                  bgcolor: "#e74c3c",
-                  textcolor: '#ffffff'
-              );
-            }
-          },
 
-        ),
       );
     }else{return Scaffold(appBar: MyAppbar(),body: CircularProgressIndicator(),);}
   }
 
-  void btnAxn(){
-    sendData().whenComplete(gotonext);
-  }
   Future sendData()async{
-    saveBoolSP("HasCompletedPreopTask", _q1Value);
     //TODO: send data to server and get back a status 200 before going back to the splash
 
 
   }
-  void gotonext() {
-//    Navigator.of(context).pushNamed('/splash');
-  }
 
   @override
   Widget build(BuildContext context) {
-    if(_q1Value != null ) {_onpress = true;}
     //TODO:get data from SP
-    Q1=" Do you agree with this summary of your responses?";
-
-
-    return new WillPopScope(child: ChildWidget(context,_onpress,Q1), onWillPop: () async => false);
+    return new WillPopScope(child: ChildWidget(context), onWillPop: () async => false);
   }
 }
 Future<bool> saveSP(String key,String value)async{
@@ -309,40 +214,57 @@ Future<Null> getAndSave()async{
 
 Widget MakeSummary(){
   StringBuffer summary = new StringBuffer();
-  if(HasAdeqMouthOpening){summary.write("\n I can open my mouth atleast 2 fingers wide.");}
-  if(HasAdeqNeckMov){summary.write("\n I can easily move my neck up-down.");}
-  if(CanClimbStairs){summary.write("\n I can easily climb 2 stories of stairs.");}
-  if(HasFeverInfec){summary.write("\n I do not have any cold,fever or infections");}
-  if(HasLooseTeeth){summary.write("\n I do not have any have loose teeth");}
-//  HasDentalImplant,
-//  IsPregnant,
-//  HasSobAtRest,
-//  HasHeartAttacks,
-//  HasChestPain,
-//  HasIrregHR,
-//  HasHtn,
-//  HasDiabetes,
-//  HasThyroidDs,
-//  HasKidneyDs,
-//  HasLiverDs,
-//  HasGastricReflux,
-//  HasStroke,
-//  HasEpilepsy,
-//  HasPsychDs,
-//  HasBloodDs,
-//  HasCtOrMsDs,
-//  HasAllergies,
-//  HasOsaOrRespDs,
-//  HasLoudSnore,
-//  HasDaySomno,
-//  HasSleepApneaEpisodes,
-//  IsSmoker,
-//  IsAlcoholic,
-//  IsOnTcm,
-//  IsOnMeds,
-//  HasFHOAnesRxn,
-//  HasPrevOps,
-//  HasPONV";
+  if(HasAdeqMouthOpening){summary.write("\n I CAN open my mouth atleast 2 fingers wide.");}
+  if(!HasAdeqMouthOpening){summary.write("\n I CANNOT open my mouth atleast 2 fingers wide.");}
 
-  return Card(child: Text(summary.toString(),style: TextStyle(fontWeight: FontWeight.bold),));
+  if(HasAdeqNeckMov){summary.write("\n I can easily move my neck up-down.");}
+  if(!HasAdeqNeckMov){summary.write("\n I CANNOT easily move my neck up-down.");}
+
+  if(CanClimbStairs){summary.write("\n I can easily climb 2 stories of stairs.");}
+  if(!CanClimbStairs){summary.write("\n I CANNOT easily climb 2 stories of stairs.");}
+
+  if(HasFeverInfec){summary.write("\n I HAVE a cold,fever or infections");}
+  if(!HasFeverInfec){summary.write("\n I do not have any cold,fever or infections");}
+
+  if(!HasLooseTeeth){summary.write("\n I do not have any have loose teeth");}
+  if(HasLooseTeeth){summary.write("\n I HAVE loose teeth");}
+
+  if(HasDentalImplant){summary.write("\n I have dental implants");}
+
+  if(IsPregnant){summary.write("\n I AM pregnant");}
+  if(!IsPregnant){summary.write("\n I am not pregnant");}
+
+  if(HasSobAtRest){summary.write("\n I feel breathless on lying flat or resting");}
+  if(HasHeartAttacks){summary.write("\n I have heart disease or heart attacks");}
+  if(HasChestPain){summary.write("\n I get chest pains");}
+  if(HasIrregHR){summary.write("\n I get irregular heart beats");}
+  if(HasHtn){summary.write("\n I have high blood pressure");}
+  if(HasDiabetes){summary.write("\n I have Diabetes");}
+  if(HasThyroidDs){summary.write("\n I have thyroid problems");}
+  if(HasKidneyDs){summary.write("\n I have kidney problems or dialysis");}
+  if(HasLiverDs){summary.write("\n I have liver problems or jaundice");}
+  if(HasGastricReflux){summary.write("\n I get stomach acid in my mouth when I lie flat");}
+  if(HasStroke){summary.write("\n I have previously had a stroke , mini stroke or paralysis");}
+  if(HasEpilepsy){summary.write("\n I have epilepsy or fits");}
+  if(HasPsychDs){summary.write("\n I have a psychiatric illness");}
+  if(HasBloodDs){summary.write("\n I have a blood disease or anaemia");}
+  if(HasCtOrMsDs){summary.write("\n I have bone or muscle disease");}
+  if(HasAllergies){summary.write("\n I have Allergies");}
+  if(HasOsaOrRespDs){summary.write("\n I have lung problems or sleep apnea");}
+  if(HasLoudSnore){summary.write("\n I snore loudly");}
+  if(HasDaySomno){summary.write("\n I feel tired/sleepy in daytime");}
+  if(HasSleepApneaEpisodes){summary.write("\n I sometimes stop breathing in sleep");}
+  if(IsSmoker){summary.write("\n I am a Smoker");}
+  if(IsAlcoholic){summary.write("\n I regularly consume alcohol");}
+  if(IsOnTcm){summary.write("\n I am taking herbal medications");}
+  if(IsOnMeds){summary.write("\n I take medications at home");}
+  if(HasFHOAnesRxn){summary.write("\n I have a family history of reactions to Anaesthesia");}
+  if(HasPONV){summary.write("\n I get nausea or vomiting after operations");}
+
+
+
+  return Card(child: Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Text(summary.toString(),style: TextStyle(fontWeight: FontWeight.bold,),),
+  ));
 }
