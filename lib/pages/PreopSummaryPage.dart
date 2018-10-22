@@ -28,7 +28,17 @@ bool HasAdeqMouthOpening,
     HasThyroidDs,
     HasKidneyDs,
     HasLiverDs,
-    HasGastricReflux;
+    HasGastricReflux,
+    HasStroke,
+    HasEpilepsy,
+    HasPsychDs,
+    HasBloodDs,
+    HasCtOrMsDs,
+    HasAllergies,
+    HasOsaOrRespDs,
+    HasLoudSnore,
+    HasDaySomno,
+    HasSleepApneaEpisodes;
 
 
 
@@ -120,49 +130,7 @@ Bool   : HasPONV //TODO
           },
         ),
 
-//      body: new CustomScrollView(
-//        primary: true,
-//        slivers: <Widget>[
-//
-//          new SliverToBoxAdapter(child: Column(
-//            mainAxisAlignment:MainAxisAlignment.start,
-//            children: <Widget>
-//            [
-//              Column(
-//                mainAxisAlignment:MainAxisAlignment.start,
-//                children: <Widget>
-//                [
-//                  //TODO: show list of positive responses
-////                  Expanded(
-////
-////                    child: ListView.builder(
-////
-////                    itemCount:ChosenItems.length,
-////                    itemBuilder: (context,index){
-////                      return ListTile(
-////                        title: Text('${ChosenItems[index]}'),
-////                      );
-////                    },
-////                  ),
-////                  ),
-//
-//
-//                  QuestionCard(
-//                    Question: q1,
-//                    QuestionFontsize: qsize,
-//                    handleQ: _handleQ1,
-//                    qValue: _q1Value,
-//                  ),
-//
-//                  SizedBox(height: 50.0,),
-//                ],//colum children
-//              ),
-//
-//            ],
-//          ),
-//          ),
-//        ],
-//      ),
+
 
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.navigate_next),
@@ -264,6 +232,18 @@ void SaveToHasThyroidDs(bool value){HasThyroidDs = value;}
 void SaveToHasKidneyDs(bool value){HasKidneyDs = value;}
 void SaveToHasLiverDs(bool value){HasLiverDs = value;}
 void SaveToHasGastricReflux(bool value){HasGastricReflux = value;}
+//5
+void SaveToHasStroke(bool value){HasStroke = value;}
+void SaveToHasEpilepsy(bool value){HasEpilepsy = value;}
+void SaveToHasPsychDs(bool value){HasPsychDs = value;}
+void SaveToHasBloodDs(bool value){HasBloodDs = value;}
+void SaveToHasCtOrMsDs(bool value){HasCtOrMsDs = value;}
+//6
+void SaveToHasAllergies(bool value){HasAllergies = value;}
+void SaveToHasOsaOrRespDs(bool value){HasOsaOrRespDs = value;}
+void SaveToHasLoudSnore(bool value){HasLoudSnore = value;}
+void SaveToHasDaySomno(bool value){HasDaySomno = value;}
+void SaveToHasSleepApneaEpisodes(bool value){HasSleepApneaEpisodes = value;}
 
 Future<Null> getAndSave()async{
   //1
@@ -287,5 +267,17 @@ Future<Null> getAndSave()async{
   await getBoolSP("HasKidneyDs").then(SaveToHasKidneyDs);
   await getBoolSP("HasLiverDs").then(SaveToHasLiverDs);
   await getBoolSP("HasGastricReflux").then(SaveToHasGastricReflux);
+  //5
+  await getBoolSP("HasStroke").then(SaveToHasStroke);
+  await getBoolSP("HasEpilepsy").then(SaveToHasEpilepsy);
+  await getBoolSP("HasPsychDs").then(SaveToHasPsychDs);
+  await getBoolSP("HasBloodDs").then(SaveToHasBloodDs);
+  await getBoolSP("HasCtOrMsDs").then(SaveToHasCtOrMsDs);
+  //6
+  await getBoolSP("HasAllergies").then(SaveToHasAllergies);
+  await getBoolSP("HasOsaOrRespDs").then(SaveToHasOsaOrRespDs);
+  await getBoolSP("HasLoudSnore").then(SaveToHasLoudSnore);
+  await getBoolSP("HasDaySomno").then(SaveToHasDaySomno);
+  await getBoolSP("HasSleepApneaEpisodes").then(SaveToHasSleepApneaEpisodes);
 }
 
