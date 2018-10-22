@@ -179,11 +179,13 @@ class _preopSevenState extends State<preopSeven> {
     saveData().whenComplete(gotonext);
   }
   Future saveData()async{
-    saveBoolSP("CanClimbStairs", _q1Value);
-    saveBoolSP("HasFeverInfec", _q2Value);
-    saveBoolSP("HasLooseTeeth", _q3Value);
-    saveBoolSP("HasDentalImplant", _q4Value);
-    saveBoolSP("IsPregnant", _q5Value);
+    saveBoolSP("IsSmoker", _q1Value);
+    saveBoolSP("IsAlcoholic", _q2Value);
+    saveBoolSP("IsOnTcm", _q3Value);
+    saveBoolSP("IsOnMeds", _q4Value);
+    saveBoolSP("HasFHOAnesRxn", _q5Value);
+    saveBoolSP("HasPrevOps", _q6Value);
+    saveBoolSP("HasPONV", _q7Value);
 
 
   }
@@ -194,7 +196,7 @@ class _preopSevenState extends State<preopSeven> {
 
   @override
   Widget build(BuildContext context) {
-    if(_q1Value != null && _q2Value != null && _q3Value != null && _q4Value != null && _q5Value != null) {_onpress = true;}
+    if(_q1Value != null && _q2Value != null && _q3Value != null && _q4Value != null && _q5Value != null &&  _q6Value != null && _q7Value != null  ) {_onpress = true;}
     //TODO:get data from SP
     Q1=" Do you smoke?";
     Q2="Do you regularly consume alcohol?";

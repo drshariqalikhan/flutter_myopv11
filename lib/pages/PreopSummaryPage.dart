@@ -8,7 +8,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_myopv10/Components/QuestionCard.dart';
 
 double qsize = 20.0;
-String summary = "";
 bool _q1Value;
 bool _onpress = false;
 String Q1;
@@ -38,9 +37,16 @@ bool HasAdeqMouthOpening,
     HasOsaOrRespDs,
     HasLoudSnore,
     HasDaySomno,
-    HasSleepApneaEpisodes;
+    HasSleepApneaEpisodes,
+    IsSmoker,
+    IsAlcoholic,
+    IsOnTcm,
+    IsOnMeds,
+    HasFHOAnesRxn,
+    HasPrevOps,
+    HasPONV;
 
-
+List<Widget> ChosenItems=[];
 
 bool Isloading = true;
 
@@ -115,10 +121,13 @@ Bool   : HasPONV //TODO
 
   Widget ChildWidget(BuildContext context, bool _press,String q1){
 
+   // List<Widget> ChosenItems = [ AutoSizeText("HasIrregHR:${HasIrregHR},HasAdeqNeckMov:${HasAdeqNeckMov}",minFontSize: 20.0,),QuestionCard(Question: q1, QuestionFontsize: qsize, handleQ: _handleQ1, qValue: _q1Value),SizedBox(height: 50.0,),
+  //  ];
 
-    List<Widget> ChosenItems = [ AutoSizeText("HasIrregHR:${HasIrregHR},HasAdeqNeckMov:${HasAdeqNeckMov}",minFontSize: 20.0,),QuestionCard(Question: q1, QuestionFontsize: qsize, handleQ: _handleQ1, qValue: _q1Value),SizedBox(height: 50.0,),
-    ];
     if(!Isloading) {
+      ChosenItems.add(MakeSummary());
+      ChosenItems.add(QuestionCard(Question: q1, QuestionFontsize: qsize, handleQ: _handleQ1, qValue: _q1Value));
+      ChosenItems.add(SizedBox(height: 50.0,));
       return Scaffold(
         appBar: MyAppbar(myWidget: Text(
           "click AGREE if the following is correct",
@@ -244,6 +253,14 @@ void SaveToHasOsaOrRespDs(bool value){HasOsaOrRespDs = value;}
 void SaveToHasLoudSnore(bool value){HasLoudSnore = value;}
 void SaveToHasDaySomno(bool value){HasDaySomno = value;}
 void SaveToHasSleepApneaEpisodes(bool value){HasSleepApneaEpisodes = value;}
+//7
+void SaveToIsSmoker(bool value){IsSmoker = value;}
+void SaveToIsAlcoholic(bool value){IsAlcoholic = value;}
+void SaveToIsOnTcm(bool value){IsOnTcm = value;}
+void SaveToIsOnMeds(bool value){IsOnMeds = value;}
+void SaveToHasFHOAnesRxn(bool value){HasFHOAnesRxn = value;}
+void SaveToHasPrevOps(bool value){HasPrevOps = value;}
+void SaveToHasPONV(bool value){HasPONV = value;}
 
 Future<Null> getAndSave()async{
   //1
@@ -279,5 +296,53 @@ Future<Null> getAndSave()async{
   await getBoolSP("HasLoudSnore").then(SaveToHasLoudSnore);
   await getBoolSP("HasDaySomno").then(SaveToHasDaySomno);
   await getBoolSP("HasSleepApneaEpisodes").then(SaveToHasSleepApneaEpisodes);
+  //7
+  await getBoolSP("IsSmoker").then(SaveToIsSmoker);
+  await getBoolSP("IsAlcoholic").then(SaveToIsAlcoholic);
+  await getBoolSP("IsOnTcm").then(SaveToIsOnTcm);
+  await getBoolSP("IsOnMeds").then(SaveToIsOnMeds);
+  await getBoolSP("HasFHOAnesRxn").then(SaveToHasFHOAnesRxn);
+  await getBoolSP("HasPrevOps").then(SaveToHasPrevOps);
+  await getBoolSP("HasPONV").then(SaveToHasPONV);
+
 }
 
+Widget MakeSummary(){
+  StringBuffer summary = new StringBuffer();
+  if(HasAdeqMouthOpening){summary.write("\n I can open my mouth atleast 2 fingers wide.");}
+  if(HasAdeqNeckMov){summary.write("\n I can easily move my neck up-down.");}
+  if(CanClimbStairs){summary.write("\n I can easily climb 2 stories of stairs.");}
+  if(HasFeverInfec){summary.write("\n I do not have any cold,fever or infections");}
+  if(HasLooseTeeth){summary.write("\n I do not have any have loose teeth");}
+//  HasDentalImplant,
+//  IsPregnant,
+//  HasSobAtRest,
+//  HasHeartAttacks,
+//  HasChestPain,
+//  HasIrregHR,
+//  HasHtn,
+//  HasDiabetes,
+//  HasThyroidDs,
+//  HasKidneyDs,
+//  HasLiverDs,
+//  HasGastricReflux,
+//  HasStroke,
+//  HasEpilepsy,
+//  HasPsychDs,
+//  HasBloodDs,
+//  HasCtOrMsDs,
+//  HasAllergies,
+//  HasOsaOrRespDs,
+//  HasLoudSnore,
+//  HasDaySomno,
+//  HasSleepApneaEpisodes,
+//  IsSmoker,
+//  IsAlcoholic,
+//  IsOnTcm,
+//  IsOnMeds,
+//  HasFHOAnesRxn,
+//  HasPrevOps,
+//  HasPONV";
+
+  return Card(child: Text(summary.toString(),style: TextStyle(fontWeight: FontWeight.bold),));
+}
