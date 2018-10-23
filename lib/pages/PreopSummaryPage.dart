@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_myopv10/Components/AcceptTermsCard.dart';
 import 'package:flutter_myopv10/Components/MyAppbar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'package:fluttertoast/fluttertoast.dart';
 
 
 bool HasAdeqMouthOpening,
@@ -43,6 +45,7 @@ bool HasAdeqMouthOpening,
 
 
 bool Isloading = true;
+final String url = "http://myop.pythonanywhere.com/api/preop/";
 
 class Summary extends StatefulWidget {
   @override
@@ -75,7 +78,7 @@ class _SummaryState extends State<Summary> {
                 Question: "I agree with the summary of my responses above",
                 Decline_text: "Make Changes",
                 Decline_func: (){ Navigator.of(context).pushNamed('/splash');},
-                Accept_func: (){sendData();},
+                Accept_func: ()async {getSP("TOKEN").then(sendData).then(SaveDataFromServer);},
               )
             ],
           ),
@@ -87,10 +90,76 @@ class _SummaryState extends State<Summary> {
     }else{return Scaffold(appBar: MyAppbar(),body: CircularProgressIndicator(),);}
   }
 
-  Future sendData()async{
-    //TODO: send data to server and get back a status 200 before going back to the splash
+  Future<http.Response> sendData(String token)async{
+    print("getting response with $token");
+    var response = await http.put(
+      Uri.encodeFull(url),
+      headers: {"AUTHORIZATION": "Token $token"},
+      body: {
+        "HasAdeqMouthOpening": HasAdeqMouthOpening.toString(),
+        "HasAdeqNeckMov":HasAdeqNeckMov.toString(),
+        "CanClimbStairs":CanClimbStairs.toString(),
+        "HasFeverInfec":HasFeverInfec.toString(),
+        "HasLooseTeeth":HasLooseTeeth.toString(),
+        "HasDentalImplant":HasDentalImplant.toString(),
+        "IsPregnant":IsPregnant.toString(),
+        "HasSobAtRest":HasSobAtRest.toString(),
+        "HasHeartAttacks":HasHeartAttacks.toString(),
+        "HasChestPain":HasChestPain.toString(),
+        "HasIrregHR":HasIrregHR.toString(),
+        "HasHtn":HasHtn.toString(),
+        "HasDiabetes":HasDiabetes.toString(),
+        "HasThyroidDs":HasThyroidDs.toString(),
+        "HasKidneyDs":HasKidneyDs.toString(),
+        "HasLiverDs":HasLiverDs.toString(),
+        "HasGastricReflux":HasGastricReflux.toString(),
+        "HasStroke":HasStroke.toString(),
+        "HasEpilepsy":HasEpilepsy.toString(),
+        "HasPsychDs":HasPsychDs.toString(),
+        "HasBloodDs":HasBloodDs.toString(),
+        "HasCtOrMsDs":HasCtOrMsDs.toString(),
+        "HasAllergies":HasAllergies.toString(),
+        "HasOsaOrRespDs":HasOsaOrRespDs.toString(),
+        "HasLoudSnore":HasLoudSnore.toString(),
+        "HasDaySomno":HasDaySomno.toString(),
+        "HasSleepApneaEpisodes":HasSleepApneaEpisodes.toString(),
+        "IsSmoker":IsSmoker.toString(),
+        "IsAlcoholic":IsAlcoholic.toString(),
+        "IsOnTcm":IsOnTcm.toString(),
+        "IsOnMeds":IsOnMeds.toString(),
+        "HasFHOAnesRxn":HasFHOAnesRxn.toString(),
+        "HasPrevOps":HasPrevOps.toString(),
+        "HasPONV":HasPONV.toString()
+      },
 
+    );
 
+    return response;
+  }
+  Future<Null> SaveDataFromServer(http.Response response){
+    print("processing response");
+    if(response.statusCode == 200){
+      //TODO save journey point & canUpdate to True
+      Fluttertoast.showToast(
+          msg: "${response.body.toString()}",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIos: 5,
+          bgcolor: "#e74c3c",
+          textcolor: '#ffffff'
+      );
+
+    }else{
+      //TODO show error message and ask user to try again/troubleshoot
+      Fluttertoast.showToast(
+          msg: response.statusCode.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIos: 5,
+          bgcolor: "#e74c3c",
+          textcolor: '#ffffff'
+      );
+    }
   }
 
   @override
@@ -268,3 +337,4 @@ Widget MakeSummary(){
     child: Text(summary.toString(),style: TextStyle(fontWeight: FontWeight.bold,),),
   ));
 }
+
