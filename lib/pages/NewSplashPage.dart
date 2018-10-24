@@ -98,11 +98,19 @@ Future<http.Response> getJsonData(String token) async {
     Uri.encodeFull(url),
     headers: {"AUTHORIZATION": "Token $token"},
   );
-
    return response;
 
 
 }
+
+//Map<String,String> getBody(){
+//  Map<String, String> body;
+//  if((getBoolSP("CanUpdate"))==true){
+//    body = {"journey_point": "${getSP("journey_point")}",};
+//  }
+//  return body;
+//}
+
 
 Future<bool> saveDataFromServer(http.Response response)async
 {
@@ -124,6 +132,7 @@ Future<bool> saveDataFromServer(http.Response response)async
       saveSP("AboutWoundCareLinks", s.AboutWoundCareLinks);//AboutWoundCareLinks
       saveBoolSP("IsAlertFromServToPt", s.IsAlertFromServToPt);//IsAlertFromServToPt
       saveSP("AlertMsgFromServToPt", s.AlertMsgFromServToPt);//AlertMsgFromServToPt
+      saveBoolSP("CanUpdate", false);//internal bool that determines client ability to update journey point
 
     }
     return true;
@@ -215,6 +224,11 @@ Future <String> getSP(String key)async{
   print("getting $key");
   SharedPreferences pref = await SharedPreferences.getInstance();
   return pref.getString(key)?? "100";
+}
+Future <bool> getBoolSP(String key)async{
+  print("getting $key");
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  return pref.getBool(key)?? false;
 }
 
 Future <int> getIntSP(String key)async{

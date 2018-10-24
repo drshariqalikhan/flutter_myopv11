@@ -17,12 +17,12 @@ String : WoundCareVideoLink // TODO
 Bool   : IsAlertFromServToPt //TODO : rename-> HasJourneyTask
 Bool   : HasMessageFromServer//TODO
 String : PreopInstructions//HTML TODO
-Status code 200 //TODO will set App internal bool(CanUpdate to FALSE)
+Status code 200 //set App internal bool(CanUpdate to FALSE)
 
 
 
 //Sync PUT Request To Server//
-String  : journey_point //TODO Can send to server only if App internal bool(Canupdate is TRUE)
+String  : journey_point //TODO Can send to server only if App internal bool(CanUpdate is TRUE)
 String : FCM
 ??? Maybe not needed ???
       Bool  : HasCompletedPreopTask//TODO journey point = preop
