@@ -10,10 +10,9 @@ import 'package:http/http.dart' as http;
 
 
 double qsize = 20.0;
-double PR0GRESS = 0.1;
-bool HasFeverInfecRem1,HasLooseTeethRem1,IsPregnantRem1,IsHavingOpRem1,_q5Value;
+bool HasFeverInfecRem1,HasLooseTeethRem1,IsPregnantRem1,IsHavingOpRem1;
 bool _onpress = false;
-String Q1,Q2,Q3,Q4,Q5;
+String Q1,Q2,Q3,Q4;
 final String url = "http://myop.pythonanywhere.com/api/reminder1/";
 
 class Reminder1 extends StatefulWidget {
@@ -77,7 +76,7 @@ class _Reminder1State extends State<Reminder1> {
   _exec5(double val){setState(() {MoodScoreRem1 = val;});}
 
 
-  Widget ChildWidget(BuildContext context, bool _press,String q1,String q2,String q3, String q4, String q5){
+  Widget ChildWidget(BuildContext context, bool _press,String q1,String q2,String q3, String q4){
 
     return Scaffold(
       appBar: MyAppbar(myWidget: Text("Please asnwer the following questions:",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),),),
@@ -222,23 +221,24 @@ class _Reminder1State extends State<Reminder1> {
 
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.navigate_next),
-        onPressed: (){
+        onPressed: ()async{
           if(_press)
           {
             print("success");
             //TODO:  save bools in SP
-            print("How well can you take care of your self?:${ADL_ScoreRem1.round()}");
-            print("How well can you move about?:${MobilityScoreRem1.round()}");
-            print("How well can you perform usual activities like housework?:${Active_ScoreRem1.round()}");
-            print("Do you have pain?:${PainScoreRem1.round()}");
-            print("Are you Anxious or depressed?:${MoodScoreRem1.round()}");
-
-
-            print("Do you have any fever , cold or ongoing infection?: $HasFeverInfecRem1");
-            print("Do you have any loose teeth?: $HasLooseTeethRem1");
-            print("Are you pregnant?: $IsPregnantRem1");
-            print("Do you want to cancel or postpone the surgery?: $IsHavingOpRem1");
-
+//
+//            print("How well can you take care of your self?:${ADL_ScoreRem1.round()}");
+//            print("How well can you move about?:${MobilityScoreRem1.round()}");
+//            print("How well can you perform usual activities like housework?:${Active_ScoreRem1.round()}");
+//            print("Do you have pain?:${PainScoreRem1.round()}");
+//            print("Are you Anxious or depressed?:${MoodScoreRem1.round()}");
+//
+//
+//            print("Do you have any fever , cold or ongoing infection?: $HasFeverInfecRem1");
+//            print("Do you have any loose teeth?: $HasLooseTeethRem1");
+//            print("Are you pregnant?: $IsPregnantRem1");
+//            print("Do you want to cancel or postpone the surgery?: $IsHavingOpRem1");
+            getSP("TOKEN").then(sendData).then(SaveDataFromServer);
           }
           else
           {
@@ -260,19 +260,124 @@ class _Reminder1State extends State<Reminder1> {
 
 
   Future<http.Response> sendData(String token)async{
-    print("getting response with $token");
+    int mADL_ScoreRem1 = ADL_ScoreRem1.round();
+    int mMobilityScoreRem1 = MobilityScoreRem1.round();
+    int mActive_ScoreRem1 = Active_ScoreRem1.round();
+    int mPainScoreRem1 = PainScoreRem1.round();
+    int mMoodScoreRem1 = MoodScoreRem1.round();
+
+        print("getting response with $token");
     var response = await http.put(
       Uri.encodeFull(url),
       headers: {"AUTHORIZATION": "Token $token"},
       body: {
-        //TODO
+        "HasFeverInfecRem1":HasFeverInfecRem1.toString(),
+        "HasLooseTeethRem1":HasLooseTeethRem1.toString(),
+        "IsPregnantRem1":IsPregnantRem1.toString(),
+        "IsHavingOpRem1":IsHavingOpRem1.toString(),
+
+        "ADL_ScoreRem1":mADL_ScoreRem1.toString(),
+        "MobilityScoreRem1":mMobilityScoreRem1.toString(),
+        "Active_ScoreRem1":mActive_ScoreRem1.toString(),
+        "PainScoreRem1":mPainScoreRem1.toString(),
+        "MoodScoreRem1":mMoodScoreRem1.toString()
       },
 
     );
 
     return response;
   }
+  Future<Null> SaveDataFromServer(http.Response response){
+    print("processing response");
+    if(response.statusCode == 200){
+      //TODO save journey point & canUpdate to True
+      String journey_point = response.body.toString().substring(1,response.body.toString().lastIndexOf('"'));
 
+
+
+      Fluttertoast.showToast(
+          msg: "$journey_point",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIos: 5,
+          bgcolor: "#e74c3c",
+          textcolor: '#ffffff'
+      );
+      dialog(context);
+      updateJourneyPointInServer(journey_point).then(gotoNextPage);
+
+    }else{
+      //TODO show error message and ask user to try again/troubleshoot
+      Fluttertoast.showToast(
+          msg: "cannot send:"+response.statusCode.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIos: 5,
+          bgcolor: "#e74c3c",
+          textcolor: '#ffffff'
+      );
+    }
+  }
+  void dialog(BuildContext context)
+  {
+    new Future.delayed(Duration.zero, () {
+      showDialog(context: context, builder: (context) =>
+      new AlertDialog(title: Text(
+        "Connecting to server!", style: TextStyle(color: Colors.orange),
+        textAlign: TextAlign.center,),
+        content: new Column(
+          children: <Widget>[
+
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: new Text(
+                'PLEASE WAIT....',
+                textAlign: TextAlign.start,
+                style: TextStyle(fontSize: 30.0),
+              ),
+            ),
+            CircularProgressIndicator(),
+
+          ],
+        ),
+        actions: <Widget>[
+
+        ],
+      ));
+    });
+
+
+  }
+  Future<int> updateJourneyPointInServer(String jp)async{
+    String url = "http://myop.pythonanywhere.com/api/connect/";
+    var body = {
+      "journey_point":"$jp"
+    };
+    var response = await http.put(Uri.encodeFull(url),
+      headers: {"AUTHORIZATION": "Token ${await getSP("TOKEN")}"},
+      body: body,);
+
+    return response.statusCode;
+
+  }
+
+  void gotoNextPage(int responseCode){
+    if(responseCode == 200){
+      Navigator.of(context).pushNamed('/splash');
+    }
+    else
+    {
+      Fluttertoast.showToast(
+          msg: "cannot go:"+responseCode.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIos: 5,
+          bgcolor: "#e74c3c",
+          textcolor: '#ffffff'
+      );
+    }
+
+  }
 
 
 
@@ -285,7 +390,7 @@ class _Reminder1State extends State<Reminder1> {
     Q3="Are you pregnant?";
     Q4="Do you want to cancel or postpone the surgery?";
 
-    return new WillPopScope(child: ChildWidget(context,_onpress,Q1,Q2,Q3,Q4,Q5), onWillPop: () async => false);
+    return new WillPopScope(child: ChildWidget(context,_onpress,Q1,Q2,Q3,Q4), onWillPop: () async => false);
   }
 }
 
