@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_myopv10/Components/MyTile.dart';
 
 import 'package:unicorndial/unicorndial.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 int DAYS = 00;
@@ -14,7 +15,8 @@ Color About_AlertColor =Colors.black;
 Color Instructions_AlertColor =Colors.black;
 
 bool _ShowDialog = false;
-String JpIcon;
+String JpIcon, journeyPoint;
+bool isloading = true;
 
 class TileDash extends StatefulWidget {
   @override
@@ -27,6 +29,7 @@ class _TileDashState extends State<TileDash> {
     JpIcon = "1";
     _ShowDialog = true;
     dialog(context,_ShowDialog);
+    getAndSave().whenComplete((){setState(() {isloading = false;});});
     //show alert dialog if bool is true
     super.initState();
   }
@@ -91,7 +94,7 @@ class _TileDashState extends State<TileDash> {
 
 
 
-   return Scaffold(
+   if(!isloading){return Scaffold(
      backgroundColor: Colors.transparent,
      floatingActionButton: UnicornDialer(
            orientation: UnicornOrientation.VERTICAL,
@@ -115,11 +118,16 @@ class _TileDashState extends State<TileDash> {
      margin: EdgeInsets.all(8.0),
      elevation: 10.0,
      child:ListView(
-       children: JourneyTimeline("Second Reminder"),
+       children: JourneyTimeline(journeyPoint),
 
      ),
    )
-   );
+   );}else{
+     return Scaffold(
+       body:CircularProgressIndicator(),
+
+     );
+   }
  }
 
 
@@ -129,12 +137,13 @@ class _TileDashState extends State<TileDash> {
    var mylist = List<Widget>();
    switch (Ongoing_Jp)
    {
-     case "Preoperative Assessment":{
+    // case "Preoperative Assessment":{
+     case "preop":{
        mylist.add(MyTile(StageName:"Preoperative Assessment",StageStatus: "ONGOING",UpNext: "First Reminder",));
        mylist.add(MyTile(StageName:"First Reminder",StageStatus: "PENDING",UpNext: "Second Reminder",));
        mylist.add(MyTile(StageName:"Second Reminder",StageStatus: "PENDING",UpNext: "Operation day",));
        mylist.add(MyTile(StageName:"Operation day",StageStatus: "PENDING",UpNext: "First day Postoperative review",));
-       mylist.add(MyTile(StageName:"First day Postoperative review",StageStatus: "PENDING",UpNext: "First Reminder",));
+       mylist.add(MyTile(StageName:"First day Postoperative review",StageStatus: "PENDING",UpNext: "Third day Postoperative review",));
        mylist.add(MyTile(StageName:"Third day Postoperative review",StageStatus: "PENDING",UpNext: "Fifth day Postoperative review",));
        mylist.add(MyTile(StageName:"Fifth day Postoperative review",StageStatus: "PENDING",UpNext: "Tenth day Postoperative review",));
        mylist.add(MyTile(StageName:"Tenth day Postoperative review",StageStatus: "PENDING",UpNext: "Fifteenth day Postoperative review",));
@@ -144,12 +153,47 @@ class _TileDashState extends State<TileDash> {
      }
      return mylist;
      break;
-     case "First Reminder":{
+
+     case "preop_GotoClinic":{
+       mylist.add(MyTile(StageName:"Preoperative Assessment",StageStatus: "ONGOING",UpNext: "First Reminder",));
+       mylist.add(MyTile(StageName:"First Reminder",StageStatus: "PENDING",UpNext: "Second Reminder",));
+       mylist.add(MyTile(StageName:"Second Reminder",StageStatus: "PENDING",UpNext: "Operation day",));
+       mylist.add(MyTile(StageName:"Operation day",StageStatus: "PENDING",UpNext: "First day Postoperative review",));
+       mylist.add(MyTile(StageName:"First day Postoperative review",StageStatus: "PENDING",UpNext: "Third day Postoperative review",));
+       mylist.add(MyTile(StageName:"Third day Postoperative review",StageStatus: "PENDING",UpNext: "Fifth day Postoperative review",));
+       mylist.add(MyTile(StageName:"Fifth day Postoperative review",StageStatus: "PENDING",UpNext: "Tenth day Postoperative review",));
+       mylist.add(MyTile(StageName:"Tenth day Postoperative review",StageStatus: "PENDING",UpNext: "Fifteenth day Postoperative review",));
+       mylist.add(MyTile(StageName:"Fifteenth day Postoperative review",StageStatus: "PENDING",UpNext: "",));
+       mylist.add(SizedBox(height: 50.0,));
+
+     }
+     return mylist;
+     break;
+
+     case "preopMedPhoto":{
+       mylist.add(MyTile(StageName:"Preoperative Assessment",StageStatus: "ONGOING",UpNext: "First Reminder",));
+       mylist.add(MyTile(StageName:"First Reminder",StageStatus: "PENDING",UpNext: "Second Reminder",));
+       mylist.add(MyTile(StageName:"Second Reminder",StageStatus: "PENDING",UpNext: "Operation day",));
+       mylist.add(MyTile(StageName:"Operation day",StageStatus: "PENDING",UpNext: "First day Postoperative review",));
+       mylist.add(MyTile(StageName:"First day Postoperative review",StageStatus: "PENDING",UpNext: "Third day Postoperative review",));
+       mylist.add(MyTile(StageName:"Third day Postoperative review",StageStatus: "PENDING",UpNext: "Fifth day Postoperative review",));
+       mylist.add(MyTile(StageName:"Fifth day Postoperative review",StageStatus: "PENDING",UpNext: "Tenth day Postoperative review",));
+       mylist.add(MyTile(StageName:"Tenth day Postoperative review",StageStatus: "PENDING",UpNext: "Fifteenth day Postoperative review",));
+       mylist.add(MyTile(StageName:"Fifteenth day Postoperative review",StageStatus: "PENDING",UpNext: "",));
+       mylist.add(SizedBox(height: 50.0,));
+
+     }
+     return mylist;
+     break;
+
+
+    // case "First Reminder":{
+     case "Reminder1":{
        mylist.add(MyTile(StageName:"Preoperative Assessment",StageStatus: "DONE",UpNext: "First Reminder",));
        mylist.add(MyTile(StageName:"First Reminder",StageStatus: "ONGOING",UpNext: "Second Reminder",));
        mylist.add(MyTile(StageName:"Second Reminder",StageStatus: "PENDING",UpNext: "Operation day",));
        mylist.add(MyTile(StageName:"Operation day",StageStatus: "PENDING",UpNext: "First day Postoperative review",));
-       mylist.add(MyTile(StageName:"First day Postoperative review",StageStatus: "PENDING",UpNext: "First Reminder",));
+       mylist.add(MyTile(StageName:"First day Postoperative review",StageStatus: "PENDING",UpNext: "Third day Postoperative review",));
        mylist.add(MyTile(StageName:"Third day Postoperative review",StageStatus: "PENDING",UpNext: "Fifth day Postoperative review",));
        mylist.add(MyTile(StageName:"Fifth day Postoperative review",StageStatus: "PENDING",UpNext: "Tenth day Postoperative review",));
        mylist.add(MyTile(StageName:"Tenth day Postoperative review",StageStatus: "PENDING",UpNext: "Fifteenth day Postoperative review",));
@@ -159,11 +203,13 @@ class _TileDashState extends State<TileDash> {
      }
      return mylist;
      break;
-     case "Second Reminder":{   mylist.add(MyTile(StageName:"Preoperative Assessment",StageStatus: "DONE",UpNext: "First Reminder",));
-     mylist.add(MyTile(StageName:"First Reminder",StageStatus: "DONE",UpNext: "Second Reminder",));
+
+     //case "Second Reminder":{
+     case "Reminder2":{
+       mylist.add(MyTile(StageName:"Preoperative Assessment",StageStatus: "DONE",UpNext: "First Reminder",));mylist.add(MyTile(StageName:"First Reminder",StageStatus: "DONE",UpNext: "Second Reminder",));
      mylist.add(MyTile(StageName:"Second Reminder",StageStatus: "ONGOING",UpNext: "Operation day",));
      mylist.add(MyTile(StageName:"Operation day",StageStatus: "PENDING",UpNext: "First day Postoperative review",));
-     mylist.add(MyTile(StageName:"First day Postoperative review",StageStatus: "PENDING",UpNext: "First Reminder",));
+     mylist.add(MyTile(StageName:"First day Postoperative review",StageStatus: "PENDING",UpNext: "Third day Postoperative review",));
      mylist.add(MyTile(StageName:"Third day Postoperative review",StageStatus: "PENDING",UpNext: "Fifth day Postoperative review",));
      mylist.add(MyTile(StageName:"Fifth day Postoperative review",StageStatus: "PENDING",UpNext: "Tenth day Postoperative review",));
      mylist.add(MyTile(StageName:"Tenth day Postoperative review",StageStatus: "PENDING",UpNext: "Fifteenth day Postoperative review",));
@@ -173,11 +219,15 @@ class _TileDashState extends State<TileDash> {
      }
      return mylist;
      break;
-     case "Operation day":{   mylist.add(MyTile(StageName:"Preoperative Assessment",StageStatus: "DONE",UpNext: "First Reminder",));
+
+
+     //case "Operation day":
+     case "UnkwnOpStatus":
+       {   mylist.add(MyTile(StageName:"Preoperative Assessment",StageStatus: "DONE",UpNext: "First Reminder",));
      mylist.add(MyTile(StageName:"First Reminder",StageStatus: "DONE",UpNext: "Second Reminder",));
      mylist.add(MyTile(StageName:"Second Reminder",StageStatus: "DONE",UpNext: "Operation day",));
      mylist.add(MyTile(StageName:"Operation day",StageStatus: "ONGOING",UpNext: "First day Postoperative review",));
-     mylist.add(MyTile(StageName:"First day Postoperative review",StageStatus: "PENDING",UpNext: "First Reminder",));
+     mylist.add(MyTile(StageName:"First day Postoperative review",StageStatus: "PENDING",UpNext: "Third day Postoperative review",));
      mylist.add(MyTile(StageName:"Third day Postoperative review",StageStatus: "PENDING",UpNext: "Fifth day Postoperative review",));
      mylist.add(MyTile(StageName:"Fifth day Postoperative review",StageStatus: "PENDING",UpNext: "Tenth day Postoperative review",));
      mylist.add(MyTile(StageName:"Tenth day Postoperative review",StageStatus: "PENDING",UpNext: "Fifteenth day Postoperative review",));
@@ -187,11 +237,15 @@ class _TileDashState extends State<TileDash> {
      }
      return mylist;
      break;
-     case "First day Postoperative review":{   mylist.add(MyTile(StageName:"Preoperative Assessment",StageStatus: "DONE",UpNext: "First Reminder",));
+
+
+     //case "First day Postoperative review":
+     case "POD1":
+       {   mylist.add(MyTile(StageName:"Preoperative Assessment",StageStatus: "DONE",UpNext: "First Reminder",));
      mylist.add(MyTile(StageName:"First Reminder",StageStatus: "DONE",UpNext: "Second Reminder",));
      mylist.add(MyTile(StageName:"Second Reminder",StageStatus: "DONE",UpNext: "Operation day",));
      mylist.add(MyTile(StageName:"Operation day",StageStatus: "DONE",UpNext: "First day Postoperative review",));
-     mylist.add(MyTile(StageName:"First day Postoperative review",StageStatus: "ONGOING",UpNext: "First Reminder",));
+     mylist.add(MyTile(StageName:"First day Postoperative review",StageStatus: "ONGOING",UpNext: "Third day Postoperative review",));
      mylist.add(MyTile(StageName:"Third day Postoperative review",StageStatus: "PENDING",UpNext: "Fifth day Postoperative review",));
      mylist.add(MyTile(StageName:"Fifth day Postoperative review",StageStatus: "PENDING",UpNext: "Tenth day Postoperative review",));
      mylist.add(MyTile(StageName:"Tenth day Postoperative review",StageStatus: "PENDING",UpNext: "Fifteenth day Postoperative review",));
@@ -201,11 +255,15 @@ class _TileDashState extends State<TileDash> {
      }
      return mylist;
      break;
-     case "Third day Postoperative review":{   mylist.add(MyTile(StageName:"Preoperative Assessment",StageStatus: "DONE",UpNext: "First Reminder",));
+
+
+     //case "Third day Postoperative review":
+     case "POD3":
+       {   mylist.add(MyTile(StageName:"Preoperative Assessment",StageStatus: "DONE",UpNext: "First Reminder",));
      mylist.add(MyTile(StageName:"First Reminder",StageStatus: "DONE",UpNext: "Second Reminder",));
      mylist.add(MyTile(StageName:"Second Reminder",StageStatus: "DONE",UpNext: "Operation day",));
      mylist.add(MyTile(StageName:"Operation day",StageStatus: "DONE",UpNext: "First day Postoperative review",));
-     mylist.add(MyTile(StageName:"First day Postoperative review",StageStatus: "DONE",UpNext: "First Reminder",));
+     mylist.add(MyTile(StageName:"First day Postoperative review",StageStatus: "DONE",UpNext: "Third day Postoperative review",));
      mylist.add(MyTile(StageName:"Third day Postoperative review",StageStatus: "ONGOING",UpNext: "Fifth day Postoperative review",));
      mylist.add(MyTile(StageName:"Fifth day Postoperative review",StageStatus: "PENDING",UpNext: "Tenth day Postoperative review",));
      mylist.add(MyTile(StageName:"Tenth day Postoperative review",StageStatus: "PENDING",UpNext: "Fifteenth day Postoperative review",));
@@ -215,11 +273,15 @@ class _TileDashState extends State<TileDash> {
      }
      return mylist;
      break;
-     case "Fifth day Postoperative review":{   mylist.add(MyTile(StageName:"Preoperative Assessment",StageStatus: "DONE",UpNext: "First Reminder",));
+
+
+     //case "Fifth day Postoperative review":
+     case "POD5":
+       {   mylist.add(MyTile(StageName:"Preoperative Assessment",StageStatus: "DONE",UpNext: "First Reminder",));
      mylist.add(MyTile(StageName:"First Reminder",StageStatus: "DONE",UpNext: "Second Reminder",));
      mylist.add(MyTile(StageName:"Second Reminder",StageStatus: "DONE",UpNext: "Operation day",));
      mylist.add(MyTile(StageName:"Operation day",StageStatus: "DONE",UpNext: "First day Postoperative review",));
-     mylist.add(MyTile(StageName:"First day Postoperative review",StageStatus: "DONE",UpNext: "First Reminder",));
+     mylist.add(MyTile(StageName:"First day Postoperative review",StageStatus: "DONE",UpNext: "Third day Postoperative review",));
      mylist.add(MyTile(StageName:"Third day Postoperative review",StageStatus: "DONE",UpNext: "Fifth day Postoperative review",));
      mylist.add(MyTile(StageName:"Fifth day Postoperative review",StageStatus: "ONGOING",UpNext: "Tenth day Postoperative review",));
      mylist.add(MyTile(StageName:"Tenth day Postoperative review",StageStatus: "PENDING",UpNext: "Fifteenth day Postoperative review",));
@@ -229,11 +291,15 @@ class _TileDashState extends State<TileDash> {
      }
      return mylist;
      break;
-     case "Tenth day Postoperative review":{   mylist.add(MyTile(StageName:"Preoperative Assessment",StageStatus: "DONE",UpNext: "First Reminder",));
+
+
+     //case "Tenth day Postoperative review":
+     case "POD10":
+       {   mylist.add(MyTile(StageName:"Preoperative Assessment",StageStatus: "DONE",UpNext: "First Reminder",));
      mylist.add(MyTile(StageName:"First Reminder",StageStatus: "DONE",UpNext: "Second Reminder",));
      mylist.add(MyTile(StageName:"Second Reminder",StageStatus: "DONE",UpNext: "Operation day",));
      mylist.add(MyTile(StageName:"Operation day",StageStatus: "DONE",UpNext: "First day Postoperative review",));
-     mylist.add(MyTile(StageName:"First day Postoperative review",StageStatus: "DONE",UpNext: "First Reminder",));
+     mylist.add(MyTile(StageName:"First day Postoperative review",StageStatus: "DONE",UpNext: "Third day Postoperative review",));
      mylist.add(MyTile(StageName:"Third day Postoperative review",StageStatus: "DONE",UpNext: "Fifth day Postoperative review",));
      mylist.add(MyTile(StageName:"Fifth day Postoperative review",StageStatus: "DONE",UpNext: "Tenth day Postoperative review",));
      mylist.add(MyTile(StageName:"Tenth day Postoperative review",StageStatus: "ONGOING",UpNext: "Fifteenth day Postoperative review",));
@@ -243,15 +309,19 @@ class _TileDashState extends State<TileDash> {
      }
      return mylist;
      break;
-     case "Fifteenth day Postoperative review":{   mylist.add(MyTile(StageName:"Preoperative Assessment",StageStatus: "DONE",UpNext: "First Reminder",));
+
+
+     //case "Fifteenth day Postoperative review":
+     case "POD15":
+       {   mylist.add(MyTile(StageName:"Preoperative Assessment",StageStatus: "DONE",UpNext: "First Reminder",));
      mylist.add(MyTile(StageName:"First Reminder",StageStatus: "DONE",UpNext: "Second Reminder",));
      mylist.add(MyTile(StageName:"Second Reminder",StageStatus: "DONE",UpNext: "Operation day",));
      mylist.add(MyTile(StageName:"Operation day",StageStatus: "DONE",UpNext: "First day Postoperative review",));
-     mylist.add(MyTile(StageName:"First day Postoperative review",StageStatus: "DONE",UpNext: "First Reminder",));
+     mylist.add(MyTile(StageName:"First day Postoperative review",StageStatus: "DONE",UpNext: "Third day Postoperative review",));
      mylist.add(MyTile(StageName:"Third day Postoperative review",StageStatus: "DONE",UpNext: "Fifth day Postoperative review",));
      mylist.add(MyTile(StageName:"Fifth day Postoperative review",StageStatus: "DONE",UpNext: "Tenth day Postoperative review",));
      mylist.add(MyTile(StageName:"Tenth day Postoperative review",StageStatus: "DONE",UpNext: "Fifteenth day Postoperative review",));
-     mylist.add(MyTile(StageName:"Fifteenth day Postoperative review",StageStatus: "ONGOING",UpNext: "",));
+     mylist.add(MyTile(StageName:"Fifteenth day Postoperative review",StageStatus: "ONGOING",UpNext: "JourneyComplete",));
      mylist.add(SizedBox(height: 50.0,));
 
      }
@@ -270,81 +340,7 @@ class _TileDashState extends State<TileDash> {
     return new WillPopScope(child: childWid(), onWillPop: () async => false);
   }
 }
-//Widget ChildWidget(BuildContext context){
-//
-//  return new Scaffold(body: Center(
-//    child: Column(
-//      mainAxisAlignment:MainAxisAlignment.center,
-//      children: <Widget>[
-//        Padding(
-//          padding: const EdgeInsets.all(8.0),
-//
-//          child: Text("TIME TO SURGERY : $DAYS DAYS",style: TextStyle(fontSize: 20.0),),
-//        ),
-//        Padding(
-//          padding: const EdgeInsets.only(right: 50.0,left: 0.0,bottom: 8.0,top: 8.0),
-//          child: RotatedBox(
-//            child: Icon(Icons.whatshot),
-//            quarterTurns: 3,
-//          ),
-//
-//        ),
-//        Padding(
-//          padding: const EdgeInsets.all(8.0),
-//          child: Text("$JOURNEY_POINT"),
-//        ),
-//
-//      ],
-//    ),
-//  ),bottomNavigationBar: Padding(
-//    padding: const EdgeInsets.all(8.0),
-//    child: Row(
-//      mainAxisAlignment: MainAxisAlignment.center,
-//      children: <Widget>[
-//        Padding(
-//          padding: const EdgeInsets.all(8.0),
-//          child: FloatingActionButton(
-//            child: Icon(Icons.message),
-//            onPressed: null,//()=>Navigator.pushNamed(context, '/messages'),
-//            heroTag: "message",
-//            foregroundColor: message_AlertColor,
-//
-//          ),
-//        ),
-//        Padding(
-//          padding: const EdgeInsets.all(8.0),
-//          child: FloatingActionButton(
-//            child: Icon(Icons.gavel ),
-//            onPressed:null,//()=> dialog(context,_ShowDialog),
-//            heroTag: "Complete task",
-//
-//            foregroundColor: task_AlertColor,
-//          ),
-//        ),
-//        Padding(
-//          padding: const EdgeInsets.all(8.0),
-//          child: FloatingActionButton(
-//            child: Icon(Icons.info,size: 40.0,),
-//            onPressed: null, //()=>Navigator.pushNamed(context, '/info'),
-//            heroTag: "About my Op",
-//            foregroundColor: About_AlertColor,
-//          ),
-//        ),
-//
-//        Padding(
-//          padding: const EdgeInsets.all(8.0),
-//
-//          child: FloatingActionButton(
-//            child: Icon(Icons.directions,size: 40.0,),
-//            onPressed:null,// ()=>Navigator.pushNamed(context, '/instructions'),
-//            heroTag: "Instructions to follow",
-//            foregroundColor: Instructions_AlertColor,
-//          ),
-//        ),
-//      ],
-//    ),
-//  ));
-//}
+
 
 void dialog(BuildContext context, bool IsAlert)
 {
@@ -356,10 +352,7 @@ void dialog(BuildContext context, bool IsAlert)
         textAlign: TextAlign.center,),
         content: new Column(
           children: <Widget>[
-//            Padding(
-//              padding: const EdgeInsets.all(8.0),
-//              child: Image.asset('assets/images/gavel.jpg'),
-//            ),
+
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: new Text(
@@ -384,4 +377,12 @@ void dialog(BuildContext context, bool IsAlert)
 
 }
 
+Future <String> getSP(String key)async{
+  print("getting $key");
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  return pref.getString(key)?? "100";
+}
 
+Future<Null> getAndSave()async{
+  journeyPoint = await getSP("journey_point");
+}
