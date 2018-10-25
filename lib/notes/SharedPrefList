@@ -92,14 +92,16 @@ String : journey_point //TODO journey_point will be computed by server and wil b
 
 //PUT Request Remider 1 Questions = 8//
 
-Bool   : HasFeverInfecRem1 //TODO
-Bool   : HasLooseTeethRem1 //TODO
-Bool   : IsPregnantRem1 //TODO
-Bool   : IsHavingOpRem1 //TODO
-int    : PainScoreRem1// TODO 0-5 from Slider
-int    : MobilityScoreRem1//TODO 0-5 from Slider
-int    : ADL_ScoreRem1//TODO 0-5 from Slider
-int    : MoodScoreRem1////TODO 0-5 from Slider
+Bool   : HasFeverInfecRem1
+Bool   : HasLooseTeethRem1
+Bool   : IsPregnantRem1
+Bool   : IsHavingOpRem1
+int    : PainScoreRem1
+int    : MobilityScoreRem1
+int    : ADL_ScoreRem1
+int    : MoodScoreRem1
+int    : Active_ScoreRem1
+
 
 //Response from Server
 Status code 200 //will set App internal bool(CanUpdate to TRUE)

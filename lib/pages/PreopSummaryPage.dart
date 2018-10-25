@@ -141,8 +141,6 @@ class _SummaryState extends State<Summary> {
     if(response.statusCode == 200){
       //TODO save journey point & canUpdate to True
       String journey_point = response.body.toString().substring(1,response.body.toString().lastIndexOf('"'));
-      saveSP("journey_point", journey_point);
-       saveBoolSP("CanUpdate", true);
 
 
 

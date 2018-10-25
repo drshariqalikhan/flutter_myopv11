@@ -132,7 +132,6 @@ Future<bool> saveDataFromServer(http.Response response)async
       saveSP("AboutWoundCareLinks", s.AboutWoundCareLinks);//AboutWoundCareLinks
       saveBoolSP("IsAlertFromServToPt", s.IsAlertFromServToPt);//IsAlertFromServToPt
       saveSP("AlertMsgFromServToPt", s.AlertMsgFromServToPt);//AlertMsgFromServToPt
-      saveBoolSP("CanUpdate", false);//internal bool that determines client ability to update journey point
 
     }
     return true;
