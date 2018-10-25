@@ -313,7 +313,7 @@ class _TileDashState extends State<TileDash> {
 
      //case "Fifteenth day Postoperative review":
      case "POD15":
-       {   mylist.add(MyTile(StageName:"Preoperative Assessment",StageStatus: "DONE",UpNext: "First Reminder",));
+       {   mylist.add(MyTile(StageName:"Preoperative Assessment",StageStatus: "DONE",UpNext: "First Reminder ",));
      mylist.add(MyTile(StageName:"First Reminder",StageStatus: "DONE",UpNext: "Second Reminder",));
      mylist.add(MyTile(StageName:"Second Reminder",StageStatus: "DONE",UpNext: "Operation day",));
      mylist.add(MyTile(StageName:"Operation day",StageStatus: "DONE",UpNext: "First day Postoperative review",));
