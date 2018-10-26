@@ -7,8 +7,9 @@ import 'package:unicorndial/unicorndial.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
-int DAYS = 00;
+
 String JOURNEY_POINT="J_P";
+String hrs_toOrAfter_sx = "fetching..";
 Color message_AlertColor =Colors.black;
 Color task_AlertColor =Colors.black;
 Color About_AlertColor =Colors.black;
@@ -103,12 +104,12 @@ class _TileDashState extends State<TileDash> {
        appBar: AppBar(
            title: Padding(
              padding: const EdgeInsets.all(8.0),
-             child: Text("Your journey to recovery:",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+             child: Text(hrs_toOrAfter_sx,style: TextStyle(fontWeight: FontWeight.bold),),
            ),
            backgroundColor: Colors.black,
           leading: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text("Surgery in :\n $DAYS DAYS",style: TextStyle(fontSize: 10.0,fontWeight: FontWeight.bold),),
+            child: Image.asset('assets/images/speroicon.png')
           ),
        ),
 
@@ -385,4 +386,7 @@ Future <String> getSP(String key)async{
 
 Future<Null> getAndSave()async{
   journeyPoint = await getSP("journey_point");
+  hrs_toOrAfter_sx = await getSP("hrs_toOrAfter_sx");
+  //TODO add time to/since surgery
+
 }

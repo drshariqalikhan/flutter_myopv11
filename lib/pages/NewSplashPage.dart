@@ -125,6 +125,7 @@ Future<bool> saveDataFromServer(http.Response response)async
 
       saveSP("journey_point", s.journey_point);//journey_point
       saveSP("op_date", s.op_date);//op_date
+      saveSP("hrs_toOrAfter_sx", s.hrs_toOrAfter_sx);//op_date
       saveSP("op_name", s.op_name);//op_name
       saveSP("AboutOpSurgeryLinks", s.AboutOpSurgeryLinks);//AboutOpSurgeryLinks
       saveSP("AboutAnesLinks", s.AboutAnesLinks);//AboutAnesLinks
@@ -151,6 +152,7 @@ class ServerData{
   final String journey_point;
   final int UnixTimeOfLastSync;
   final String op_date;
+  final String hrs_toOrAfter_sx;
   final String op_name;
   final String AboutOpSurgeryLinks;
   final String AboutAnesLinks;
@@ -166,6 +168,7 @@ class ServerData{
     this.journey_point,
     this.UnixTimeOfLastSync,
     this.op_date,
+    this.hrs_toOrAfter_sx,
     this.op_name,
     this.AboutOpSurgeryLinks,
     this.AboutAnesLinks,
@@ -180,6 +183,7 @@ class ServerData{
       UnixTimeOfLastSync:json['UnixTimeOfLastSync'],
       op_date:json['op_date'],
       op_name:json['op_name'],
+      hrs_toOrAfter_sx:json['hrs_toOrAfter_sx'],
       AboutOpSurgeryLinks:json['AboutOpSurgeryLinks'],
       AboutAnesLinks:json['AboutAnesLinks'],
       AboutPhysioLinks:json['AboutPhysioLinks'],
