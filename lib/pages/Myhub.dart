@@ -24,7 +24,17 @@ class _myhubState extends State<myhub> {
       enableAppScheme: true,
       withLocalStorage: true,
       withJavascript: true,
-      appBar: AppBar(centerTitle:true,title: Text('Myop',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),),backgroundColor: Colors.black,)
+      appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text("My Appointments",style: TextStyle(fontWeight: FontWeight.bold),),
+            Hero(tag: "ic", child: Image.asset('assets/images/speroicon.png')),
+          ],
+        ),
+        //leading: Hero(tag: "ic", child: Image.asset('assets/images/speroicon.png')),
+        backgroundColor: Colors.black,
+      ),
 
     );
 

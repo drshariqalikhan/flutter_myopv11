@@ -27,6 +27,16 @@ class _AboutSurgeryState extends State<AboutSurgery> {
   ChildWidget() {
 
     return Scaffold(
+      appBar: AppBar(
+          leading: Hero(tag: "ic", child:Image.asset('assets/images/speroicon.png') ),
+          backgroundColor: Colors.black,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text("About my Surgery",style: TextStyle(fontWeight: FontWeight.bold),),
+              Hero(tag: "info", child:Icon(Icons.info) )
+            ],
+          ),),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

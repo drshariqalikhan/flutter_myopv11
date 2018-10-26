@@ -18,7 +18,10 @@ class _preop_GotoClinicState extends State<preop_GotoClinic> {
 
   Widget ChildWidget(){
     return Scaffold(
-      appBar: MyAppbar(),
+        appBar: AppBar(
+          leading: Hero(tag: "ic", child: Image.asset('assets/images/speroicon.png')),
+          backgroundColor: Colors.black,
+        ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -33,7 +36,7 @@ class _preop_GotoClinicState extends State<preop_GotoClinic> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: GestureDetector(
-                child: Image.asset('assets/images/spero.png',scale: 1.0,),
+                child: Image.asset('assets/images/speroicon.png',scale: 1.0,),
                 onTap: ()=>Navigator.pushNamed(context, '/myhealth'),
 
               ),

@@ -107,9 +107,9 @@ class _TileDashState extends State<TileDash> {
              child: Text(hrs_toOrAfter_sx,style: TextStyle(fontWeight: FontWeight.bold),),
            ),
            backgroundColor: Colors.black,
-          leading: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset('assets/images/speroicon.png')
+          leading: Hero(
+            tag: "ic",
+            child:Image.asset('assets/images/speroicon.png')
           ),
        ),
 
@@ -172,6 +172,22 @@ class _TileDashState extends State<TileDash> {
      break;
 
      case "preopMedPhoto":{
+       mylist.add(MyTile(StageName:"Preoperative Assessment",StageStatus: "ONGOING",UpNext: "First Reminder",));
+       mylist.add(MyTile(StageName:"First Reminder",StageStatus: "PENDING",UpNext: "Second Reminder",));
+       mylist.add(MyTile(StageName:"Second Reminder",StageStatus: "PENDING",UpNext: "Operation day",));
+       mylist.add(MyTile(StageName:"Operation day",StageStatus: "PENDING",UpNext: "First day Postoperative review",));
+       mylist.add(MyTile(StageName:"First day Postoperative review",StageStatus: "PENDING",UpNext: "Third day Postoperative review",));
+       mylist.add(MyTile(StageName:"Third day Postoperative review",StageStatus: "PENDING",UpNext: "Fifth day Postoperative review",));
+       mylist.add(MyTile(StageName:"Fifth day Postoperative review",StageStatus: "PENDING",UpNext: "Tenth day Postoperative review",));
+       mylist.add(MyTile(StageName:"Tenth day Postoperative review",StageStatus: "PENDING",UpNext: "Fifteenth day Postoperative review",));
+       mylist.add(MyTile(StageName:"Fifteenth day Postoperative review",StageStatus: "PENDING",UpNext: "",));
+       mylist.add(SizedBox(height: 50.0,));
+
+     }
+     return mylist;
+
+     break;
+     case "preopinstruction":{
        mylist.add(MyTile(StageName:"Preoperative Assessment",StageStatus: "ONGOING",UpNext: "First Reminder",));
        mylist.add(MyTile(StageName:"First Reminder",StageStatus: "PENDING",UpNext: "Second Reminder",));
        mylist.add(MyTile(StageName:"Second Reminder",StageStatus: "PENDING",UpNext: "Operation day",));
@@ -361,7 +377,7 @@ void dialog(BuildContext context, bool IsAlert)
                 textAlign: TextAlign.start,
                 style: TextStyle(fontSize: 30.0),
               ),
-            )
+            ),Hero(tag: "ic", child: Image.asset('assets/images/speroicon.png')),
           ],
         ),
         actions: <Widget>[

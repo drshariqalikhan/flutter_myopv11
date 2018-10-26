@@ -82,7 +82,12 @@ class _preopSevenState extends State<preopSeven> {
   Widget ChildWidget(BuildContext context, bool _press,String q1,String q2,String q3, String q4, String q5,String q6,String q7){
 
     return Scaffold(
-      appBar: MyAppbar(myWidget: LinearProgressIndicator(value: PR0GRESS,),),
+//      appBar: MyAppbar(myWidget: LinearProgressIndicator(value: PR0GRESS,),),
+      appBar: AppBar(
+        title: Center(child: LinearProgressIndicator(value: PR0GRESS,)),
+        leading: Hero(tag: "ic", child: Image.asset('assets/images/speroicon.png')),
+        backgroundColor: Colors.black,
+      ),
       body: new CustomScrollView(
         primary: true,
         slivers: <Widget>[
@@ -136,7 +141,7 @@ class _preopSevenState extends State<preopSeven> {
                     handleQ: _handleQ7,
                     qValue: _q7Value,
                   ),
-                  SizedBox(height: 50.0,),
+                  SizedBox(height: MediaQuery.of(context).size.height*0.1,),
                 ],//colum children
               ),
 

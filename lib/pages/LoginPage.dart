@@ -40,7 +40,7 @@ class _LoginState extends State<Login> {
     Widget ChildWidget(BuildContext context){
 
       final logo = Hero(
-        tag: 'hero',
+        tag: 'ic',
         child: CircleAvatar(
           backgroundColor: Colors.white,
           radius: 48.0,

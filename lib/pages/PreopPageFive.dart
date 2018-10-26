@@ -66,7 +66,12 @@ class _preopFiveState extends State<preopFive> {
   Widget ChildWidget(BuildContext context, bool _press,String q1,String q2,String q3, String q4, String q5){
 
     return Scaffold(
-      appBar: MyAppbar(myWidget: LinearProgressIndicator(value: PR0GRESS,),),
+//      appBar: MyAppbar(myWidget: LinearProgressIndicator(value: PR0GRESS,),),
+      appBar: AppBar(
+        title: Center(child: LinearProgressIndicator(value: PR0GRESS,)),
+        leading: Hero(tag: "ic", child: Image.asset('assets/images/speroicon.png')),
+        backgroundColor: Colors.black,
+      ),
       body: new CustomScrollView(
         primary: true,
         slivers: <Widget>[
@@ -78,159 +83,7 @@ class _preopFiveState extends State<preopFive> {
                 mainAxisAlignment:MainAxisAlignment.start,
                 children: <Widget>
                 [
-                  /////////////////////////////////////////////////////////////
-//                    //q1
-//                    Column(
-//                      mainAxisAlignment: MainAxisAlignment.start,
-//                      children: <Widget>[
-//                        Text(q1,textAlign: TextAlign.justify,style: TextStyle(fontSize: qsize,fontWeight: FontWeight.bold),),
-//                        Row(
-//                          mainAxisAlignment: MainAxisAlignment.start,
-//                          children: <Widget>[
-//                            Text("YES"),
-//                            Radio(
-//                                materialTapTargetSize: MaterialTapTargetSize.padded,
-//                                value: true,
-//                                groupValue: _q1Value,
-//                                onChanged: _handleQ1),
-//                            SizedBox(width: 200.0,),
-//                            Text("NO"),
-//                            Radio(
-//                                materialTapTargetSize: MaterialTapTargetSize.padded,
-//                                value: false,
-//                                groupValue: _q1Value,
-//                                onChanged: _handleQ1)
-//                          ],
-//                        ),
-//
-//                        Divider(
-//                          color: Colors.blue,
-//                        )
-//                      ],
-//                    ),
-//
-//                    //q2
-//                    Column(
-//                      mainAxisAlignment: MainAxisAlignment.start,
-//                      children: <Widget>[
-//                        Text(q2,textAlign: TextAlign.justify,style: TextStyle(fontSize: qsize,fontWeight: FontWeight.bold),),
-//                        Row(
-//                          mainAxisAlignment: MainAxisAlignment.start,
-//                          children: <Widget>[
-//                            Text("YES"),
-//                            Radio(
-//                                materialTapTargetSize: MaterialTapTargetSize.padded,
-//                                value: true,
-//                                groupValue: _q2Value,
-//                                onChanged: _handleQ2),
-//                            SizedBox(width: 200.0,),
-//                            Text("NO"),
-//                            Radio(
-//                                materialTapTargetSize: MaterialTapTargetSize.padded,
-//                                value: false,
-//                                groupValue: _q2Value,
-//                                onChanged: _handleQ2)
-//                          ],
-//                        ),
-//                        Divider(
-//                          color: Colors.blue,
-//                        )
-//                      ],
-//                    ),
-//                    //q3
-//                    Column(
-//                      mainAxisAlignment: MainAxisAlignment.start,
-//                      children: <Widget>[
-//                        Text(q3,textAlign: TextAlign.justify,style: TextStyle(fontSize: qsize,fontWeight: FontWeight.bold),),
-//
-//                        Row(
-//                          mainAxisAlignment: MainAxisAlignment.start,
-//                          children: <Widget>[
-//                            Text("YES"),
-//                            Radio(
-//                                materialTapTargetSize: MaterialTapTargetSize.padded,
-//                                value: true,
-//                                groupValue: _q3Value,
-//                                onChanged: _handleQ3),
-//                            SizedBox(width: 200.0,),
-//
-//                            Text("NO"),
-//                            Radio(
-//                                materialTapTargetSize: MaterialTapTargetSize.padded,
-//                                value: false,
-//                                groupValue: _q3Value,
-//                                onChanged: _handleQ3)
-//                          ],
-//                        ),
-//                        Divider(
-//                          color: Colors.blue,
-//                        )
-//                      ],
-//                    ),
-//
-//                    //q4
-//                    Column(
-//                      mainAxisAlignment: MainAxisAlignment.start,
-//                      children: <Widget>[
-//                        Text(q4,textAlign: TextAlign.justify,style: TextStyle(fontSize: qsize,fontWeight: FontWeight.bold),),
-//
-//                        Row(
-//                          mainAxisAlignment: MainAxisAlignment.start,
-//                          children: <Widget>[
-//                            Text("YES"),
-//                            Radio(
-//                                materialTapTargetSize: MaterialTapTargetSize.padded,
-//                                value: true,
-//                                groupValue: _q4Value,
-//                                onChanged: _handleQ4),
-//                            SizedBox(width: 200.0,),
-//
-//                            Text("NO"),
-//                            Radio(
-//                                materialTapTargetSize: MaterialTapTargetSize.padded,
-//                                value: false,
-//                                groupValue: _q4Value,
-//                                onChanged: _handleQ4)
-//                          ],
-//                        ),
-//                        Divider(
-//                          color: Colors.blue,
-//                        )
-//                      ],
-//                    ),
-//
-//                    //q5
-//                    Column(
-//                      mainAxisAlignment: MainAxisAlignment.start,
-//                      children: <Widget>[
-//                        Text(q5,textAlign: TextAlign.justify,style: TextStyle(fontSize: qsize,fontWeight: FontWeight.bold),),
-//
-//                        Row(
-//                          mainAxisAlignment: MainAxisAlignment.start,
-//                          children: <Widget>[
-//                            Text("YES"),
-//                            Radio(
-//                                materialTapTargetSize: MaterialTapTargetSize.padded,
-//                                value: true,
-//                                groupValue: _q5Value,
-//                                onChanged: _handleQ5),
-//                            SizedBox(width: 200.0,),
-//
-//                            Text("NO"),
-//                            Radio(
-//                                materialTapTargetSize: MaterialTapTargetSize.padded,
-//                                value: false,
-//                                groupValue: _q5Value,
-//                                onChanged: _handleQ5)
-//                          ],
-//                        ),
-//                        Divider(
-//                          color: Colors.blue,
-//                        )
-//                      ],
-//                    ),
 
-                  //////////////////////////////////////////////////////
                   QuestionCard(
                     Question: q1,
                     QuestionFontsize: qsize,
@@ -261,7 +114,7 @@ class _preopFiveState extends State<preopFive> {
                     handleQ: _handleQ5,
                     qValue: _q5Value,
                   ),
-                  SizedBox(height: 50.0,),
+                  SizedBox(height: MediaQuery.of(context).size.height*0.1,),
                 ],//colum children
               ),
 

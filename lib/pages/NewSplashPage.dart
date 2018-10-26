@@ -66,7 +66,10 @@ Widget ChildWidget()
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Image.asset('assets/images/spero.png'),
+                  child: Hero(
+                    tag:"ic",
+                    child:  Image.asset('assets/images/speroicon.png')
+                  ),
                 ),
                 Padding(padding: EdgeInsets.only(top: 10.0),),
                 Text("MyOP",style: TextStyle(fontSize: 24.0),),

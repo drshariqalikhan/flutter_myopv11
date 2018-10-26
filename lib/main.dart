@@ -43,6 +43,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.indigo,
         cardColor: Colors.white,
 
+
       ),
       home: NewSplash(),
      // home: Reminder2(),
@@ -64,6 +65,7 @@ class MyApp extends StatelessWidget {
           '/preop6': (context)=>preopSix(),
           '/preop7': (context)=>preopSeven(),
           '/summary': (context)=>Summary(),
+          '/preopinstruction': (context)=>instructions(),
           '/preop_GotoClinic': (context)=>preop_GotoClinic(),//journey_point
           '/preopMedPhoto': (context)=>preopMedPhoto(),//journey_point
           '/takePhoto': (context)=>takePhoto(),
