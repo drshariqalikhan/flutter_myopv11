@@ -355,8 +355,16 @@ class _TileDashState extends State<TileDash> {
   @override
   Widget build(BuildContext context) {
     return new WillPopScope(child: childWid(), onWillPop: () async => false);
+//    return WillPopScope(child: NestedScrollView(headerSliverBuilder: (BuildContext context,bool innerBoxIsScrolled){return <Widget>[SliverAppBar(
+//        backgroundColor: Colors.black,
+//      title: Text(hrs_toOrAfter_sx,style: TextStyle(fontWeight: FontWeight.bold),),
+//      leading: Hero(tag: "ic", child: Image.asset('assets/images/speroicon.png')),
+//      floating: true,
+//
+//    )];}, body: childWid()), onWillPop: () async => false);
   }
 }
+
 
 
 void dialog(BuildContext context, bool IsAlert)

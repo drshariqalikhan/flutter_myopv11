@@ -8,7 +8,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:convert';
 
 String instruction, journey_point;
-List<String> ins;
+var ins;
 var instructionListWidgets =  List<Widget>();
 bool Isloading = true;
 final String url = "http://myop.pythonanywhere.com/api/preopInstruction/";
@@ -34,7 +34,9 @@ class _instructionsState extends State<instructions> {
         child: Text(x,style: TextStyle(fontWeight: FontWeight.bold),),
       ));}
       instructionListWidgets.add(
-          AcceptTermsCard(Question: "I understand the above instructions",));}
+          AcceptTermsCard(Question: "I understand the above instructions",
+            Accept_func: (){updateJourneyPointInServer(journey_point).then(gotoNextPage);
+            },));}
   }
   ChildWidget(BuildContext context) {
     if(!Isloading){
@@ -105,6 +107,25 @@ class _instructionsState extends State<instructions> {
       );
     }
   }
+
+  void gotoNextPage(int responseCode){
+    if(responseCode == 200){
+      Navigator.of(context).pushNamed('/splash');
+    }
+    else
+    {
+      Fluttertoast.showToast(
+          msg: "cannot go:"+responseCode.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIos: 5,
+          bgcolor: "#e74c3c",
+          textcolor: '#ffffff'
+      );
+    }
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return new WillPopScope(child: ChildWidget(context), onWillPop: () async => false);
@@ -151,6 +172,19 @@ Future<bool> saveDataFromServer(http.Response response)async
   }
 }
 
+Future<int> updateJourneyPointInServer(String jp)async{
+  String url = "http://myop.pythonanywhere.com/api/connect/";
+  var body = {
+    "journey_point":"$jp",
+    "PreopMedInstructions":"$ins"
+  };
+  var response = await http.put(Uri.encodeFull(url),
+    headers: {"AUTHORIZATION": "Token ${await getSP("TOKEN")}"},
+    body: body,);
+
+  return response.statusCode;
+
+}
 
 class ServerData{
   final String journey_point;
