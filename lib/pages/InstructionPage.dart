@@ -10,7 +10,6 @@ import 'dart:convert';
 String instruction, journey_point;
 var ins;
 var instructionListWidgets =  List<Widget>();
-bool Isloading = true;
 final String url = "http://myop.pythonanywhere.com/api/preopInstruction/";
 
 class instructions extends StatefulWidget {
@@ -24,8 +23,12 @@ class _instructionsState extends State<instructions> {
   void initState() {
     instructionListWidgets.clear();
     ins="";
-    getSP("journey_point").then((String journey_poin){journey_point = journey_poin; print(journey_point);}).whenComplete((){ getSP("TOKEN").then(getJsonData).then(saveDataFromServer).whenComplete((){setState(() { Isloading = false;});});});
-    //getSP("TOKEN").then(getJsonData).then(saveDataFromServer).whenComplete((){setState(() { Isloading = false;});});
+    getSP("journey_point")
+        .then((String journey_poin){journey_point = journey_poin; print(journey_point);})
+        .whenComplete((){getSP("TOKEN")
+          .then(getJsonData)
+          .then(saveDataFromServer)
+          .whenComplete((){setState(() { });});});
     super.initState();
   }
 
@@ -84,33 +87,42 @@ class _instructionsState extends State<instructions> {
       break;
     //Reminder1
       case "Reminder1":{
-        if(instructionListWidgets.isEmpty){createList();};
+        if(instructionListWidgets.isEmpty){createList();}
         return ListView(children: instructionListWidgets,);
       }
       break;
     //Reminder2
       case "Reminder2":{
-        if(instructionListWidgets.isEmpty){createList();};
+        if(instructionListWidgets.isEmpty){createList();}
         return ListView(children: instructionListWidgets,);
       }
       break;
     //UnkwnOpStatus
-      case "UnkwnOpStatus":{}
+      case "UnkwnOpStatus":{
+        if(instructionListWidgets.isEmpty){createList();}
+        return ListView(children: instructionListWidgets,);
+      }
       break;
     //POD1
-      case "POD1":{}
+      case "POD1":{
+        //TODO
+      }
       break;
     //POD3
-      case "POD3":{}
+      case "POD3":{        //TODO
+      }
       break;
     //POD5
-      case "POD5":{}
+      case "POD5":{        //TODO
+      }
       break;
     //POD10
-      case "POD10":{}
+      case "POD10":{        //TODO
+      }
       break;
     //POD15
-      case "POD15":{}
+      case "POD15":{        //TODO
+      }
       break;
 
     //null
@@ -152,77 +164,6 @@ class _instructionsState extends State<instructions> {
    body: getBody(journey_point) ,
     );
 
-  }
-  ChildWidget(BuildContext context) {
-    if(!Isloading){
-      print(journey_point);
-      createList();
-
-
-      return Scaffold(
-        appBar: AppBar(
-          leading: Hero(tag: "ic", child:Image.asset('assets/images/speroicon.png') ),
-          backgroundColor: Colors.black,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text("My Instructions",style: TextStyle(fontWeight: FontWeight.bold),),
-              Hero(tag: "instructions", child:Icon(Icons.directions) )
-            ],
-          ),
-
-
-        ),body:ListView(
-        children: instructionListWidgets,
-
-
-      ),
-//          persistentFooterButtons: <Widget>[
-//        AcceptTermsCard(
-//                Question: "I understand the above instructions",
-//                Decline_text: "I disagree",
-//                Decline_func: (){ },
-//                Accept_func: ()async {
-//                  //getSP("TOKEN").then(sendData).then(SaveDataFromServer);
-//                  },
-//              )
-//      ],
-
-//
-//        body: Center(
-//          child: ListView(
-//            children: <Widget>[
-//
-//              AcceptTermsCard(
-//                Question: "I understand the above instructions",
-//                Decline_text: "I disagree",
-//                Decline_func: (){ },
-//                Accept_func: ()async {
-//                  //getSP("TOKEN").then(sendData).then(SaveDataFromServer);
-//                  },
-//              )
-//
-//            ]
-//          ),
-//        ),
-       floatingActionButton:
-          new FloatingActionButton(
-            child: Icon(Icons.home),
-              onPressed: ()=>Navigator.pushNamed(context, '/splash')
-
-        )
-
-      );
-    }else{
-      return Scaffold(
-        body: Center(child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            CircularProgressIndicator(),
-          ],
-        )),
-      );
-    }
   }
 
   void gotoNextPage(int responseCode){
@@ -305,19 +246,19 @@ Future<int> updateJourneyPointInServer(String jp)async{
 }
 
 class ServerData{
-  final String journey_point;
+//  final String journey_point;
   final String PreopInstructions;
 
 
 
 
   ServerData({
-    this.journey_point,
+//    this.journey_point,
     this.PreopInstructions,
   });
   factory ServerData.fromJson(Map<String,dynamic> json){
     return ServerData(
-      journey_point:json['journey_point'],
+//      journey_point:json['journey_point'],
       PreopInstructions:json['PreopInstructions'],
 
     );
