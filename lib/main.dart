@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
 
       ),
       home: NewSplash(),
-     // home: Reminder2(),
+//      home: instructions(),
         routes: {
           '/splash':(context)=> NewSplash(),
           '/login':(context)=> Login(),

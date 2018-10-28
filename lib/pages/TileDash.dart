@@ -37,7 +37,6 @@ class _TileDashState extends State<TileDash> {
 
  Widget childWid()
  {
-
    var childButtons = List<UnicornButton>();
 
    childButtons.add(UnicornButton(
@@ -48,8 +47,7 @@ class _TileDashState extends State<TileDash> {
          backgroundColor: Colors.orangeAccent,
          mini: true,
          child: Icon(Icons.directions),
-         onPressed: ()=>Navigator.pushNamed(context, '/instructions'),
-       )));
+         onPressed: ()=>Navigator.pushNamed(context, '/instructions'))));
 
 
    childButtons.add(UnicornButton(
@@ -95,7 +93,8 @@ class _TileDashState extends State<TileDash> {
 
 
 
-   if(!isloading){return Scaffold(
+   if(!isloading){
+     return Scaffold(
      backgroundColor: Colors.transparent,
      floatingActionButton: UnicornDialer(
            orientation: UnicornOrientation.VERTICAL,

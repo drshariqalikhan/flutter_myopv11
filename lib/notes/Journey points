@@ -4,20 +4,20 @@ DAYS_to_OP:
 <----preop------11><---------preopMedPhoto----------9>                         <5--Rem1--4>      <3--Rem2--2>                                        <1pm--UnkwnOpStatus-----5pm> <R>        <R>         <R>         <R>             <R>
                                                                         UNFIT_OPCancel
                 preop GotoClinic---------------------------------------<               PT_OPCancel/UNFIT_OPCancel
-preop----------<                      /---------------------------------->Reminder1----<                 |
+preop----------<                      /---------preopinstruction------>Reminder1----<                 |
                 preop ok-<-----------<                                  /               \-----Reminder2--<                     PT_OPCancel/UNFIT_OPCancel
-                          preopMedPhoto -------------------------------/                                  \---UnkwnOpStatus--<                               PostOpHome------->  POD1------->POD3------->POD5------->POD10------->POD15--->JourneyComplete
+                          preopMedPhoto -------preopinstruction  ------/                                  \---UnkwnOpStatus--<                               PostOpHome------->  POD1------->POD3------->POD5------->POD10------->POD15--->JourneyComplete
                                                                                                                               \-----------------------------<              |             |           |            |           |
                                                                                                                                                       |      PosyOpHosp------------------------------------------------------------------->X
                                                                                                                                                      DEAD
 
-JOURNEY POINTS: preop-(preopMedPhoto)-->Reminder1--->Reminder2--->UnkwnOpStatus--->POD1--->POD3---->POD5--->POD10--->POD15-->JourneyComplete
+JOURNEY POINTS: preop-(preopMedPhoto)-preopinstruction->Reminder1--->Reminder2--->UnkwnOpStatus--->POD1--->POD3---->POD5--->POD10--->POD15-->JourneyComplete
                                                                                                                              (SuperSync)
 
 preop<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 preop_GotoClinic
-
 preopMedPhoto<<<<<<<<<<<<<<<<<<<<<
+preopinstruction
 UNFIT_OPCancel
 PT_OPCancel
 DEAD

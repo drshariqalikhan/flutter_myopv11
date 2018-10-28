@@ -22,25 +22,142 @@ class _instructionsState extends State<instructions> {
 
   @override
   void initState() {
-    getSP("TOKEN").then(getJsonData).then(saveDataFromServer).whenComplete((){setState(() {Isloading = false;});});
+    instructionListWidgets.clear();
+    ins="";
+    getSP("journey_point").then((String journey_poin){journey_point = journey_poin; print(journey_point);}).whenComplete((){ getSP("TOKEN").then(getJsonData).then(saveDataFromServer).whenComplete((){setState(() { Isloading = false;});});});
+    //getSP("TOKEN").then(getJsonData).then(saveDataFromServer).whenComplete((){setState(() { Isloading = false;});});
     super.initState();
   }
 
   void createList(){
+    print("INS:$ins");
     ins = instruction.split(':');
     if(instructionListWidgets.length == 0){
       for(final x in ins){instructionListWidgets.add(Padding(
         padding: const EdgeInsets.all(8.0),
         child: Text(x,style: TextStyle(fontWeight: FontWeight.bold),),
-      ));}
+      ));}}
+      if(journey_point == "preopinstruction" && !instruction.startsWith('*')){
       instructionListWidgets.add(
           AcceptTermsCard(Question: "I understand the above instructions",
-            Accept_func: (){updateJourneyPointInServer(journey_point).then(gotoNextPage);
-            },));}
+            Accept_func: (){updateJourneyPointInServer(journey_point).then(gotoNextPage);},));}
+    }
+
+   getBody(String journeyPoint){
+    switch(journeyPoint){
+    //preop
+      case "preop":{
+        return Center(child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text("Complete preop assesment!",style: TextStyle(fontWeight: FontWeight.bold),),
+          ],
+        ));
+
+      }
+      break;
+    //preop_GotoClinic
+      case "preop_GotoClinic":{
+        return Center(child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text("Please go to Preop Clinic!",style: TextStyle(fontWeight: FontWeight.bold),),
+          ],
+        ));
+      }
+      break;
+    //preopMedPhoto
+      case "preopMedPhoto":{
+        return Center(child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text("Please upload Photo of your medications!",style: TextStyle(fontWeight: FontWeight.bold),),
+          ],
+        ));
+      }
+      break;
+    //preopinstruction
+      case "preopinstruction":{
+        createList();
+        return ListView(children: instructionListWidgets,);
+      }
+      break;
+    //Reminder1
+      case "Reminder1":{
+        if(instructionListWidgets.isEmpty){createList();};
+        return ListView(children: instructionListWidgets,);
+      }
+      break;
+    //Reminder2
+      case "Reminder2":{
+        if(instructionListWidgets.isEmpty){createList();};
+        return ListView(children: instructionListWidgets,);
+      }
+      break;
+    //UnkwnOpStatus
+      case "UnkwnOpStatus":{}
+      break;
+    //POD1
+      case "POD1":{}
+      break;
+    //POD3
+      case "POD3":{}
+      break;
+    //POD5
+      case "POD5":{}
+      break;
+    //POD10
+      case "POD10":{}
+      break;
+    //POD15
+      case "POD15":{}
+      break;
+
+    //null
+      default: {
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text("Loading ...make sure you are connected!",style: TextStyle(fontWeight: FontWeight.bold),),
+            ),
+            CircularProgressIndicator(),
+          ],
+        );
+      }
+      break;
+
+    }
+  }
+  Widget childWidget(BuildContext context){
+    return Scaffold(
+        appBar:AppBar(
+          leading: Hero(tag: "ic", child:Image.asset('assets/images/speroicon.png') ),
+          backgroundColor: Colors.black,
+          title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+          Text("My Instructions",style: TextStyle(fontWeight: FontWeight.bold),),
+          Hero(tag: "instructions", child:Icon(Icons.directions) )
+          ],),
+        ) ,
+        floatingActionButton:
+        new FloatingActionButton(
+            child: Icon(Icons.home),
+            onPressed: ()=>Navigator.pushNamed(context, '/splash')
+
+        ),
+
+   body: getBody(journey_point) ,
+    );
+
   }
   ChildWidget(BuildContext context) {
     if(!Isloading){
+      print(journey_point);
       createList();
+
 
       return Scaffold(
         appBar: AppBar(
@@ -128,7 +245,7 @@ class _instructionsState extends State<instructions> {
 
   @override
   Widget build(BuildContext context) {
-    return new WillPopScope(child: ChildWidget(context), onWillPop: () async => false);
+    return new WillPopScope(child: childWidget(context), onWillPop: () async => false);
   }
 }
 
@@ -157,7 +274,7 @@ Future<bool> saveDataFromServer(http.Response response)async
     for(ServerData s in slist.serverdata)
     {
       instruction = s.PreopInstructions;
-      journey_point = s.journey_point;
+      //journey_point = s.journey_point;
 
     }
     return true;
@@ -175,8 +292,9 @@ Future<bool> saveDataFromServer(http.Response response)async
 Future<int> updateJourneyPointInServer(String jp)async{
   String url = "http://myop.pythonanywhere.com/api/connect/";
   var body = {
-    "journey_point":"$jp",
-    "PreopMedInstructions":"$ins"
+    //"journey_point":"$jp",
+    "journey_point":"Reminder1",
+    "PreopInstructions":"$instruction"
   };
   var response = await http.put(Uri.encodeFull(url),
     headers: {"AUTHORIZATION": "Token ${await getSP("TOKEN")}"},
