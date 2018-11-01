@@ -14,12 +14,18 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
-class takePhoto extends StatefulWidget {
+class takePhoto2 extends StatefulWidget {
+
+  takePhoto2({Key key, this.imageSource}) : super(key: key);
+
+  final ImageSource imageSource;
+
   @override
-  _takePhotoState createState() => new _takePhotoState();
+  _takePhoto2State createState() => new _takePhoto2State();
+
 }
 
-class _takePhotoState extends State<takePhoto> {
+class _takePhoto2State extends State<takePhoto2> {
   String token;
   String _DoseFreq;
   String _display="Please select dose";
@@ -46,13 +52,21 @@ class _takePhotoState extends State<takePhoto> {
     // TODO: implement initState
     HasImage =false;
     loadData();
-    getImage();
-    getSP("TOKEN").then((String tk){token = "Token $tk"; setState((){});});
+    getImage(widget.imageSource);
+    getSP("TOKEN").then((String tk){token = "Token $tk";print(token); setState((){});});
     super.initState();
   }
 
-  getImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+//   getImage() async {
+//    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+//    if(image == null){HasImage = false;}else{HasImage = true;}
+//
+//    setState(() {
+//      if(HasImage){ imageFile = image;}else{print("no image");}
+//    });
+//  }
+  getImage(ImageSource src) async {
+    var image = await ImagePicker.pickImage(source: src);
     if(image == null){HasImage = false;}else{HasImage = true;}
 
     setState(() {
@@ -74,8 +88,27 @@ class _takePhotoState extends State<takePhoto> {
       //Simulate a service call
       print('submitting to backend...');
 
-      await _uploadImage('medpic');
-      Navigator.pushNamed(context, '/preopMedPhoto');
+      await _uploadImage('medpic')
+          .then((int val){
+        val == 200?showDialog(context: context,
+            builder: (context){return AlertDialog(
+              title: Text("Myop"),
+              content: Text("Do you want upload more?"),
+              actions: <Widget>[
+                FlatButton(onPressed: ()=>Navigator.pushNamed(context,'/preopMedPhoto')
+                    , child: Text("Yes")),
+                FlatButton(onPressed: ()=>Navigator.pushNamed(context, '/splash'),
+                    child: Text("No"))
+              ],
+            );})
+            :showDialog(context: context,builder: (context){return AlertDialog(
+          title: Text("SomeThing went wrong!"),
+          content: Text("Error code: $val"),
+          actions: <Widget>[
+            FlatButton(onPressed: ()=>Navigator.pushNamed(context,'/preopMedPhoto'),
+                child: Text("Close"))
+          ],
+        );});});
 
 
       setState(() {
@@ -107,9 +140,8 @@ class _takePhotoState extends State<takePhoto> {
   }
 
 
-  _uploadImage(String API_endpoint)async
+  Future<int> _uploadImage(String API_endpoint)async
   {
-    try{
 
       final url = Uri.parse('$baseUrl/medpic/');
       final fileName = path.basename(imageFile.path);
@@ -117,18 +149,11 @@ class _takePhotoState extends State<takePhoto> {
       var request = new http.MultipartRequest("PUT", url);
       request.headers['AUTHORIZATION'] = token;
       request.files.add(new http.MultipartFile.fromBytes('image', bytes,filename: "$_DoseFreq.jpg"));
+      request.fields['journey_point']="preopinstruction";
       var response = await request.send();
       print(response.statusCode);
-      if(response.statusCode == 200){
-        //set SP to true if response in 200
-        print('true');
-      }else{
-        print('false');
-      }
+      return response.statusCode;
 
-
-
-    }catch(e){}
   }
 
 
@@ -137,12 +162,15 @@ class _takePhotoState extends State<takePhoto> {
 
   Widget _babyWid(BuildContext context){
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Center(child: SizedBox(child: imageFile == null? CircularProgressIndicator(strokeWidth: 20.0,): Image.file(imageFile))),
+      body: Card(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+          Center(child: SizedBox(child: imageFile == null? CircularProgressIndicator(): Image.file(imageFile))),
 
-        ],
+
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed:()=> _submit(context),
@@ -152,37 +180,63 @@ class _takePhotoState extends State<takePhoto> {
     );
   }
 
-  Widget ChildWid2(BuildContext context)
-  {
-    return Scaffold(
-      bottomNavigationBar:Text(_display,style: TextStyle(fontSize: 20.0),),
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.black,
 
-        title: DropdownButton(
-          hint: Text("Select dose frequency:",style: TextStyle(color: Colors.white),),
-          items: listDrop,
-          value: _DoseFreq,
-          onChanged: (value){_DoseFreq = value;  setState(() {
+  Widget ChildWid(BuildContext context){
+    switch (imageFile){
+      case null:{
+        print("image is null");
+        return Scaffold(
+          appBar: AppBar(leading:Hero(tag: "ic",child: Image.asset('assets/images/speroicon.png',)) ,
+            title: FittedBox(child: Text("Something went wrong! click arrow ")),
+            backgroundColor: Colors.black,),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                FloatingActionButton(child: Icon(Icons.arrow_back),onPressed: ()=>Navigator.pop(context))
+              ],
+            ),
+          ),
+        );
+      }
+      break;
+      default:{
+        return Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            backgroundColor: Colors.black,
+            leading: Hero(tag: "ic",child: Image.asset('assets/images/speroicon.png',)) ,
+            title: FittedBox(
+              child: DropdownButton(
+                style: TextStyle(color: Colors.blue,),
+                hint: Text("Select dose frequency:",style: TextStyle(color: Colors.white,fontSize: 40.0),),
+                items: listDrop,
+                value: _DoseFreq,
+                onChanged: (value){_DoseFreq = value;  setState(() {
 
-          }); },
+                }); },
 
-        ),
-
-      ),
-
-      body: ModalProgressHUD(
-
-        inAsyncCall: _sending,
-        child: _babyWid(context),
-        color: Colors.redAccent,
+              ),
+            ),
 
 
-      ),
-    );
+          ),
+          bottomNavigationBar:FittedBox(child: Text(_display,style: TextStyle(fontWeight: FontWeight.bold),)),
+          body: ModalProgressHUD(
+
+            inAsyncCall: _sending,
+            child: _babyWid(context),
+            color: Colors.redAccent,
+
+
+          ),
+
+        );
+      }
+      break;
+    }
+
   }
-
 
 
   @override
@@ -197,12 +251,10 @@ class _takePhotoState extends State<takePhoto> {
         textcolor: '#ffffff'
     );}
 //    loadData();
-    return new WillPopScope(child: ChildWid2(context), onWillPop: () async => false);
+    return new WillPopScope(child: ChildWid(context), onWillPop: () async => false);
   }
 }
 
-
-//String getToken()=>"Token b959d32cd0001f63b30e24da5d7ae40f89683c74";
 
 List<int> compress(List<int> bytes) {
   var image = img.decodeImage(bytes);

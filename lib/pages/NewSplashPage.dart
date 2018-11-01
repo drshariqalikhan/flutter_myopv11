@@ -5,15 +5,22 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 
-
+final String apiEndpoint = "connect/";
 final String url = "http://myop.pythonanywhere.com/api/connect/";
 
 class NewSplash extends StatefulWidget {
+//  final String baseURL;
+//  final String brandICON;
+//  
+//  NewSplash({Key key, this.baseURL, this.brandICON}): super(key:key);
+  
+  
   @override
   _NewSplashState createState() => new _NewSplashState();
 }
 
 class _NewSplashState extends State<NewSplash> {
+
 
 
 
@@ -50,6 +57,7 @@ void redirect(bool success)
 Widget ChildWidget()
 {
   return Scaffold(
+    bottomSheet: Text('Copyright SPEROmedtech pvt ltd, Singapore'),
       body:Stack(
     fit: StackFit.expand,
     children: <Widget>[
@@ -73,6 +81,7 @@ Widget ChildWidget()
                 ),
                 Padding(padding: EdgeInsets.only(top: 10.0),),
                 Text("MyOP",style: TextStyle(fontSize: 24.0),),
+                
               ],),
           ),
           Expanded(

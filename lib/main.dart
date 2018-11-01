@@ -29,6 +29,11 @@ import 'package:flutter_myopv10/pages/TileDash.dart';
 import 'package:flutter_myopv10/pages/UnkwnOpStatusPage.dart';
 import 'package:flutter_myopv10/pages/picPhotoPage.dart';
 import 'package:flutter_myopv10/pages/takePhotoPage.dart';
+import 'package:flutter_myopv10/pages/takePhotoPage2.dart';
+import 'package:image_picker/image_picker.dart';
+
+final String baseUrl = "http://myop.pythonanywhere.com/api/";
+final String brandIcon = "assets/images/speroicon.png";
 
 void main() => runApp(new MyApp());
 
@@ -46,9 +51,9 @@ class MyApp extends StatelessWidget {
 
       ),
       home: NewSplash(),
-//      home: instructions(),
+//      home: preopMedPhoto(),
         routes: {
-          '/splash':(context)=> NewSplash(),
+          '/splash':(context)=> NewSplash(),//connect
           '/login':(context)=> Login(),
           '/tiledash':(context)=>TileDash(),
           '/messages':(context)=>messages(),
@@ -69,6 +74,10 @@ class MyApp extends StatelessWidget {
           '/preop_GotoClinic': (context)=>preop_GotoClinic(),//journey_point
           '/preopMedPhoto': (context)=>preopMedPhoto(),//journey_point
           '/takePhoto': (context)=>takePhoto(),
+
+          '/takePhoto2': (context)=>takePhoto2(imageSource: ImageSource.camera,),
+          '/picPhoto2': (context)=>takePhoto2(imageSource: ImageSource.gallery,),
+
           '/picPhoto':(context)=> picPhoto(),
           '/Reminder1': (context)=>Reminder1(),//journey_point
           '/Reminder2': (context)=>Reminder2(),//journey_point

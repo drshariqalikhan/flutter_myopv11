@@ -11,6 +11,7 @@ String instruction, journey_point;
 var ins;
 var instructionListWidgets =  List<Widget>();
 final String url = "http://myop.pythonanywhere.com/api/preopInstruction/";
+BuildContext ctx;
 
 class instructions extends StatefulWidget {
   @override
@@ -41,9 +42,18 @@ class _instructionsState extends State<instructions> {
         child: Text(x,style: TextStyle(fontWeight: FontWeight.bold),),
       ));}}
       if(journey_point == "preopinstruction" && !instruction.startsWith('*')){
+
+//      showDialog(context: context,builder: (context){
+//        AlertDialog(title: Text("Video here"),actions: <Widget>[
+//          FlatButton(onPressed: ()=> Navigator.pop(context), child: Text("close"))],);
+//      });
+
       instructionListWidgets.add(
           AcceptTermsCard(Question: "I understand the above instructions",
-            Accept_func: (){updateJourneyPointInServer(journey_point).then(gotoNextPage);},));}
+//            Accept_func: (){updateJourneyPointInServer(journey_point).then(gotoNextPage);},));
+            Accept_func: (){updateJourneyPointInServer(journey_point).whenComplete(()=>Navigator.pushNamed(context, '/aboutsurg'));},));
+
+    }
     }
 
    getBody(String journeyPoint){
@@ -186,6 +196,7 @@ class _instructionsState extends State<instructions> {
 
   @override
   Widget build(BuildContext context) {
+    ctx = context;
     return new WillPopScope(child: childWidget(context), onWillPop: () async => false);
   }
 }

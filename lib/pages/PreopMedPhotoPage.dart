@@ -24,48 +24,72 @@ class _preopMedPhotoState extends State<preopMedPhoto> {
   {
     return new Scaffold(
 
-        backgroundColor: Colors.white,
-        appBar: MyAppbar(myWidget: Text("MyOp",style: TextStyle(color: Colors.white),),BarHieght: 30.0,),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      backgroundColor: Colors.white,
+      appBar:AppBar(
+        leading: Hero(tag: "ic", child:Image.asset('assets/images/speroicon.png') ),
+        backgroundColor: Colors.black,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Text("Please add a clear photo of your medication NAME"),
+            Text("My Medications",style: TextStyle(fontWeight: FontWeight.bold),),
 
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0),
-                  child: Icon(Icons.whatshot,size: 300.0,),
-                ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                IconButton(
-                  tooltip: "Take a Photo",
-                  icon: Icon(Icons.add_a_photo,size: 50.0,),
-                    onPressed: (){
-                      print("goto TakePhoto page");
-                      Navigator.pushNamed(context, '/takePhoto');
-                    }
-                ),
-                IconButton(
-                  tooltip:"Pick from Gallery",
-                    icon: Icon(Icons.image,size: 50.0,),
-                    onPressed: (){
-                      print("goto PicPhoto page");
-                      Navigator.pushNamed(context, '/picPhoto');
-                    }
-                )
-              ],
-            )
-          ],
-        )
-        ,floatingActionButton:
-            FloatingActionButton(child: Icon(Icons.home),
-              heroTag: "Home",
-              onPressed: (){
-              print("goto splash page");
-              Navigator.pushNamed(context, '/splash');
-              },
-            ),
+          ],),
+      ) ,
+        body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: FittedBox(child:Text("Take a photo of your medication NAME",style: TextStyle(fontSize: 100.0,fontWeight: FontWeight.bold))),
+          ),
+         // Hero(tag: "ic", child:Image.asset('assets/images/speroicon.png') ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  IconButton(
+                      tooltip: "Take a Photo",
+                      icon: Icon(Icons.add_a_photo,size: 50.0,),
+                      onPressed: (){
+                        print("goto TakePhoto page");
+                        Navigator.pushNamed(context, '/takePhoto2');
+                      }
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Take a Photo"),
+                  )
+                ],
+              ),
+              Column(
+                children: <Widget>[
+                  IconButton(
+                      tooltip:"Pick from Gallery",
+                      icon: Icon(Icons.image,size: 50.0,),
+                      onPressed: (){
+                        print("goto PicPhoto page");
+                        Navigator.pushNamed(context, '/picPhoto2');
+                      }
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Pick from Gallery"),
+                  )
+                ],
+              )
+            ],
+          )
+        ],
+      )
+      ,floatingActionButton:
+    FloatingActionButton(child: Icon(Icons.home),
+      heroTag: "Home",
+      onPressed: (){
+        print("goto splash page");
+        Navigator.pushNamed(context, '/splash');
+      },
+    ),
     );
   }
 
@@ -77,5 +101,3 @@ class _preopMedPhotoState extends State<preopMedPhoto> {
     return new WillPopScope(child: ChildWidget(context), onWillPop: () async => false);
   }
 }
-
-
