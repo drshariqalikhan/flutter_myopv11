@@ -88,25 +88,34 @@ class _takePhoto2State extends State<takePhoto2> {
       //Simulate a service call
       print('submitting to backend...');
 
+
       await _uploadImage('medpic')
-          .then((int val){
-        val == 200?showDialog(context: context,
-            builder: (context){return AlertDialog(
-              title: Text("Myop"),
-              content: Text("Do you want upload more?"),
-              actions: <Widget>[
-                FlatButton(onPressed: ()=>Navigator.pushNamed(context,'/preopMedPhoto')
-                    , child: Text("Yes")),
-                FlatButton(onPressed: ()=>Navigator.pushNamed(context, '/splash'),
-                    child: Text("No"))
-              ],
-            );})
-            :showDialog(context: context,builder: (context){return AlertDialog(
-          title: Text("SomeThing went wrong!"),
-          content: Text("Error code: $val"),
-          actions: <Widget>[
-            FlatButton(onPressed: ()=>Navigator.pushNamed(context,'/preopMedPhoto'),
-                child: Text("Close"))
+          .then((http.StreamedResponse res){return http.Response.fromStream(res);})
+          .then((http.Response res){
+           //200 res status
+           res.statusCode == 200?showDialog(context: context,
+               builder: (context){
+           //TODO Add to SP MEDICATION_INSTRUCTIONS with Drug name or "processing"
+
+             return AlertDialog(
+                   title: Text("MyOp"),
+                 content: Text("Do you want upload more?"),
+                 actions: <Widget>[
+                   FlatButton(onPressed: ()=>Navigator.pushNamed(context,'/preopMedPhoto')
+                       , child: Text("Yes")),
+                   FlatButton(onPressed: ()=>Navigator.pushNamed(context, '/splash'),
+                       child: Text("No"))
+                 ],
+               );})
+          :showDialog(context: context,builder: (context){
+
+            return AlertDialog(
+        title: Text("SomeThing went wrong!"),
+        content: Text("Error code: ${res.statusCode}"),
+        actions: <Widget>[
+          FlatButton(onPressed: ()=>Navigator.pushNamed(context,'/preopMedPhoto'),
+              child: Text("Close"))
+
           ],
         );});});
 
@@ -140,22 +149,37 @@ class _takePhoto2State extends State<takePhoto2> {
   }
 
 
-  Future<int> _uploadImage(String API_endpoint)async
+//  Future<int> _uploadImage(String API_endpoint)async
+//  {
+//
+//      final url = Uri.parse('$baseUrl/medpic/');
+//      final fileName = path.basename(imageFile.path);
+//      final bytes = await compute(compress, imageFile.readAsBytesSync());
+//      var request = new http.MultipartRequest("PUT", url);
+//      request.headers['AUTHORIZATION'] = token;
+//      request.files.add(new http.MultipartFile.fromBytes('image', bytes,filename: "$_DoseFreq.jpg"));
+//      request.fields['journey_point']="preopinstruction";
+//      var response = await request.send();
+//
+//      return response.statusCode;
+//
+//  }
+
+  Future<http.StreamedResponse> _uploadImage(String API_endpoint)async
   {
 
-      final url = Uri.parse('$baseUrl/medpic/');
-      final fileName = path.basename(imageFile.path);
-      final bytes = await compute(compress, imageFile.readAsBytesSync());
-      var request = new http.MultipartRequest("PUT", url);
-      request.headers['AUTHORIZATION'] = token;
-      request.files.add(new http.MultipartFile.fromBytes('image', bytes,filename: "$_DoseFreq.jpg"));
-      request.fields['journey_point']="preopinstruction";
-      var response = await request.send();
-      print(response.statusCode);
-      return response.statusCode;
+    final url = Uri.parse('$baseUrl/medpic/');
+    final fileName = path.basename(imageFile.path);
+    final bytes = await compute(compress, imageFile.readAsBytesSync());
+    var request = new http.MultipartRequest("PUT", url);
+    request.headers['AUTHORIZATION'] = token;
+    request.files.add(new http.MultipartFile.fromBytes('image', bytes,filename: "$_DoseFreq.jpg"));
+    request.fields['journey_point']="preopinstruction";
+    var response = await request.send();
+
+    return response;
 
   }
-
 
 
 
@@ -258,7 +282,7 @@ class _takePhoto2State extends State<takePhoto2> {
 
 List<int> compress(List<int> bytes) {
   var image = img.decodeImage(bytes);
-  var resize = img.copyResize(image, 240);
+  var resize = img.copyResize(image, 400);//TODO choose correct number
   return img.encodePng(resize, level: 1);
 }
 
@@ -267,3 +291,25 @@ Future <String> getSP(String key)async{
   SharedPreferences pref = await SharedPreferences.getInstance();
   return pref.getString(key)?? "100";
 }
+
+class medOcr{
+  String image;
+  String drug;
+
+  medOcr({
+    this.image,this.drug,
+  });
+
+  static medOcr fromJson(Map<String,dynamic> json){
+    return medOcr(
+      image: json['image'],
+      drug: json['drug'],
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    'image': image,
+    'drug': drug,
+  };
+}
+

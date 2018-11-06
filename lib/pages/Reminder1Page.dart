@@ -325,98 +325,7 @@ class _Reminder1State extends State<Reminder1> {
 
     return response.statusCode;
   }
-//  Future<Null> SaveDataFromServer(http.Response response){
-//    print("processing response");
-//    if(response.statusCode == 200){
-//      //TODO save journey point & canUpdate to True
-//      String journey_point = response.body.toString().substring(1,response.body.toString().lastIndexOf('"'));
-//
-//
-//
-//      Fluttertoast.showToast(
-//          msg: "$journey_point",
-//          toastLength: Toast.LENGTH_SHORT,
-//          gravity: ToastGravity.CENTER,
-//          timeInSecForIos: 5,
-//          bgcolor: "#e74c3c",
-//          textcolor: '#ffffff'
-//      );
-//      dialog(context);
-//      updateJourneyPointInServer(journey_point).then(gotoNextPage);
-//
-//    }else{
-//      //TODO show error message and ask user to try again/troubleshoot
-//      Fluttertoast.showToast(
-//          msg: "cannot send:"+response.statusCode.toString(),
-//          toastLength: Toast.LENGTH_SHORT,
-//          gravity: ToastGravity.CENTER,
-//          timeInSecForIos: 5,
-//          bgcolor: "#e74c3c",
-//          textcolor: '#ffffff'
-//      );
-//    }
-//  }
-//  void dialog(BuildContext context)
-//  {
-//    new Future.delayed(Duration.zero, () {
-//      showDialog(context: context, builder: (context) =>
-//      new AlertDialog(title: Text(
-//        "Connecting to server!", style: TextStyle(color: Colors.orange),
-//        textAlign: TextAlign.center,),
-//        content: new Column(
-//          children: <Widget>[
-//
-//            Padding(
-//              padding: const EdgeInsets.all(8.0),
-//              child: new Text(
-//                'PLEASE WAIT....',
-//                textAlign: TextAlign.start,
-//                style: TextStyle(fontSize: 30.0),
-//              ),
-//            ),
-//            CircularProgressIndicator(),
-//
-//          ],
-//        ),
-//        actions: <Widget>[
-//
-//        ],
-//      ));
-//    });
-//
-//
-//  }
-//  Future<int> updateJourneyPointInServer(String jp)async{
-//    String url = "http://myop.pythonanywhere.com/api/connect/";
-//    var body = {
-//      "journey_point":"$jp"
-//    };
-//    var response = await http.put(Uri.encodeFull(url),
-//      headers: {"AUTHORIZATION": "Token ${await getSP("TOKEN")}"},
-//      body: body,);
-//
-//    return response.statusCode;
-//
-//  }
-//
-//  void gotoNextPage(int responseCode){
-//    if(responseCode == 200){
-//      Navigator.of(context).pushNamed('/splash');
-//    }
-//    else
-//    {
-//      Fluttertoast.showToast(
-//          msg: "cannot go:"+responseCode.toString(),
-//          toastLength: Toast.LENGTH_SHORT,
-//          gravity: ToastGravity.CENTER,
-//          timeInSecForIos: 5,
-//          bgcolor: "#e74c3c",
-//          textcolor: '#ffffff'
-//      );
-//    }
-//
-//  }
-//
+
 
 
   @override
@@ -433,21 +342,7 @@ class _Reminder1State extends State<Reminder1> {
 }
 
 
-//Future<bool> saveSP(String key,String value)async{
-//  SharedPreferences pref = await SharedPreferences.getInstance();
-//  return pref.setString(key, value);
-//}
-//
-//Future<bool> saveBoolSP(String key,bool value)async{
-//  SharedPreferences pref = await SharedPreferences.getInstance();
-//  return pref.setBool(key, value);
-//}
-//
-////TODO : check
-//Future saveIntSP(String key,int value)async{
-//  SharedPreferences pref = await SharedPreferences.getInstance();
-//  return pref.setInt(key, value);
-//}
+
 
 Future <String> getSP(String key)async{
   print("getting $key");
