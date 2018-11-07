@@ -127,7 +127,7 @@ class _POD10State extends State<POD10> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ColSlider(
-                      Question: "Do you have pain at REST?",
+                      Question: "Do you have pain",
                       QuestionFontsize: 20.0,
                       slider: Slider(
                           divisions: 4,
@@ -135,33 +135,33 @@ class _POD10State extends State<POD10> {
                           min: 0.0,
                           value: _val1,
                           onChanged: _exec1),
-                      options: <Widget>[Text("I have NO pain or discomfort at REST"),
-                      Text("I have SLIGHT pain or discomfort at REST"),
-                      Text("I have MODERATE pain or discomfort at REST"),
-                      Text("I have SEVERE pain or discomfort at REST"),
-                      Text("I have EXTREME pain or discomfort at REST"),],
+                      options: <Widget>[Text("I have NO pain or discomfort"),
+                      Text("I have SLIGHT pain or discomfort"),
+                      Text("I have MODERATE pain or discomfort"),
+                      Text("I have SEVERE pain or discomfort"),
+                      Text("I have EXTREME pain or discomfort"),],
 
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ColSlider(
-                      Question: "Do you have pain at MOVEMENT?",
-                      QuestionFontsize: 20.0,
-                      slider: Slider(
-                          divisions: 4,
-                          max: 4.0,
-                          min: 0.0,
-                          value: _val2,
-                          onChanged: _exec2),
-                      options: <Widget>[Text("I have NO pain or discomfort at MOVEMENT"),
-                      Text("I have SLIGHT pain or discomfort at MOVEMENT"),
-                      Text("I have MODERATE pain or discomfort at MOVEMENT"),
-                      Text("I have SEVERE pain or discomfort at MOVEMENT"),
-                      Text("I have EXTREME pain or discomfort at MOVEMENT"),],
-
-                    ),
-                  ),
+//                  Padding(
+//                    padding: const EdgeInsets.all(8.0),
+//                    child: ColSlider(
+//                      Question: "Do you have pain at MOVEMENT?",
+//                      QuestionFontsize: 20.0,
+//                      slider: Slider(
+//                          divisions: 4,
+//                          max: 4.0,
+//                          min: 0.0,
+//                          value: _val2,
+//                          onChanged: _exec2),
+//                      options: <Widget>[Text("I have NO pain or discomfort at MOVEMENT"),
+//                      Text("I have SLIGHT pain or discomfort at MOVEMENT"),
+//                      Text("I have MODERATE pain or discomfort at MOVEMENT"),
+//                      Text("I have SEVERE pain or discomfort at MOVEMENT"),
+//                      Text("I have EXTREME pain or discomfort at MOVEMENT"),],
+//
+//                    ),
+//                  ),
 
                   QuestionCard(
                     Question: q1,

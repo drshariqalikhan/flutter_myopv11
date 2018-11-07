@@ -48,10 +48,44 @@ B/Can you move you neck all the way up and down?
 4/Do you want to cancel or postpone the surgery?
 
 5/How well can you take care of your self?
+    //Slider
+     options: "I have NO PROBLEM washing or dressing myself" //1
+              "I have SLIGHT PROBLEM washing or dressing myself"//2
+              "I have MODERATE PROBLEM washing or dressing myself"//3
+              "I have SEVERE PROBLEM washing or dressing myself"//4
+              "I am UNABLE washing or dressing myself"//5
+
 6/How well can you move about?
+     //Slider
+     options: "I have NO PROBLEM in walking about" //1
+              "I have SLIGHT PROBLEM walking about" //2
+              "I have MODERATE PROBLEM walking about" //3
+              "I have SEVERE PROBLEM walking about" //4
+              "I am UNABLE walking about" //5
+
 7/How well can you perform usual activities like housework?
+     //Slider
+     options:"I have NO PROBLEM in usual activities" //1
+             "I have SLIGHT PROBLEM in usual activities" //2
+             "I have MODERATE PROBLEM in usual activities" //3
+             "I have SEVERE PROBLEM in usual activities" //4
+             "I am UNABLE to perform usual activities" //5
 8/Do you have pain?
+      //Slider
+      options: "I have NO pain or discomfort"//1
+               "I have SLIGHT pain or discomfort"//2
+               "I have MODERATE pain or discomfort"//3
+               "I have SEVERE pain or discomfort"//4
+               "I have EXTREME pain or discomfort"//5
+
 9/Are you Anxious or depressed?
+       //Slider
+       options:"I am NOT anxious or depressed"  //1
+               "I am SLIGHTLY anxious or depressed" //2
+               "I am MODERATLY anxious or depressed" //3
+               "I am SEVERELY anxious or depressed" //4
+               "I am EXTREMELY anxious or depressed" //5
+
 
 //Reminder2
 1/Do you have any fever , cold or ongoing infection?
@@ -69,10 +103,51 @@ B/Can you move you neck all the way up and down?
 6/Do you have any new numbness or weakness?
 
 7/Do you have pain at REST?
+    //Slider
+    options: "I have NO pain or discomfort at REST"//1
+             "I have SLIGHT pain or discomfort at REST"//2
+             "I have MODERATE pain or discomfort at REST"//3
+             "I have SEVERE pain or discomfort at REST"//4
+             "I have EXTREME pain or discomfort at REST"//5
+
 8/Do you have pain at MOVEMENT?
+    //Slider
+    options: "I have NO pain or discomfort at MOVEMENT" //1
+             "I have SLIGHT pain or discomfort at MOVEMENT"//2
+             "I have MODERATE pain or discomfort at MOVEMENT" //3
+             "I have SEVERE pain or discomfort at MOVEMENT" //4
+             "I have EXTREME pain or discomfort at MOVEMENT" //5
+
 9/Do you have any Nausea or Vomiting?
+    //Slider
+    options: "I have a NO Nausea or Vomitting" //1
+             "I have SLIGHT Nausea or Voimitting" //2
+             "I have MODERATE Nausea or Voimitting" //3
+             "I have SEVERE Nausea or Voimitting" //4
+
 10/Do you have any Sorethroat?
-11/Are you happy with your care experiance with our hospital so far?
+    //Slider
+     options:"I have NO pain or discomfort" //1
+             "I have SLIGHT pain or discomfort" //2
+             "I have MODERATE pain or discomfort" //3
+             "I have SEVERE pain or discomfort" //4
+
+11/Do you have any Itchiness?
+    //Slider
+    options: "I have NO Itchiness" //1
+             "I have SLIGHT Itchiness" //2
+             "I have MODERATE Itchiness" //3
+             "I have SEVERE Itchiness" //4
+
+12/Are you happy with your care experiance with our hospital so far?
+    //Slider
+    options: "I had a VERY BAD experiance" //1
+             "I had a SLIGHTLY BAD experiance" //2
+             "I had an AVERAGE experiance" //3
+             "I had a VERY GOOD experiance" //4
+             "I had a EXECELLENT experiance" //5
+
+
 
 //POD3
 
@@ -86,7 +161,20 @@ B/Can you move you neck all the way up and down?
 8/Have you had any unplanned READMISSION to hospital?
 
 9/Do you have pain at REST?
+    //Slider
+    options:"I have NO pain or discomfort at REST" //1
+            "I have SLIGHT pain or discomfort at REST" //2
+            "I have MODERATE pain or discomfort at REST" //3
+            "I have SEVERE pain or discomfort at REST" //4
+             "I have EXTREME pain or discomfort at REST" //5
+
 10/Do you have pain at MOVEMENT?
+    //Slider
+    options: "I have NO pain or discomfort at MOVEMENT" //1
+             "I have SLIGHT pain or discomfort at MOVEMENT" //2
+             "I have MODERATE pain or discomfort at MOVEMENT" //3
+             "I have SEVERE pain or discomfort at MOVEMENT" //4
+             "I have EXTREME pain or discomfort at MOVEMENT" //5
 
 //POD5
 
@@ -95,13 +183,17 @@ B/Can you move you neck all the way up and down?
 3/Does your calf look unusually red or feel tender and firm?
 4/Do you have any shortness of breath?
 5/Do you have any new urinary retention, burning or increased urge to pass urine?
-6/Do you have any new numbness or weakness?
-7/Have you had any unplanned VISIT to hospital?
-8/Have you had any unplanned READMISSION to hospital?
+6/Have you had any unplanned VISIT to hospital?
+7/Have you had any unplanned READMISSION to hospital?
 
 
-9/Do you have pain at REST?
-10/Do you have pain at MOVEMENT?
+8/Do you have pain?
+    //Slider
+    options: "I have NO pain or discomfort" //1
+             "I have SLIGHT pain or discomfort" //2
+             "I have MODERATE pain or discomfort" //3
+             "I have SEVERE pain or discomfort" //4
+             "I have EXTREME pain or discomfort" //5
 
 //POD10
 
@@ -115,17 +207,65 @@ B/Can you move you neck all the way up and down?
 8/Have you had any unplanned READMISSION to hospital?
 
 
-9/Do you have pain at REST?
-10/Do you have pain at MOVEMENT?
+8/Do you have pain?
+    //Slider
+    options: "I have NO pain or discomfort" //1
+             "I have SLIGHT pain or discomfort" //2
+             "I have MODERATE pain or discomfort" //3
+             "I have SEVERE pain or discomfort" //4
+             "I have EXTREME pain or discomfort" //5
+
 
 //POD 15
 
 1/Are you happy with your care experiance with our hospital so far?
+    //Slider
+    options:"I had a VERY BAD experiance" //1
+            "I had a SLIGHTLY BAD experiance" //2
+            "I had an AVERAGE experiance" //3
+            "I had a VERY GOOD experiance" //4
+            "I had a EXECELLENT experiance" //5
+
 2/How well can you take care of your self?
+    //Slider
+         options: "I have NO PROBLEM washing or dressing myself" //1
+                  "I have SLIGHT PROBLEM washing or dressing myself"//2
+                  "I have MODERATE PROBLEM washing or dressing myself"//3
+                  "I have SEVERE PROBLEM washing or dressing myself"//4
+                  "I am UNABLE washing or dressing myself"//5
+
 3/How well can you move about?
+     //Slider
+         options: "I have NO PROBLEM in walking about" //1
+                  "I have SLIGHT PROBLEM walking about" //2
+                  "I have MODERATE PROBLEM walking about" //3
+                  "I have SEVERE PROBLEM walking about" //4
+                  "I am UNABLE walking about" //5
+
 4/How well can you perform usual activities like housework?
+    //Slider
+         options:"I have NO PROBLEM in usual activities" //1
+                 "I have SLIGHT PROBLEM in usual activities" //2
+                 "I have MODERATE PROBLEM in usual activities" //3
+                 "I have SEVERE PROBLEM in usual activities" //4
+                 "I am UNABLE to perform usual activities" //5
+
 5/Do you have pain?
+    //Slider
+          options: "I have NO pain or discomfort"//1
+                   "I have SLIGHT pain or discomfort"//2
+                   "I have MODERATE pain or discomfort"//3
+                   "I have SEVERE pain or discomfort"//4
+                   "I have EXTREME pain or discomfort"//5
+
 6/Are you Anxious or depressed?
+     //Slider
+           options:"I am NOT anxious or depressed"  //1
+                   "I am SLIGHTLY anxious or depressed" //2
+                   "I am MODERATLY anxious or depressed" //3
+                   "I am SEVERELY anxious or depressed" //4
+                   "I am EXTREMELY anxious or depressed" //5
+
 
 7/Have you had any unplanned VISIT to hospital?
 8/Have you had any unplanned READMISSION to hospital?
